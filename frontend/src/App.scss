@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+
+$white-color:#FFFFFF;
+$blue-dark_color:#272D4E;
+$blue-color:#0E65F3;
+$blue-light_color:#1A88EE;
+$purple-light_color:#B6A6FB;
+$purple-color:#7854F7;
+$yellow-color:#FFBA49;
+
+$fontText:'Roboto', sans-serif;
+
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: $fontText;
+    color: $blue-dark_color;
+    background-color:$white-color;
+    text-decoration: none;
+}
+// HOME
+body{
+    header{
+        font-size: 1em;
+    }
+    main{
+        min-height: 100vh;
+        #home {
+            background: red;
+        }
+        #marketplace {
+            background: blue;
+        }
+    }
+    
+    footer{
+        background: yellow;
+    }
+}
