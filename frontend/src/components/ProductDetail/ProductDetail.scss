@@ -9,3 +9,39 @@ $purple-color: #7854f7;
 $yellow-color: #ffba49;
 
 $fontText: "Roboto", sans-serif;
+
+#product-detail{
+    padding: 5em;
+        article {
+            margin-bottom: 2em;
+            flex-direction: column;
+            display: flex;
+            gap: 2em;
+            figure{
+                display: flex;
+                
+                img{
+                    width: 60%;
+                }
+                div{
+                    width: 40%;
+                }
+            }
+            div{
+                padding: 2em;
+                a{
+                    padding: 1em;
+                    background-color: $purple-color;
+                    border-radius: 0.5em;
+                    margin-bottom: 1em;
+                    display: inline-block;
+                    margin-right: 2em;
+                }
+                p{
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    
+
+}

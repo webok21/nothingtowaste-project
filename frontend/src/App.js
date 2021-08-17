@@ -20,12 +20,12 @@ function App() {
 
     <Router>
       <Nav />
-      
+
       <Switch>
         <Route path="/" exact component={Home} />
         <Route path="/marketplace" component={Marketplace} />
         <Route path="/addproduct" component={AddProduct} />
-        <Route path="/productdetail" component={ProductDetail} />
+        <Route path="/productdetail/:id" component={ProductDetail} />
         <Route path="/productsold" component={ProductSold} />
         <Route path="/wishlist" component={Wishlist} />
       </Switch>

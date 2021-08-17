@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from 'axios';
 import './ProductDetail.scss';
 import { useEffect, useState } from "react";
-import shoes from '../../img/shop/white-shoes.png'
+import shoes from '../../img/shop/white-shoes.png';
+
 
 
 const ProductDetail = () => {
-    const [p_Detail, setDetail] = useState(null)
+    const [productDetail, setDetail] = useState(null)
+    let { id } = useParams();
     let count = 0
     useEffect(() => {
         const abortControl = new AbortController();
-        console.log(p_Detail)
-        axios.get('/api/productDetails', { signal: abortControl.signal })
+        console.log(productDetail)
+        axios.get(`/api/productDetails/${id}`, { signal: abortControl.signal })
             .then((result) => {
                 console.log(result.data)
                 setDetail(result.data)
@@ -24,7 +26,7 @@ const ProductDetail = () => {
                 }
 
             })
-        console.log(p_Detail)
+        console.log(productDetail)
         return () => {
             abortControl.abort();
             console.log('cleanup: fetching aborted')
@@ -33,23 +35,30 @@ const ProductDetail = () => {
     return (
         <main>
             <section id="product-detail">
-                {p_Detail && (p_Detail.map(productObj =>
-                    <article key={productObj._id} >
-                        {/* <img src={productObj.p_imageUrl} alt="img"></img> */}
-                        <img src={shoes} alt="img"></img>
+
+                {productDetail &&
+                    <article key={productDetail._id} >
+                        <figure>
+                            {/* <img src={productDetail.p_imageUrl} alt="img"></img> */}
+                            <img src={shoes} alt="img"></img>
+                            <div>
+                                <h3>{productDetail.p_titel}</h3>
+                                <p>Marke: {productDetail.p_mark}</p>
+                                <p>Preis pro Stück: {productDetail.p_price} $</p>
+                                <p>Anzahl: {productDetail.p_amount}</p>
+                                <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
+                                <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
+                                <p>Auf die Wunschliste</p>
+                                <p>{productDetail.p_description}</p>
+                            </div>
+                        </figure>
                         <div>
-                            <p>{productObj.p_titel}</p>
-                            <p>Marke: {productObj.p_mark}</p>
-                            <p>Preis pro Stück: {productObj.p_price} $</p>
-                            <p>Anzahl: {productObj.p_amount}</p>
-                            <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
-                            <p>Abholung möglich: {productObj.p_pickup ? 'Ja' : 'Nein'}</p>
+                            <Link to={`/productDetail/${productDetail._id}`}> Bearbeiten </Link>
+                            <Link to={`/productDetail/${productDetail._id}`}> Verkauft </Link>
+
                         </div>
-                        <div>
-                            <Link to={`/productDetail/${productObj._id}`}> Details </Link>
-                            <p>Auf die Wunschliste</p>
-                        </div>
-                    </article>))}
+                    </article>
+                }
 
             </section>
 
