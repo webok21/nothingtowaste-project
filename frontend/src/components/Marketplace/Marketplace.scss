@@ -1,0 +1,44 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+$white-color: #ffffff;
+$blue-dark_color: #272d4e;
+$blue-color: #0e65f3;
+$blue-light_color: #1a88ee;
+$purple-light_color: #b6a6fb;
+$purple-color: #7854f7;
+$yellow-color: #ffba49;
+
+$fontText: "Roboto", sans-serif;
+
+#marketplace {
+    padding: 5em;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    
+    aside {
+    }
+    div{
+        display: flex;
+        flex-direction: column;
+        
+        article {
+            margin-bottom: 2em;
+            align-items: center;
+            display: flex;
+            gap: 2em;
+            border:solid 1px $blue-dark_color;
+            div{
+                padding: 2em;
+                a{
+                    padding: 1em;
+                    background-color: $purple-color;
+                    border-radius: 0.5em;
+                    margin-bottom: 1em;
+                }
+                p{
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    }
+}

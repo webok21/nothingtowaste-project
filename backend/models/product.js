@@ -30,7 +30,8 @@ const productSchema = new Schema({
     },
     p_amount: {
         type: Number,
-        required: false
+        required: true,
+        default: 1,
     },
     p_description: {
         type: String,
@@ -38,6 +39,10 @@ const productSchema = new Schema({
     },
     p_owner: {
         type: String,
+        required: false
+    },
+    p_category: {
+        type: [String],
         required: false
     }
 
