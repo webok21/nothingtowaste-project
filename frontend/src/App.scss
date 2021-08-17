@@ -1,75 +1,129 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
 
-$white-color:#FFFFFF;
-$blue-dark_color:#272D4E;
-$blue-color:#0E65F3;
-$blue-light_color:#1A88EE;
-$purple-light_color:#B6A6FB;
-$purple-color:#7854F7;
-$yellow-color:#FFBA49;
+$white-color: #ffffff;
+$blue-dark_color: #272d4e;
+$blue-color: #0e65f3;
+$blue-light_color: #1a88ee;
+$purple-light_color: #b6a6fb;
+$purple-color: #7854f7;
+$yellow-color: #ffba49;
 
-$fontText:'Roboto', sans-serif;
+$fontText: "Roboto", sans-serif;
 
-*{
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    font-family: $fontText;
-    color: $blue-dark_color;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: $fontText;
+  font-size: 18px;
+  color: $blue-dark_color;
 }
-// HOME
-body{
-    header{
-        font-size: 1em;
-    }
-    main{
-        min-height: 100vh;
-        #home{
-            background: red;
-        }
-        #marketplace{
-            background: blue;
-        }
-        
-    }
 
-    footer{
-        // background: url(../img/home/circle-footer.png) center / cover no-repeat;
-        #footer-register{
-            background: $purple-color;
-            min-height: 20vh;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-            position: relative;
-                h4{
-                    color: $white-color;
-                }
-                button{
-                    background: $purple-color;
-                    color: $white-color;
-                    border: 1px solid $white-color;
-                    border-radius: 5px;
-                    padding: 18px 20px;
-                }
-                img{
-                    width: 5%;
-                    position: absolute;
-                    bottom: -20px;
-                    right: 100px;
-                }
-        }
-        #footer-icons{ 
-            display: flex;
-            justify-content: space-evenly;
-            margin: 5vh 0 6vh;
-            .icons img{
-                    padding-left: 40px;
-            }
-            .copyright a{
-                    display: inline;
-                    padding-left: 5px;
-            }
-        }  
+// General
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+li {
+  list-style: none;
+}
+
+// Headings and text
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 4.8rem;
+  line-height: 1.12;
+}
+
+h2 {
+  font-size: 3.1rem;
+  line-height: 1.27;
+}
+
+h3,
+h4 {
+  font-size: 2rem;
+}
+
+// HOME
+body {
+  nav {
+    min-height: 10vh;
+    padding: 46px 4% 0 5%;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+
+    #logo {
+      font-weight: 700;
+      width: 12%;
     }
+  
+    ul {
+      display: flex;
+      justify-content: center;
+      width: 64%;
+      align-items: center;
+      li {
+        padding-right: 3.8rem;
+      }
+    }
+    #login {
+      width: 24%;
+      text-align: right;
+      li {
+        padding-right: 1rem;
+      }
+      #btn-register {
+        padding: 16px 27px 15px 27px;
+        border-radius: 5px;
+        background-color: $purple-color;
+        color: $white-color;
+      }
+    }
+  }
+
+  main {
+    #home {
+      #hero {
+        min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        background: url(./img/home/header.png) no-repeat right center/55%;
+        div {
+          width: 59%;
+          padding-left: 12%;
+          h1 {
+            margin-bottom: 21px;
+          }
+          p {
+            margin-bottom: 45px;
+          }
+          li {
+            padding: 27px 100px;
+            display: inline-block;
+            border-radius: 5px;
+            background-color: $purple-color;
+            color: $white-color;
+          }
+        }
+      }
+    }
+    #marketplace {
+      background: blue;
+    }
+  }
+
+    
+}
+.test{
+    background: #000;
 }
