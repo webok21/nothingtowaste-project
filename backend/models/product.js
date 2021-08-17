@@ -6,17 +6,23 @@ const productSchema = new Schema({
         type: String,
         required: false
     },
+    p_imageUrl: {
+        type: String,
+        required: false
+    },
     p_mark: {
         type: String,
         required: false
     },
     p_shiping: {
         type: Boolean,
-        required: false
+        required: true,
+        default: true
     },
     p_pickup: {
         type: Boolean,
-        required: false
+        required: true,
+        default: true
     },
     p_price: {
         type: Number,
