@@ -34,24 +34,24 @@ const Marketplace = () => {
         <main>
             <section id="marketplace">
                 <Aside></Aside>
-                <div>  {productData && (productData.map(productObj =>
-                    <article key={productObj._id} >
-                        {/* <img src={productObj.p_imageUrl} alt="img"></img> */}
-                        <img src={shoes} alt="img"></img>
-                        <div>
-                            <p>{productObj.p_titel}</p>
-                            <p>Marke: {productObj.p_mark}</p>
-                            <p>Preis pro Stück: {productObj.p_price} $</p>
-                            <p>Anzahl: {productObj.p_amount}</p>
-                            <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
-                            <p>Abholung möglich: {productObj.p_pickup ? 'Ja' : 'Nein'}</p>
-
-                        </div>
-                        <div>
-                            <Link to={`/productDetail/${productObj._id}`}> Details </Link>
-                            <p>Auf die Wunschliste</p>
-                        </div>
-                    </article>))}
+                <div>
+                    {productData && (productData.map(productObj =>
+                        <article key={productObj._id} >
+                            {/* <img src={productObj.p_imageUrl} alt="img"></img> */}
+                            <img src={shoes} alt="img"></img>
+                            <div>
+                                <p>{productObj.p_titel}</p>
+                                <p>Marke: {productObj.p_mark}</p>
+                                <p>Preis pro Stück: {productObj.p_price} $</p>
+                                <p>Anzahl: {productObj.p_amount}</p>
+                                <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
+                                <p>Abholung möglich: {productObj.p_pickup ? 'Ja' : 'Nein'}</p>
+                            </div>
+                            <div>
+                                <Link to={`/productDetail/${productObj._id}`}> Details </Link>
+                                <p>Auf die Wunschliste</p>
+                            </div>
+                        </article>))}
                 </div>
             </section>
         </main>

@@ -39,9 +39,24 @@ const product_add_post = (req, res) => {
             // res.json({ redirect: "/404" })
         })
 }
+const product_detail_get = (req, res) => {
+
+    console.log('here the id from backend: ' + req.params.id)
+    Product.findById(req.params.id)
+        .then((result) => {
+            console.log(result)
+            res.json(result)
+            res.end()
+        })
+        .catch((err) => {
+            console.log(err)
+            // res.json({ redirect: "/404" })
+        })
+}
 
 module.exports = {
     product_index_get,
     product_add_post,
-    product_index_get
+    product_index_get,
+    product_detail_get
 }
