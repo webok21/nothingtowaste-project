@@ -2,16 +2,10 @@ import insta from '../img/social/insta.png';
 import facebook from '../img/social/facebook.png';
 import wiwi from '../img/social/wiwi.png';
 import twitter from '../img/social/twitter.png';
-import circle from '../img/home/circle-footer.png';
 
-const Footer = () => {
+const FooterIcons = () => {
     return (
         <footer>
-            <section id="footer-register">
-                <h4>nothingtotrash - eine online Plattform um Müll zu vermeiden.</h4>
-                <button>Registriere Dich</button>
-                <img src={circle} alt="circle" />
-            </section>
             <section id="footer-icons">
                 <div className="icons">
                     <a href="http://www.twitter.com"><img src={twitter} alt="twitter" /></a>
@@ -30,5 +24,5 @@ const Footer = () => {
     );
 }
 
-export default Footer;
+export default FooterIcons;
 
