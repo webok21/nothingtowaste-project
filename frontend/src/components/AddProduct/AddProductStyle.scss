@@ -1,0 +1,104 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+$white-color: #ffffff;
+$blue-dark_color: #272d4e;
+$blue-color: #0e65f3;
+$blue-light_color: #1a88ee;
+$purple-light_color: #b6a6fb;
+$purple-color: #7854f7;
+$input-purple: #5F37EF;
+$yellow-color: #ffba49;
+
+$fontText: "Roboto", sans-serif;
+
+#add-product {
+    margin: 8vh 20% 12vh 14%;
+}
+form {
+    
+    div {
+        width: 100%;
+        margin-bottom: 5vh;
+        input[type=text], input[type=number], select {
+            background: $input-purple;
+            opacity: 10%;
+            border: none;
+            border-radius: 5px;
+            padding: 8px 0;
+        }
+        select {
+            width: 35%;
+        }
+    
+    } 
+    #pickup-no, #delivery-no {
+        margin-left: 13%;
+    }
+    div label:first-of-type {
+        display: inline-block;
+        width: 20%;
+    }
+    #search {
+        margin-left: 6vw;
+    }
+    input[type=text] {
+            width: 80%;
+    }
+    input[type=number] {
+        width: 15%;
+    }
+    #phone-input {
+        width: 80%;
+    }
+    input[type=radio]:not(:first-of-type) {
+        margin-left: 7%;
+    }
+    #description-input {
+        padding: 30px 0;
+    }
+        .dots-circles {
+            position: relative;
+            bottom: 35vh;
+            left: 100%;
+            width: 30%;
+        }
+        .four-circles {
+            position: relative;
+            bottom: 5vh;
+            right: 45%;
+            width: 25%;
+        }
+        .five-circles {
+            position: relative;
+            top: 20vh;
+            left: 45%;
+            width: 25%;
+        } 
+        #city-input {
+            width: 60%;
+        }
+        .submit-input {
+            text-align: center;
+            padding-top: 5vh;
+            input[type=submit] {
+                color: $white-color;
+                background: $purple-color;
+                border: none;
+                border-radius: 5px;
+                padding: 20px 40px;
+            }
+        }
+    }
+
+
+
+    // ::placeholder {
+    //     color: 000;
+    //     opacity: 50%;
+    // }
+
+    // bilder hiknzufügen button + bild
+
+    // plz verschoben
+
+    // radio buttons ich suche und nein nicht genau untereinander
