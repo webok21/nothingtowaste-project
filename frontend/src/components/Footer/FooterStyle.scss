@@ -11,39 +11,39 @@ $yellow-color: #ffba49;
 $fontText: "Roboto", sans-serif;
 
 
-footer{
-    #footer-register{
+footer {
+    #footer-register {
         background: $purple-color;
         min-height: 20vh;
         display: flex;
         justify-content: space-evenly;
         align-items: center;
         position: relative;
-            h4{
+            h4 {
                 color: $white-color;
             }
-            button{
+            button {
                 background: $purple-color;
                 color: $white-color;
                 border: 1px solid $white-color;
                 border-radius: 5px;
                 padding: 18px 20px;
             }
-            img{
+            img {
                 width: 5%;
                 position: absolute;
                 bottom: -20px;
                 right: 100px;
             }
     }
-    #footer-icons{ 
+    #footer-icons { 
         display: flex;
         justify-content: space-evenly;
         margin: 5vh 0 6vh;
-        .icons img{
+        .icons img {
                 padding-left: 40px;
         }
-        .copyright a{
+        .copyright a {
                 display: inline;
                 padding-left: 5px;
         }

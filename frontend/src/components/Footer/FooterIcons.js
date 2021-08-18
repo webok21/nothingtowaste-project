@@ -2,6 +2,7 @@ import insta from '../img/social/insta.png';
 import facebook from '../img/social/facebook.png';
 import wiwi from '../img/social/wiwi.png';
 import twitter from '../img/social/twitter.png';
+import './FooterStyle.scss';
 
 const FooterIcons = () => {
     return (

@@ -1,0 +1,61 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;300;400;500;700;900&display=swap");
+
+$white-color: #ffffff;
+$blue-dark_color: #272d4e;
+$blue-color: #0e65f3;
+$blue-light_color: #1a88ee;
+$purple-light_color: #b6a6fb;
+$purple-color: #7854f7;
+$yellow-color: #ffba49;
+$grayish-color:#F5F5F5;
+$fontText: "Roboto", sans-serif;
+
+#product-detail{
+    padding: 5em;
+        article {
+            margin-bottom: 2em;
+            flex-direction: column;
+            display: flex;
+            gap: 2em;
+            figure{
+                display: flex;
+                
+                img{
+                    width: 60%;
+                }
+                div{
+                    width: 40%;
+                }
+            }
+            div{
+                padding: 2em;
+                a{
+                    padding: 1em;
+                    background-color: $purple-color;
+                    border-radius: 0.5em;
+                    margin-bottom: 1em;
+                    display: inline-block;
+                    margin-right: 2em;
+                    color: $white-color;
+                }
+                .like{
+                    padding: 1em;
+                    border-radius: 0.5em;
+                    background-color: $grayish-color;
+                    display: flex;
+                    align-items: center;
+                    span{
+                        margin-right: 1em;
+                        img{
+                            width: 1em;
+                        }
+                    }
+                }
+                p{
+                    margin-bottom: 1em;
+                }
+            }
+        }
+    
+
+}

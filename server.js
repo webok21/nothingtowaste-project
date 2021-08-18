@@ -26,7 +26,13 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
     })
     .catch(err => console.log(err))
 
-// app.use('/', apiRoutes)
+
+app.get('/', (req, res) => {
+    res.send("responding")
+})
+
+app.use('/api', apiProductRoutes)
+
 
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
