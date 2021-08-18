@@ -3,7 +3,7 @@ import facebook from '../../img/social/facebook.png';
 import wiwi from '../../img/social/wiwi.png';
 import twitter from '../../img/social/twitter.png';
 import circle from '../../img/home/circle-footer.png';
-import FooterStyle from './Footer.scss';
+import './FooterStyle.scss';
 
 const Footer = () => {
     return (
@@ -18,7 +18,7 @@ const Footer = () => {
                     <a href="http://www.twitter.com"><img src={twitter} alt="twitter" /></a>
                     <a href="http://www.facebook.com"><img src={facebook} alt="facebook" /></a>
                     <a href="/"><img src={wiwi} alt="wiwi" /></a>
-                     <a href="http://www.instagram.com"><img src={insta} alt="insta" /></a>
+                    <a href="http://www.instagram.com"><img src={insta} alt="insta" /></a>
                 </div>
                 <div className="copyright">
                     <p>COPYRIGHT © nothingtotrash 2021 -
