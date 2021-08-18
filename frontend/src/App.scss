@@ -52,78 +52,17 @@ h4 {
   font-size: 2rem;
 }
 
+p {
+  line-height: 1.66rem;
+}
 // HOME
 body {
-  nav {
-    min-height: 10vh;
-    padding: 46px 4% 0 5%;
-    display: flex;
-    width: 100%;
-    justify-content: space-between;
-
-    #logo {
-      font-weight: 700;
-      width: 12%;
-    }
-  
-    ul {
-      display: flex;
-      justify-content: center;
-      width: 64%;
-      align-items: center;
-      li {
-        padding-right: 3.8rem;
-      }
-    }
-    #login {
-      width: 24%;
-      text-align: right;
-      li {
-        padding-right: 1rem;
-      }
-      #btn-register {
-        padding: 16px 27px 15px 27px;
-        border-radius: 5px;
-        background-color: $purple-color;
-        color: $white-color;
-      }
-    }
-  }
-
   main {
-    #home {
-      #hero {
-        min-height: 90vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        background: url(./img/home/header.png) no-repeat right center/55%;
-        div {
-          width: 59%;
-          padding-left: 12%;
-          h1 {
-            margin-bottom: 21px;
-          }
-          p {
-            margin-bottom: 45px;
-          }
-          li {
-            padding: 27px 100px;
-            display: inline-block;
-            border-radius: 5px;
-            background-color: $purple-color;
-            color: $white-color;
-          }
-        }
-      }
-    }
     #marketplace {
       background: blue;
     }
   }
-
-    
 }
-.test{
-    background: #000;
+.test {
+  background: #000;
 }
