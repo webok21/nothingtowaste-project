@@ -1,13 +1,23 @@
-require('dotenv').config()
-const express = require('express')
-const mongoose = require('mongoose')
-const PORT = process.env.PORT
-const app = express()
+import express from 'express';
+import mongoose from 'mongoose';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import userRoutes from './backend/routes/users.js';
 
+const app = express();
+dotenv.config();
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, "frontend", "build")))
+// app.use(express.static(path.join(__dirname, "frontend", "build")))
+app.use(cors());
+app.use('/user', userRoutes);
+
+app.get('/', (req, res) => {
+    res.send("start")
+})
+
+const PORT = process.env.PORT
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(result => {
@@ -16,9 +26,6 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
     })
     .catch(err => console.log(err))
 
-app.get('/', (req, res) => {
-    res.send("start")
-})
 // app.use('/', apiRoutes)
 
 // app.get('*', (req, res) => {
