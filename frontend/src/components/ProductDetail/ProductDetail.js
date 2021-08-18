@@ -3,6 +3,7 @@ import axios from 'axios';
 import './ProductDetail.scss';
 import { useEffect, useState } from "react";
 import shoes from '../../img/shop/white-shoes.png';
+import like from '../../img/shop/like.svg'
 
 
 
@@ -48,7 +49,8 @@ const ProductDetail = () => {
                                 <p>Anzahl: {productDetail.p_amount}</p>
                                 <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
-                                <p>Auf die Wunschliste</p>
+                                <p className='like'> <span><img src={like}></img></span>Auf die Wunschliste</p>
+                                <p>Kategorie: {productDetail.p_category}</p>
                                 <p>{productDetail.p_description}</p>
                             </div>
                         </figure>

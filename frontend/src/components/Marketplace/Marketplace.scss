@@ -7,7 +7,7 @@ $blue-light_color: #1a88ee;
 $purple-light_color: #b6a6fb;
 $purple-color: #7854f7;
 $yellow-color: #ffba49;
-
+$grayish-color:#F5F5F5;
 $fontText: "Roboto", sans-serif;
 
 #marketplace {
@@ -34,6 +34,12 @@ $fontText: "Roboto", sans-serif;
                     background-color: $purple-color;
                     border-radius: 0.5em;
                     margin-bottom: 1em;
+                    color: $white-color;
+                }
+                .like{
+                    padding: 1em;
+                    border-radius: 0.5em;
+                    background-color: $grayish-color;
                 }
                 p{
                     margin-bottom: 1em;

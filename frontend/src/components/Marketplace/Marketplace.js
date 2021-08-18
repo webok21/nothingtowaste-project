@@ -49,7 +49,7 @@ const Marketplace = () => {
                             </div>
                             <div>
                                 <Link to={`/productDetail/${productObj._id}`}> Details </Link>
-                                <p>Auf die Wunschliste</p>
+                                <p className='like'>Auf die Wunschliste</p>
                             </div>
                         </article>))}
                 </div>
