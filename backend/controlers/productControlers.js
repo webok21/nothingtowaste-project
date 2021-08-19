@@ -18,8 +18,8 @@ const product_add_post = (req, res) => {
     console.log(req.body)
     const product = new Product({
         //my req.body but more defined
-        p_titel: 'Polaroid 3',
-        p_imageUrl: '/Users/supercoder/Desktop/Übungen/nothingtowaste-project/frontend/src/img/shop/polaroid.png',
+        p_titel: 'Polaroid 25',
+        p_imageUrl: '/img/shop/polaroid.png',
         p_mark: 'Nokia',
         p_shiping: true,
         p_pickup: true,

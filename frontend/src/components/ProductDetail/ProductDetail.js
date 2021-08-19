@@ -40,8 +40,8 @@ const ProductDetail = () => {
                 {productDetail &&
                     <article key={productDetail._id} >
                         <figure>
-                            {/* <img src={productDetail.p_imageUrl} alt="img"></img> */}
-                            <img src={shoes} alt="img"></img>
+                            <img src={productDetail.p_imageUrl} alt="img"></img>
+                            {/* <img src={shoes} alt="img"></img> */}
                             <div>
                                 <h3>{productDetail.p_titel}</h3>
                                 <p>Marke: {productDetail.p_mark}</p>

@@ -44,7 +44,38 @@ const productSchema = new Schema({
     p_category: {
         type: [String],
         required: false
-    }
+    },
+    p_forFree: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    p_priceFlex: {
+        required: true,
+        default: false
+    },
+    p_toGiveAway: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
+    p_call: {
+        type: Number,
+        required: false
+    },
+    p_street: {
+        type: String,
+        required: false
+    },
+    p_city: {
+        type: String,
+        required: false
+    },
+    p_isSold: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
 
 }, { timestamps: true })
 
