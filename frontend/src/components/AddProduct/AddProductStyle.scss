@@ -24,6 +24,7 @@ form {
             border: none;
             border-radius: 5px;
             padding: 8px 0;
+            color: $blue-dark_color
         }
         select {
             width: 35%;
@@ -42,6 +43,7 @@ form {
     }
     input[type=text] {
             width: 80%;
+            color: $blue-dark_color;
     }
     input[type=number] {
         width: 15%;

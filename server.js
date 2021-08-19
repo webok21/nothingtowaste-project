@@ -9,7 +9,8 @@ const apiProductRoutes = require('./backend/routes/productRoutes')
 
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-app.use(express.static(path.join(__dirname, "frontend", "build")))
+// app.use(express.static(path.join(__dirname, "frontend", "build")))
+app.use(express.static('public'))
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(result => {

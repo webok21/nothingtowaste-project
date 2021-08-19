@@ -39,8 +39,8 @@ const Marketplace = () => {
                 <div>
                     {productData && (productData.map(productObj =>
                         <article key={productObj._id} >
-                            {/* <img src={productObj.p_imageUrl} alt="img"></img> */}
-                            <img src={shoes} alt="img"></img>
+                            <img src={productObj.p_imageUrl} alt="img"></img>
+                            {/* <img src={shoes} alt="img"></img> */}
                             <div>
                                 <p>{productObj.p_titel}</p>
                                 <p>Marke: {productObj.p_mark}</p>
