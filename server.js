@@ -4,6 +4,11 @@ import cors from 'cors';
 import dotenv from 'dotenv';
 import userRoutes from './backend/routes/users.js';
 
+import Product from './backend/models/product.js';
+
+const apiProductRoutes = require('./backend/routes/productRoutes')
+const PORT = process.env.PORT
+
 const app = express();
 dotenv.config();
 
@@ -17,7 +22,6 @@ app.get('/', (req, res) => {
     res.send("start")
 })
 
-const PORT = process.env.PORT
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(result => {
@@ -31,7 +35,7 @@ app.get('/', (req, res) => {
     res.send("responding")
 })
 
-app.use('/api', apiProductRoutes)
+app.use('/api', apiProductRoutes);
 
 
 // app.get('*', (req, res) => {

@@ -9,6 +9,7 @@ import Icon from './Icon';
 import { signin, signup } from '../../actions/auth';
 import { AUTH } from '../../constants/actionsTypes';
 import Input from './Input';
+import './styles.scss'
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: '' };
 
@@ -55,14 +56,15 @@ const SignUp = () => {
   const handleChange = (e) => setForm({ ...form, [e.target.name]: e.target.value });
 
   return (
-    <Container component="main" maxWidth="xs">
+    <section id="auth">
+    <div className="container-auth">
       <Paper className="paper" elevation={3}>
         <Avatar className="avatar">
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
         <form className="form" onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
+          <Grid container spacing={4}>
             { isSignup && (
             <>
               <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
@@ -96,7 +98,8 @@ const SignUp = () => {
           </Grid>
         </form>
       </Paper>
-    </Container>
+    </div>
+    </section>
   );
 };
 
