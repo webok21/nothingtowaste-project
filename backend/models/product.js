@@ -51,6 +51,7 @@ const productSchema = new Schema({
         default: false
     },
     p_priceFlex: {
+        type: Boolean,
         required: true,
         default: false
     },
@@ -60,7 +61,7 @@ const productSchema = new Schema({
         default: true
     },
     p_call: {
-        type: Number,
+        type: String,
         required: false
     },
     p_street: {
@@ -68,6 +69,10 @@ const productSchema = new Schema({
         required: false
     },
     p_city: {
+        type: String,
+        required: false
+    },
+    p_PLZ: {
         type: String,
         required: false
     },
