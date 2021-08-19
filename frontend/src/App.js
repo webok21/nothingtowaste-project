@@ -31,7 +31,6 @@ function App() {
         <Route path="/wishlist" component={Wishlist} />
       </Switch>
       <Footer />
-
     </Router >
 
   );
