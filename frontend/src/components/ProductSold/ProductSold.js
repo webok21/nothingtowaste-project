@@ -1,8 +1,10 @@
+import ProductSoldHeader from "./ProductSoldHeader";
+
 const ProductSold = () => {
     return (
         <main>
+            <ProductSoldHeader />
             <section id="product-sold">
-                PRODUCT SOLD
             </section>
 
         </main>

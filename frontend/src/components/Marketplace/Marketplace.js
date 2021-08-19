@@ -4,6 +4,7 @@ import './Marketplace.scss';
 import { useEffect, useState } from "react";
 import shoes from '../../img/shop/white-shoes.png'
 import Aside from "./Aside";
+import MarketplaceHeader from "./MarketplaceHeader";
 
 const Marketplace = () => {
     const [productData, setProductData] = useState(null)
@@ -31,7 +32,8 @@ const Marketplace = () => {
         }
     }, [count])
     return (
-        <main>
+        <main id="marketplace-main">
+            <MarketplaceHeader />
             <section id="marketplace">
                 <Aside></Aside>
                 <div>

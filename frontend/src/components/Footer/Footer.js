@@ -3,7 +3,7 @@ import facebook from '../../img/social/facebook.png';
 import wiwi from '../../img/social/wiwi.png';
 import twitter from '../../img/social/twitter.png';
 import circle from '../../img/home/circle-footer.png';
-import './FooterStyle.scss';
+import './Footer.scss';
 
 const Footer = () => {
     return (
