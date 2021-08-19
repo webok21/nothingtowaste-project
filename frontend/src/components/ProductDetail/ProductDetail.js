@@ -50,7 +50,10 @@ const ProductDetail = () => {
                                 <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
                                 <p className='like'> <span><img src={like}></img></span>Auf die Wunschliste</p>
-                                <p>Kategorie: {productDetail.p_category}</p>
+                                <p>Kategorie: {
+                                    productDetail.p_category && (productDetail.p_category.map(el =>
+                                        <span>{el}, </span>))
+                                }</p>
                                 <p>{productDetail.p_description}</p>
                             </div>
                         </figure>
