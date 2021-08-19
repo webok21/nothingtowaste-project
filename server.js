@@ -15,6 +15,7 @@ dotenv.config();
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 // app.use(express.static(path.join(__dirname, "frontend", "build")))
+<<<<<<< HEAD
 app.use(cors());
 app.use('/user', userRoutes);
 
@@ -22,6 +23,9 @@ app.get('/', (req, res) => {
     res.send("start")
 })
 
+=======
+app.use(express.static('public'))
+>>>>>>> 1a3d0a3399be18a901e1aca819135aabcec142ce
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(result => {

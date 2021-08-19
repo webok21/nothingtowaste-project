@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const productSchema = new Schema({
     p_titel: {
         type: String,
-        required: false
+        required: true
     },
     p_imageUrl: {
         type: String,
@@ -26,7 +26,8 @@ const productSchema = new Schema({
     },
     p_price: {
         type: Number,
-        required: false
+        required: true,
+        default: 1
     },
     p_amount: {
         type: Number,
@@ -43,8 +44,45 @@ const productSchema = new Schema({
     },
     p_category: {
         type: [String],
+        required: true,
+        default: ['Sonstiges']
+    },
+    p_forFree: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    p_priceFlex: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
+    p_toGiveAway: {
+        type: Boolean,
+        required: true,
+        default: true
+    },
+    p_call: {
+        type: Number,
         required: false
-    }
+    },
+    p_street: {
+        type: String,
+        required: false
+    },
+    p_city: {
+        type: String,
+        required: false
+    },
+    p_PLZ: {
+        type: String,
+        required: false
+    },
+    p_isSold: {
+        type: Boolean,
+        required: true,
+        default: false
+    },
 
 }, { timestamps: true })
 

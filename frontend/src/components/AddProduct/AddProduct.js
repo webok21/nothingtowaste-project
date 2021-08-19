@@ -8,32 +8,36 @@ const AddProduct = () => {
     return (
         <main>
             <section id="add-product">
-                <form method="post" name="add-product">
+                <form method="post" action='/api/addProduct'>
 
                     <div>
                         <label htmlFor="advert">Anzeigentyp:</label>
-                        <input type="radio" name="advert-type" checked />
+                        <input type="radio" name='advertType' value='offer' checked />
                         <label htmlFor="offer">Ich biete</label>
-                        <input type="radio" name="advert-type" />
+                        <input type="radio" name='advertType' value='search' />
                         <label htmlFor="search">Ich suche</label>
                     </div>
                     <div>
                         <label>Lieferung:</label>
-                        <input type="radio" name="delivery" checked />
+                        <input type="radio" name="delivery" checked value='yes' />
                         <label htmlFor="offer">Ja</label>
-                        <input type="radio" id="delivery-no" name="delivery" />
+                        <input type="radio" id="delivery-no" name="delivery" value='no' />
                         <label htmlFor="offer">Nein</label>
                     </div>
                     <div>
                         <label>Abholung:</label>
-                        <input type="radio" name="pickup" checked />
+                        <input type="radio" name="pickup" checked value='yes' />
                         <label htmlFor="offer">Ja</label>
-                        <input type="radio" id="pickup-no" name="pickup" />
+                        <input type="radio" id="pickup-no" name="pickup" value='no' />
                         <label htmlFor="offer">Nein</label>
                     </div>
                     <div>
                         <label>Titel der Anzeige:</label>
-                        <input type="text" name="title" />
+                        <input type="text" name="title" required />
+                    </div>
+                    <div>
+                        <label>Marke des Artikels:</label>
+                        <input type="text" name="mark" />
                     </div>
                     <div>
                         <label>Beschreibung:</label>
@@ -42,16 +46,16 @@ const AddProduct = () => {
 
                     <div>
                         <label>Anzahl:</label>
-                        <input type="number" name="quantity" />
+                        <input type="number" name="quantity" required />
                     </div>
                     <div>
                         <label>Preis:</label>
-                        <input type="number" name="price" /> EUR
-                        <input type="radio" checked />
+                        <input type="number" name="price" required /> EUR
+                        <input type="radio" checked name="condition" value='fixed' />
                         <label htmlFor="fixed-price">Festpreis</label>
-                        <input type="radio" />
+                        <input type="radio" name="condition" value='flex' />
                         <label htmlFor="negotiable">VB</label>
-                        <input type="radio" checked />
+                        <input type="radio" name="condition" value='free' />
                         <label htmlFor="give-away">Zu Verschenken</label>
                     </div>
 
@@ -63,11 +67,11 @@ const AddProduct = () => {
 
                     <div>
                         <label>Kategorie</label>
-                        <select name="" id="">
-                            <option value="">Klamotten</option>
-                            <option value="">Möbel</option>
-                            <option value="">Elektronik</option>
-                            <option value="">Sonstiges</option>
+                        <select name="category" id="" multiple>
+                            <option value="Klamotten">Klamotten</option>
+                            <option value="Möbel">Möbel</option>
+                            <option value="Electronik">Elektronik</option>
+                            <option value="Sonstiges">Sonstiges</option>
                         </select>
                     </div >
 
@@ -77,7 +81,7 @@ const AddProduct = () => {
                         <img className="five-circles" src={fiveCircles} alt="circles" />
 
                         <label>PLZ*</label>
-                        <input type="number" name="postcode" placeholder="PLZ" />
+                        <input type="text" name="postcode" placeholder="PLZ" /><br></br>
                         <input type="text" id="city-input" name="city" placeholder="Ort" required />
                     </div>
                     <div>
@@ -90,7 +94,7 @@ const AddProduct = () => {
                         <label>Telefonnummer*</label><input id="phone-input" type="number" name="phone" required />
                     </div>
                     <div className="submit-input">
-                        <input type="submit" name="submit" value="Produkt einstellen" />
+                        <input type="submit" value="Produkt einstellen" />
                     </div>
                 </form >
 
