@@ -1,8 +1,11 @@
+import WishlistHeader from "./WishlistHeader";
+
 const Wishlist = () => {
     return (
         <main>
+            <WishlistHeader />
             <section id="wishlist">
-                WISHLIST
+
             </section>
 
         </main>

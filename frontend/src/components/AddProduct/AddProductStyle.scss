@@ -6,7 +6,7 @@ $blue-color: #0e65f3;
 $blue-light_color: #1a88ee;
 $purple-light_color: #b6a6fb;
 $purple-color: #7854f7;
-$input-purple: #5F37EF;
+$input-purple: rgba(95, 55, 239, 0.1);
 $yellow-color: #ffba49;
 
 $fontText: "Roboto", sans-serif;
@@ -21,7 +21,6 @@ form {
         margin-bottom: 5vh;
         input[type=text], input[type=number], select {
             background: $input-purple;
-            opacity: 10%;
             border: none;
             border-radius: 5px;
             padding: 8px 0;
@@ -89,16 +88,3 @@ form {
             }
         }
     }
-
-
-
-    // ::placeholder {
-    //     color: 000;
-    //     opacity: 50%;
-    // }
-
-    // bilder hiknzufügen button + bild
-
-    // plz verschoben
-
-    // radio buttons ich suche und nein nicht genau untereinander
