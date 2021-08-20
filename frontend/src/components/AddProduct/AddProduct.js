@@ -87,12 +87,8 @@ const AddProduct = () => {
 
     }
     const saveInputs = () => {
-
-        axios.post('/api/addProduct', inputs, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
+        console.log('these are the inputs:' + inputs)
+        axios.post('/api/addProduct', inputs)
             .then((result) => {
                 console.log(result)
                 console.log('added article to db')
