@@ -4,7 +4,7 @@ const path = require('path')
 //ALL PRODUCTS7ARTICLES
 const product_index_get = (req, res) => {
     console.log('a get request ')
-    Product.find()
+    Product.find({ p_isSold: false })
         .then((result) => {
             console.log(result)
             res.json(result)
@@ -84,7 +84,7 @@ const product_add_post = (req, res, next) => {
         .then((result) => {
             console.log(result)
             // res.json({ result })
-            res.json({ redirect: "/" })
+            res.json({ redirect: "/marketplace" })
         })
         .catch((err) => {
             console.log(err)
@@ -97,16 +97,9 @@ const product_set_isSold = (req, res) => {
     // console.log(currentProduct)
     currentProduct.update({ $set: { p_isSold: true } }).exec()
     console.log('Product was marked as sold')
-    // console.log(currentProduct.isSold)
+    res.json({ redirect: "/marketplace" })
 }
-const product_remove_isSold = (req, res) => {
-    console.log(req.params.id)
-    const currentProduct = Product.where({ _id: req.params.id });
-    // console.log(currentProduct)
-    currentProduct.update({ $set: { p_isSold: false } }).exec()
-    console.log('Product removed from Sold')
 
-}
 
 //Please don't delete here, i still need it for tests
 // const product_add_post = (req, res) => {
@@ -150,6 +143,5 @@ module.exports = {
     product_index_get,
     product_detail_get,
     product_set_isSold,
-    product_remove_isSold,
     product_sold_get
 }
