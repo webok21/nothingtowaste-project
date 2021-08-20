@@ -1,10 +1,39 @@
+import { useState, useEffect } from 'react';
+import { Link, useHistory, useLocation } from 'react-router-dom';
+import { Button } from '@material-ui/core';
+import { useDispatch } from 'react-redux';
+import decode from 'jwt-decode';
+
+import * as actionType from '../../constants/actionsTypes';
+
 import './Nav.scss'
 
-import {
-    Link
-} from "react-router-dom";
-
 const Nav = () => {
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const history = useHistory();
+
+    const logout = () => {
+        dispatch({ type: actionType.LOGOUT });
+
+        history.push('/auth');
+
+        setUser(null);
+    };
+
+    useEffect(() => {
+        const token = user?.token;
+
+        if (token) {
+            const decodedToken = decode(token);
+
+            if (decodedToken.exp * 1000 < new Date().getTime()) logout();
+        }
+
+        setUser(JSON.parse(localStorage.getItem('profile')));
+    }, [location]);
+
     return (
         <header>
             <nav>
@@ -19,13 +48,21 @@ const Nav = () => {
                     <Link to="/productsold"><li>Bereits verkauft</li></Link>
                     <Link to="/wishlist"><li>Meine Wunschliste</li></Link> */}
                 </ul>
-                <ul id="login">
-                    <Link to="/"><li>Log In</li></Link>
-                    <Link to="/"><li id="btn-register">Registriere Dich</li></Link>
-                </ul>
+                <div className="toolbar">
+                    {user?.result ? (
+                        <div className="profile">
+                            <div className="avatar" alt={user?.result.name} src={user?.result.imageUrl}><p className="userName" >{user?.result.name}</p></div>
+                            
+                            <button className="logout" onClick={logout}>Logout</button>
+                        </div>
+                    ) : (
+                        <>
+                        <Button className="logIn" component={Link} to="/auth" >Log In</Button>
+                        <Button className="logIn" component={Link} to="/auth" >Registriere Dich</Button>
+                        </>
+                    )}
+                </div>
             </nav>
-
-
         </header>
     );
 }

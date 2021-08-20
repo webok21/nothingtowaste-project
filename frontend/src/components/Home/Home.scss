@@ -8,6 +8,12 @@ $yellow-color: #ffba49;
 
 $fontText: "Roboto", sans-serif;
 
+$breakpoint-macbook: 1440px;
+$breakpoint-laptop-end: 1281px;
+$breakpoint-laptop: 1280px;
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+
 // Hero-Section
 
 #hero {
@@ -32,6 +38,15 @@ $fontText: "Roboto", sans-serif;
       background-color: $purple-color;
       color: $white-color;
     }
+  }
+}
+
+//Mediaqueries Hero
+// Ipad Pro
+@media (max-width: $breakpoint-ipadpro) {
+  #hero {
+    min-height: 60vh;
+    background: url(../../img/home/header.png) no-repeat right top/70%;
   }
 }
 
@@ -102,6 +117,100 @@ $fontText: "Roboto", sans-serif;
   }
 }
 
+// Mediaqueries Live different
+// Macbook
+@media (min-width: $breakpoint-laptop-end) and (max-width: $breakpoint-macbook) {
+  #live-different {
+    div {
+      background: url(../../img/home/background-right.png) no-repeat right
+        top/20%;
+
+      article:nth-of-type(1) {
+        img:nth-of-type(1) {
+          height: 30%;
+          top: 240px;
+          left: -60px;
+        }
+      }
+      article:nth-of-type(3) {
+        img:nth-of-type(1) {
+          top: -50px;
+        }
+        img:nth-of-type(2) {
+          top: 150px;
+          left: 220px;
+        }
+      }
+    }
+  }
+}
+// Laptop
+@media (min-width: $breakpoint-ipadpro-end) and (max-width: $breakpoint-laptop) {
+  #live-different {
+    div {
+      background-size: 20%;
+      article:nth-of-type(1) {
+        img:nth-of-type(1) {
+          height: 25%;
+          left: -50px;
+        }
+      }
+      article:nth-of-type(3) {
+        img:nth-of-type(1) {
+          height: 30%;
+          top: -15px;
+        }
+        img:nth-of-type(2) {
+          height: 30%;
+          top: 150px;
+          left: 200px;
+        }
+      }
+    }
+  }
+}
+// Ipad Pro
+@media (max-width: $breakpoint-ipadpro) {
+  #live-different {
+    h2 {
+      width: 50%;
+    }
+    div {
+      width: 80%;
+      margin-top: 5%;
+      background: none;
+      article {
+        justify-content: flex-start;
+        min-height: 20vh;
+        h3 {
+          font-size: 1.5rem;
+        }
+        p {
+          font-size: 0.8rem;
+        }
+      }
+      article:nth-of-type(1) {
+        position: relative;
+        img:nth-of-type(1) {
+          display: none;
+        }
+      }
+      article:nth-of-type(2) {
+        margin-top: 0;
+      }
+      article:nth-of-type(3) {
+        margin-top: 0;
+        img:nth-of-type(1) {
+          display: none;
+        }
+        img:nth-of-type(2) {
+          display: none;
+        }
+      }
+    }
+  }
+}
+
 // Color section
 
 #color {
@@ -160,6 +269,58 @@ $fontText: "Roboto", sans-serif;
         width: 200px;
       }
     }
+  }
+}
+
+// Mediaqueries Color section
+@media (min-width: $breakpoint-laptop-end) and (max-width: $breakpoint-macbook) {
+  #color {
+    min-height: 100vh;
+    div {
+      display: flex;
+      flex-direction: column;
+
+      article {
+        padding-left: 100px;
+      }
+      article:nth-of-type(2) {
+        padding-right: 100px;
+      }
+      .article-text {
+        padding: 150px 0 0 35px;
+      }
+    }
+  }
+}
+//Laptop
+@media (min-width: $breakpoint-ipadpro-end) and (max-width: $breakpoint-laptop) {
+  #color {
+    min-height: 100vh;
+    div {
+      article {
+        padding-left: 50px;
+        img {
+          height: 600px;
+          width: auto;
+        }
+      }
+      article:nth-of-type(2) {
+        padding-right: 80px;
+      }
+
+      article:nth-of-type(2) .article-text {
+        padding-right: 500px;
+        h3 {
+          width: 200px;
+        }
+      }
+    }
+  }
+}
+//Ipad Pro
+@media (max-width: $breakpoint-ipadpro) {
+  #color {
+    background: lime;
   }
 }
 
