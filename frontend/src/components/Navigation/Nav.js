@@ -56,7 +56,7 @@ const Nav = () => {
                     ) : (
                         <>
                             <Button className="btn login" type="submit"  component={Link} to="/auth" >Log In</Button>
-                            <Button className="btn register" type="submit"  component={Link} to="/auth" >Registriere Dich</Button>
+                            <Button id="regiBTN" className="btn register" type="submit"  component={Link} to="/auth" >Registriere Dich</Button>
                         </>
                     )}
                 </div>

@@ -33,7 +33,6 @@ const SignUp = () => {
 
     if (isSignup) {
       dispatch(signup(form, history));
-      history.push('/');
     } else {
       dispatch(signin(form, history));
     }
