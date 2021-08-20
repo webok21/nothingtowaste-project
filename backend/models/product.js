@@ -1,10 +1,11 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
+const User = require('./user.js')
 
 const productSchema = new Schema({
     p_titel: {
         type: String,
-        required: true
+        required: false
     },
     p_imageUrl: {
         type: String,
@@ -83,6 +84,12 @@ const productSchema = new Schema({
         required: true,
         default: false
     },
+    p_ownerID: {
+        // type: [User],
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'User',
+        required: false
+    }
 
 }, { timestamps: true })
 

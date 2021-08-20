@@ -13,7 +13,8 @@ $breakpoint-laptop-end: 1281px;
 $breakpoint-laptop: 1280px;
 $breakpoint-ipadpro-end: 1025px;
 $breakpoint-ipadpro: 1024px;
-
+$breakpoint-ipad-end: 769px;
+$breakpoint-ipad: 768px;
 // Hero-Section
 
 #hero {
@@ -56,6 +57,7 @@ $breakpoint-ipadpro: 1024px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  margin-bottom:2%;
 
   h2 {
     width: 35%;
@@ -214,7 +216,7 @@ $breakpoint-ipadpro: 1024px;
 // Color section
 
 #color {
-  min-height: 112vh;
+  // min-height: 112vh;
   background: url(../../img/home/color-curved-bg.svg) no-repeat bottom center;
   background-clip: border-box;
   margin-bottom: 2%;
@@ -320,7 +322,44 @@ $breakpoint-ipadpro: 1024px;
 //Ipad Pro
 @media (max-width: $breakpoint-ipadpro) {
   #color {
-    background: lime;
+    background-size:120%;
+   
+    div{
+      
+      article{
+      padding-left: 30px;
+      align-self:center;
+        img{
+          height:250px;
+        }
+        .article-text{
+          padding: 0 0 0 30px;
+          width:70%;
+          height: auto;
+          h3{
+            font-size:1.5rem;
+          }
+          p{
+            font-size:0.75rem;
+          }
+          li {
+            width: 128px;
+            height: 32px;
+            border-radius: 5px;
+            font-size:0.75rem;
+            text-align: center;
+            padding-top: 8px;
+          }
+        }
+        }
+        article:nth-of-type(2) {
+          justify-content: space-evenly;
+          max-width: 100%;
+          align-self: center;
+          padding-left: 0;
+          padding-right: 0;
+      }
+    }
   }
 }
 
@@ -337,3 +376,10 @@ $breakpoint-ipadpro: 1024px;
     margin-top: 2%;
   }
 }
+
+@media (max-width: $breakpoint-ipadpro) {
+  #people{
+    min-height:30vh;
+  }
+}
+
