@@ -64,10 +64,10 @@ const Nav = () => {
                         </div>
                     </>
                 ) : (
-                    <>
+                    <div className="toolbar">
                         <Button className="btn login" type="submit" component={Link} to="/auth/login" >Log In</Button>
                         <Button className="btn register" type="submit" component={Link} to="/auth/register" >Registriere Dich</Button>
-                    </>
+                    </div>
                 )}
 
             </nav>

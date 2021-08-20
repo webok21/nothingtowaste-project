@@ -41,29 +41,10 @@ nav {
     width: 60%;
   }
 
-
-
   .toolbar {
     display: flex;
     align-items: center;
-    width: 20%;
-    .btn {
-      text-transform: inherit;
-      border-radius: 5px;
-      border: none;
-      margin-left: 2%;
-    }
-
-    .login {
-      width: 20%;
-      padding: 15px 5px;
-    }
-    
-    .register {
-      background-color: $purple-color;
-      color: $white-color;
-      padding: 15px 35px;
-    }
+    width: 30%;
 
     .profile {
       display: flex;
@@ -81,5 +62,21 @@ nav {
         margin-left: 10%;
       }
     }
+  }
+
+  .btn {
+    text-transform: inherit;
+    border-radius: 5px;
+    border: none;
+    padding: 15px 30px;
+  }
+
+  .login {
+    width: 28%;
+  }
+  
+  .register {
+    background-color: $purple-color;
+    color: $white-color;
   }
 }
