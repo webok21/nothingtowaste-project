@@ -75,7 +75,7 @@ const ProductDetail = () => {
                             </div>
                         </figure>
                         {productDetail.p_isSold ? <p>This item is no longer available</p> : <div>
-                            <Link to={`/productDetail/${productDetail._id}`}> Bearbeiten </Link>
+                            <Link to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
                             {/* <Link to={`/productDetail/${productDetail._id}`}> Verkauft </Link> */}
                             <button onClick={handleSoldStatus}>Verkauft</button>
                         </div>}

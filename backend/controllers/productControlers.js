@@ -115,10 +115,8 @@ const product_edit_post = (req, res) => {
     console.log('new edit request sent')
     const Product = Product.findByIdAndUpdate(req.params.id, req.body)
         .then(result => {
-            console.log('movie added to db')
+            console.log('edited product added to db')
             console.log(result)
-            // res.redirect('/')
-            res.render(`movieDetail`, { myPageTitle: `${appName}|MOVIE DETAIL`, movieFound: result })
         })
         .catch(err => {
             console.log(err)
@@ -169,5 +167,7 @@ module.exports = {
     product_index_get,
     product_detail_get,
     product_set_isSold,
-    product_sold_get
+    product_sold_get,
+    product_edit_get,
+    product_edit_put
 }
