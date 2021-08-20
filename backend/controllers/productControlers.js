@@ -4,6 +4,19 @@ const path = require('path')
 //ALL PRODUCTS7ARTICLES
 const product_index_get = (req, res) => {
     console.log('a get request ')
+    Product.find()
+        .then((result) => {
+            console.log(result)
+            res.json(result)
+            res.end()
+        })
+        .catch((err) => {
+            console.log(err)
+            // res.json({ redirect: "/404" })
+        })
+}
+const product_sold_get = (req, res) => {
+    console.log('a get request ')
     Product.find({ p_isSold: true })
         .then((result) => {
             console.log(result)
@@ -137,5 +150,6 @@ module.exports = {
     product_index_get,
     product_detail_get,
     product_set_isSold,
-    product_remove_isSold
+    product_remove_isSold,
+    product_sold_get
 }
