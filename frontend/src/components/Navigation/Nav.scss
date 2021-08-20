@@ -24,16 +24,24 @@ nav {
     width: 12%;
   }
 
-  ul {
+  .ul {
     display: flex;
     justify-content: center;
-    width: 64%;
     align-items: center;
 
     li {
-      padding-right: 4rem;
+      padding-right: 2rem;
     }
   }
+
+  .lgout {
+    width: 40%;
+  }
+  .lgin {
+    width: 60%;
+  }
+
+
 
   .toolbar {
     display: flex;
