@@ -25,7 +25,7 @@ function App() {
       <Nav />
       <Switch>
         <Route path="/" exact component={Home} />
-        <Route path="/auth" component={Auth} />
+        <Route path="/auth/:id" component={Auth} />
         <Route path="/marketplace" component={Marketplace} />
         <Route path="/addproduct" component={AddProduct} />
         <Route path="/editproduct/:id" component={EditProduct} />

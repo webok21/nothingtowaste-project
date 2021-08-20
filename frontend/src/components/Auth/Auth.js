@@ -1,11 +1,11 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { Button, Paper, Grid, Typography } from '@material-ui/core';
+import { useHistory, useParams } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
-import Icon from './Icon';
+import google from '../../img/auth/google.png';
 import { signin, signup } from '../../actions/auth';
 import { AUTH } from '../../constants/actionsTypes';
 import Input from './Input';
@@ -27,6 +27,16 @@ const SignUp = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    if(id == 'login') {
+      setIsSignup(false)
+    } else {
+      setIsSignup(true)
+    }
+  }, [id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -57,48 +67,49 @@ const SignUp = () => {
 
   return (
     <section id="auth">
-    <div className="container-auth">
-      <Paper className="paper" elevation={3}>
-        <Avatar className="avatar">
-          <LockOutlinedIcon />
-        </Avatar>
-        <Typography component="h1" variant="h5">{ isSignup ? 'Sign up' : 'Sign in' }</Typography>
-        <form className="form" onSubmit={handleSubmit}>
-          <Grid container spacing={4}>
-            { isSignup && (
-            <>
-              <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-              <Input name="lastName" label="Last Name" handleChange={handleChange} half />
-            </>
-            )}
-            <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-            <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
-            { isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" /> }
-          </Grid>
-          <Button type="submit" fullWidth variant="contained" color="primary" className="submit">
-            { isSignup ? 'Sign Up' : 'Sign In' }
-          </Button>
-          <GoogleLogin
-            clientId="1027572291297-g7d89jkfiko4pc7dffv435r1nqejue4g.apps.googleusercontent.com"
-            render={(renderProps) => (
-              <Button className="googleButton" color="primary" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled} startIcon={<Icon />} variant="contained">
-                Google Sign In
-              </Button>
-            )}
-            onSuccess={googleSuccess}
-            onFailure={googleError}
-            cookiePolicy="single_host_origin"
-          />
-          <Grid container justifyContent="flex-end">
-            <Grid item>
-              <Button onClick={switchMode}>
-                { isSignup ? 'Already have an account? Sign in' : "Don't have an account? Sign Up" }
-              </Button>
+      <div className="container-auth">
+        <div className="context">{isSignup ? <h2>Registriere Dich & nimm Teil</h2> : ' '}</div>
+        <Paper className="paper" elevation={3}>
+          <form className="form" onSubmit={handleSubmit}>
+            <Grid container spacing={4}>
+              {isSignup && (
+                <>
+                  <Input name="firstName" label="Vorname" handleChange={handleChange} autoFocus half />
+                  <Input name="lastName" label="Nachname" handleChange={handleChange} half />
+                </>
+              )} {isSignup ? '' : <>
+                <h3>Anmelden mit</h3>
+                <GoogleLogin
+                  clientId={process.env.REACT_APP_CLIENT_ID_GOOGLE}
+                  render={(renderProps) => (
+                    <Button id="googleButton" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                      <img src={google} alt="google" />
+                    </Button>
+                  )}
+                  onSuccess={googleSuccess}
+                  onFailure={googleError}
+                  cookiePolicy="single_host_origin"
+                />
+                <h5>oder</h5>
+                <h3>Email</h3>
+              </>}
+              <Input name="email" label="Email Adresse" handleChange={handleChange} type="email" />
+              <Input name="password" label="Passwort" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+              {isSignup && <Input name="confirmPassword" label="Passwort wiederholen" handleChange={handleChange} type="password" />}
             </Grid>
-          </Grid>
-        </form>
-      </Paper>
-    </div>
+            <button className="signUp" type="submit" fullwidth="true" variant="contained" color="primary">
+              {isSignup ? 'Registrieren' : 'Log In'}
+            </button>
+            <Grid container justifyContent="flex-end">
+              <Grid item>
+                <Button className="btn" onClick={switchMode}>
+                  {isSignup ? 'Du hast schon einen Account? Log In' : 'Noch keinen Account? Registiere Dich'}
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Paper>
+      </div>
     </section>
   );
 };

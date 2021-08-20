@@ -8,6 +8,7 @@ import Limit2 from '../../img/home/limits-2.png'
 const SectionColor = () => {
     return ( 
        <section id="color">
+           <div>
            <article>
                <img src={Limit1} alt="" />
                <div className="article-text">
@@ -25,6 +26,7 @@ const SectionColor = () => {
                </div>
                <img src={Limit2} alt="" />
            </article>
+           </div>
        </section>
      );
 }
