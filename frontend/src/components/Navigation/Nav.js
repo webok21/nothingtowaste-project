@@ -7,6 +7,8 @@ import decode from 'jwt-decode';
 import * as actionType from '../../constants/actionsTypes';
 import './Nav.scss'
 
+import './Nav.scss'
+
 const Nav = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();

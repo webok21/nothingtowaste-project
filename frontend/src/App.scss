@@ -10,6 +10,12 @@ $input-purple: rgba(95, 55, 239, 0.1);
 $yellow-color: #ffba49;
 $grayish-color:#F5F5F5;
 $fontText: "Roboto", sans-serif;
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+$breakpoint-ipad-end: 769px;
+$breakpoint-ipad: 768px;
+$breakpoint-surface-end: 541px;
+$breakpoint-surface: 540px;
 
 * {
   box-sizing: border-box;
@@ -59,4 +65,42 @@ p {
   line-height: 1.66rem;
 }
 
+@media (min-width: $breakpoint-ipad-end) and (max-width: $breakpoint-ipadpro) {
+  // Headings and text
+
+
+h1 {
+  font-size: 4.0rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3,
+h4 {
+  font-size: 1.5rem;
+}
+
+}
+
+@media (max-width: $breakpoint-ipad) {
+  // Headings and text
+
+h1 {
+  font-size: 3.0rem;
+}
+
+h2 {
+  font-size: 2.5rem;
+}
+
+h3,
+h4 {
+  font-size: 1.5rem;
+}
+p{
+  font-size:0.8rem;
+}
+}
 

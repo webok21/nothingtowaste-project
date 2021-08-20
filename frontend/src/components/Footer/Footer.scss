@@ -10,6 +10,9 @@ $yellow-color: #ffba49;
 
 $fontText: "Roboto", sans-serif;
 
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+
 
 footer {
     #footer-register {
@@ -58,3 +61,13 @@ footer {
         }
     }  
 }      
+
+@media (max-width: $breakpoint-ipadpro) {
+    footer {
+        #footer-register {
+            
+            min-height: 10vh;
+            
+        }
+    }
+}
