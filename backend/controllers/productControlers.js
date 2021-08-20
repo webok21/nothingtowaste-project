@@ -91,6 +91,7 @@ const product_add_post = (req, res, next) => {
             // res.json({ redirect: "/404" })
         })
 }
+
 const product_set_isSold = (req, res) => {
     console.log(req.params.id)
     const currentProduct = Product.where({ _id: req.params.id });
@@ -100,6 +101,31 @@ const product_set_isSold = (req, res) => {
     res.json({ redirect: "/marketplace" })
 }
 
+const product_edit_get = (req, res) => {
+    console.log(req.params.id)
+    Product.findById(req.params.id)
+        .then((result) => {
+            console.log(result)
+        })
+        .catch((err) => {
+            console.log(err)
+        })
+}
+const product_edit_post = (req, res) => {
+    console.log('new edit request sent')
+    const Product = Product.findByIdAndUpdate(req.params.id, req.body)
+        .then(result => {
+            console.log('movie added to db')
+            console.log(result)
+            // res.redirect('/')
+            res.render(`movieDetail`, { myPageTitle: `${appName}|MOVIE DETAIL`, movieFound: result })
+        })
+        .catch(err => {
+            console.log(err)
+            res.end()
+        })
+
+}
 
 //Please don't delete here, i still need it for tests
 // const product_add_post = (req, res) => {
