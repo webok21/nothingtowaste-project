@@ -1,17 +1,17 @@
 import { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
 import * as actionType from '../../constants/actionsTypes';
+import './Nav.scss'
 
 const Nav = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
     const dispatch = useDispatch();
     const location = useLocation();
     const history = useHistory();
-    
 
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
@@ -50,14 +50,13 @@ const Nav = () => {
                 <div className="toolbar">
                     {user?.result ? (
                         <div className="profile">
-                            <div className="avatar" alt={user?.result.name} src={user?.result.imageUrl}><p className="userName" >{user?.result.name}</p></div>
-                            
-                            <button className="logout" onClick={logout}>Logout</button>
+                            <Avatar className="userName" >{user?.result.name.charAt(0)}</Avatar>
+                            <button className="btn logout" onClick={logout}>Logout</button>
                         </div>
                     ) : (
                         <>
-                        <Button className="logIn" component={Link} to="/auth" >Log In</Button>
-                        <Button className="logIn" component={Link} to="/auth" >Registriere Dich</Button>
+                            <Button className="btn login" type="submit"  component={Link} to="/auth" >Log In</Button>
+                            <Button className="btn register" type="submit"  component={Link} to="/auth" >Registriere Dich</Button>
                         </>
                     )}
                 </div>
