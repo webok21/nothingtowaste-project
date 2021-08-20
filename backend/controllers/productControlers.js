@@ -106,16 +106,18 @@ const product_edit_get = (req, res) => {
     Product.findById(req.params.id)
         .then((result) => {
             console.log(result)
+            res.json(result)
+            res.end()
         })
         .catch((err) => {
             console.log(err)
         })
 }
-const product_edit_post = (req, res) => {
+const product_edit_put = (req, res) => {
     console.log('new edit request sent')
     const Product = Product.findByIdAndUpdate(req.params.id, req.body)
         .then(result => {
-            console.log('edited product added to db')
+            console.log('edited product in db')
             console.log(result)
         })
         .catch(err => {

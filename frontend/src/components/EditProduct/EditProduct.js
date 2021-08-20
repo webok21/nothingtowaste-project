@@ -5,48 +5,61 @@ import fourCircles from '../../img/add/four-circles.png';
 import fiveCircles from '../../img/add/five-circles.png';
 import dotsCircles from '../../img/add/dots-circles.png';
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 const EditProduct = () => {
     let { id } = useParams();
-    const [inputs, setInputs] = useState({})
+    const [productDetails, setProductDetails] = useState({})
+
+
     const [fileChosen, setFileChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
     const [err, setErr] = useState('');
+
+    useEffect(() => {
+        const abortControl = new AbortController();
+        axios.get(`api/editProduct/${id}`)
+            .then((result) => {
+                if (result.data) {
+                    console.log(result.data)
+                    setProductDetails(result.data)
+                }
+            })
+            .catch((err) => {
+                if (err.name === 'AbortError') {
+                    console.log('err fetch abortion')
+                } else {
+                    console.log(err)
+                }
+
+            })
+
+        return () => {
+            abortControl.abort();
+            console.log('cleanup: fetching aborted')
+        }
+    }, [0])
+
     const handleInputs = (event) => {
-        setInputs(prev => {
+        setProductDetails(prev => {
             return {
                 ...prev,
                 [event.target.name]: event.target.value
             }
         })
     }
+
     const handleFile = (event) => {
         console.log(event.target.files);
         setFileChosen(event.target.files[0])
         setIsFilePicked(true);
     }
-    const handleUpload = () => {
-        if (!isFilePicked) {
-            console.log('no file chosen')
-            setErr('Zuerst Datei auswählen und dann hochladen')
-        } else {
-            const formdata = new FormData()
-            formdata.append('uploaded_file', fileChosen, fileChosen.name)
-            axios.post('/api/addProduct', formdata, {
-                onUploadProgress: ProgressEvent => {
-                    console.log('Upload Progress: ' + (ProgressEvent / ProgressEvent.total) * 100 + '%')
-                }
-            })
-                .then(res => {
-                    console.log(res.statusText);
-                })
-        }
-    }
+
     const saveInputs = () => {
 
-        axios.post('/api/addProduct', inputs)
+
+        axios.post('/api/addProduct', productDetails)
             .then((result) => {
                 console.log(result)
                 console.log('added article to db')
@@ -85,7 +98,7 @@ const EditProduct = () => {
                     </div>
                     <div>
                         <label>Titel der Anzeige:</label>
-                        <input type="text" name="title" required onChange={handleInputs} />
+                        <input type="text" name="title" required onChange={handleInputs} value={productDetails.p_titel} />
                     </div>
                     <div>
                         <label>Marke des Artikels:</label>
