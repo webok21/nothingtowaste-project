@@ -46,6 +46,7 @@ const product_detail_get = (req, res) => {
 
 //NEW PRODUCT
 const product_add_post = (req, res, next) => {
+    console.log(req.files)
     if (!req.files) {
         console.log("File was not found");
     } else {

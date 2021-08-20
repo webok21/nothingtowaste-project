@@ -5,10 +5,12 @@ import fiveCircles from '../../img/add/five-circles.png';
 import dotsCircles from '../../img/add/dots-circles.png';
 import axios from "axios";
 import { useState } from "react";
+import firebase from '../../config/firebase';
+// import Upload from './Upload';
 
 const AddProduct = () => {
     const [inputs, setInputs] = useState({})
-    const [fileChosen, setFileChosen] = useState(null)
+    const [filesChosen, setFilesChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
     const [err, setErr] = useState('');
     const handleInputs = (event) => {
@@ -19,31 +21,27 @@ const AddProduct = () => {
             }
         })
     }
-    const handleFile = (event) => {
-        console.log(event.target.files);
-        setFileChosen(event.target.files[0])
+
+    const handleUpload = (e) => {
+        console.log(e.target.files);
+        setFilesChosen(e.target.files[0])
         setIsFilePicked(true);
-    }
-    const handleUpload = () => {
-        if (!isFilePicked) {
-            console.log('no file chosen')
-            setErr('Zuerst Datei auswählen und dann hochladen')
-        } else {
-            const formdata = new FormData()
-            formdata.append('uploaded_file', fileChosen, fileChosen.name)
-            axios.post('/api/addProduct', formdata, {
-                onUploadProgress: ProgressEvent => {
-                    console.log('Upload Progress: ' + (ProgressEvent / ProgressEvent.total) * 100 + '%')
-                }
-            })
-                .then(res => {
-                    console.log(res.statusText);
-                })
-        }
+        let storageRef = firebase.storage().ref();
+        // Create file metadata including the content type
+        var metadata = {
+            contentType: 'image/jpeg',
+        };
+
+        // Upload the file and metadata
+        //var uploadTask = storageRef.child('images/mountains.jpg').put(file, metadata);
     }
     const saveInputs = () => {
 
-        axios.post('/api/addProduct', inputs)
+        axios.post('/api/addProduct', inputs, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
             .then((result) => {
                 console.log(result)
                 console.log('added article to db')
@@ -56,7 +54,7 @@ const AddProduct = () => {
     return (
         <main>
             <section id="add-product">
-                <form onSubmit={saveInputs} >
+                <form onSubmit={saveInputs} encType="multipart/form-data">
                     <div>
                         <label htmlFor="advert">Anzeigentyp:</label>
                         <input type="radio" name='advertType' value='offer' onChange={handleInputs} />
@@ -105,15 +103,15 @@ const AddProduct = () => {
                         <input type="radio" name="condition" value='free' onChange={handleInputs} />
                         <label htmlFor="give-away">Zu Verschenken</label>
                     </div>
-
                     <div className="upload">
+
                         <label>Bilder:</label>
                         <img src={camera} alt="" />
-                        <input type="file" name="uploaded_file" onChange={handleFile} />
+                        <input type="file" name="uploaded_file" onChange={(e) => handleUpload(e.target.files)} />
                         <p className='errorMessages'>{err}</p>
                         {/* <button onClick={handleUpload}>Hochladen</button> */}
-                    </div >
 
+                    </div>
                     <div>
                         <label>Kategorie</label>
                         <select name="category" id="" onChange={handleInputs} >
