@@ -42,7 +42,6 @@ const Nav = () => {
                     <Link to="/marketplace"><li>Marktplatz</li></Link>
                     <Link to="/"><li>Über uns</li></Link>
                     <Link to="/addproduct"><li>Füge ein Artikel hinzu</li></Link>
-                    <Link to="/productdetail"><li>Produkt-Detail</li></Link>
                     <Link to="/productsold"><li>Bereits verkauft</li></Link>
                     <Link to="/wishlist"><li>Meine Wunschliste</li></Link>
                 </ul>

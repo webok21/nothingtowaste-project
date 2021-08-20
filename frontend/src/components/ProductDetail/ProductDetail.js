@@ -49,7 +49,7 @@ const ProductDetail = () => {
                                 <p>Anzahl: {productDetail.p_amount}</p>
                                 <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
-                                <p className='like'> <span><img src={like} alt='img'></img></span>Auf die Wunschliste</p>
+                                {productDetail.p_isSold ? '' : <p className='like'> <span><img src={like} alt='img'></img></span>Auf die Wunschliste</p>}
                                 <p>Kategorie: {
                                     productDetail.p_category && (productDetail.p_category.map(el =>
                                         <span>{el}, </span>))
@@ -57,11 +57,11 @@ const ProductDetail = () => {
                                 <p>{productDetail.p_description}</p>
                             </div>
                         </figure>
-                        <div>
+                        {productDetail.p_isSold ? <p>This item is no longer available</p> : <div>
                             <Link to={`/productDetail/${productDetail._id}`}> Bearbeiten </Link>
                             <Link to={`/productDetail/${productDetail._id}`}> Verkauft </Link>
+                        </div>}
 
-                        </div>
                     </article>
                 }
 
