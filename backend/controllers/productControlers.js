@@ -1,9 +1,10 @@
 const Product = require('../models/product')
+const path = require('path')
 
 //ALL PRODUCTS7ARTICLES
 const product_index_get = (req, res) => {
     console.log('a get request ')
-    Product.find().sort({})
+    Product.find({ p_isSold: true })
         .then((result) => {
             console.log(result)
             res.json(result)
@@ -18,7 +19,6 @@ const product_index_get = (req, res) => {
 //DETAILS
 const product_detail_get = (req, res) => {
 
-    console.log('here the id from backend: ' + req.params.id)
     Product.findById(req.params.id)
         .then((result) => {
             console.log(result)
@@ -32,15 +32,26 @@ const product_detail_get = (req, res) => {
 }
 
 //NEW PRODUCT
-const product_add_post = (req, res) => {
+const product_add_post = (req, res, next) => {
+    if (!req.files) {
+        console.log("File was not found");
+    } else {
+        console.log(req.file)
+        const file = req.files.uploaded_file
+        const fileName = new Date().getTime().toString() + path.extname(file.name)
+        const savePath = path.join(__dirname, 'public', 'uploads', fileName)
+        console.log('here the id from backend: ' + req.params.id)
+        file.mv(savePath)
+    }
+
     console.log(req.body)
     const product = new Product({
         //my req.body but more defined
         p_titel: req.body.title,
-        p_imageUrl: '/img/shop/white-shoes.png',
+        p_imageUrl: '/img/shop/white-shoes.png' || savePath,
         p_mark: req.body.mark,
-        p_shiping: (req.body.delivery == 'yes' ? true : false),
-        p_pickup: (req.body.pickup == 'yes' ? true : false),
+        p_shiping: (req.body.delivery == 'no' ? false : true),
+        p_pickup: (req.body.pickup == 'no' ? false : true),
         p_price: req.body.price,
         p_amount: req.body.quantity,
         p_category: req.body.category,
@@ -54,24 +65,42 @@ const product_add_post = (req, res) => {
         p_city: req.body.city,
         p_PLZ: req.body.postcode,
         p_isSold: false,
+        p_ownerID: '611e44bb2e64921e848d7f19'
     })
     product.save()
         .then((result) => {
             console.log(result)
             // res.json({ result })
-            // res.json({ redirect: "/" })
+            res.json({ redirect: "/" })
         })
         .catch((err) => {
             console.log(err)
             // res.json({ redirect: "/404" })
         })
 }
+const product_set_isSold = (req, res) => {
+    console.log(req.params.id)
+    const currentProduct = Product.where({ _id: req.params.id });
+    // console.log(currentProduct)
+    currentProduct.update({ $set: { p_isSold: true } }).exec()
+    console.log('Product was marked as sold')
+    // console.log(currentProduct.isSold)
+}
+const product_remove_isSold = (req, res) => {
+    console.log(req.params.id)
+    const currentProduct = Product.where({ _id: req.params.id });
+    // console.log(currentProduct)
+    currentProduct.update({ $set: { p_isSold: false } }).exec()
+    console.log('Product removed from Sold')
 
+}
+
+//Please don't delete here, i still need it for tests
 // const product_add_post = (req, res) => {
 //     console.log(req.body)
 //     const product = new Product({
 //         //my req.body but more defined
-//         p_titel: 'white-shoes',
+//         p_titel: 'white-shooooes',
 //         p_imageUrl: '/img/shop/white-shoes.png',
 //         p_mark: 'Apple',
 //         p_shiping: false,
@@ -84,11 +113,12 @@ const product_add_post = (req, res) => {
 //         p_forFree: true,
 //         p_priceFlex: true,
 //         p_toGiveAway: false,
-//         p_call: '098-098-098',
+//         p_call: 090098098,
 //         p_street: 'Liebigstraße 78',
 //         p_city: 'Frankfurt',
 //         p_PLZ: '9877',
 //         p_isSold: false,
+//         p_ownerID: '611e44bb2e64921e848d7f19'
 //     })
 //     product.save()
 //         .then((result) => {
@@ -105,5 +135,7 @@ module.exports = {
     product_index_get,
     product_add_post,
     product_index_get,
-    product_detail_get
+    product_detail_get,
+    product_set_isSold,
+    product_remove_isSold
 }
