@@ -16,7 +16,7 @@ const Nav = () => {
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
 
-        history.push('/auth');
+        history.push('/auth/login');
 
         setUser(null);
     };
@@ -55,8 +55,8 @@ const Nav = () => {
                         </div>
                     ) : (
                         <>
-                            <Button className="btn login" type="submit"  component={Link} to="/auth" >Log In</Button>
-                            <Button id="regiBTN" className="btn register" type="submit"  component={Link} to="/auth" >Registriere Dich</Button>
+                            <Button className="btn login" type="submit"  component={Link} to="/auth/login" >Log In</Button>
+                            <Button className="btn register" type="submit"  component={Link} to="/auth/register" >Registriere Dich</Button>
                         </>
                     )}
                 </div>

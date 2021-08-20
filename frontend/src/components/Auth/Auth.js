@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Button, Paper, Grid, Typography } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 
@@ -27,6 +27,16 @@ const SignUp = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
+
+  let { id } = useParams();
+
+  useEffect(() => {
+    if(id == 'login') {
+      setIsSignup(false)
+    } else {
+      setIsSignup(true)
+    }
+  }, [id])
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -64,13 +74,13 @@ const SignUp = () => {
             <Grid container spacing={4}>
               {isSignup && (
                 <>
-                  <Input name="firstName" label="First Name" handleChange={handleChange} autoFocus half />
-                  <Input name="lastName" label="Last Name" handleChange={handleChange} half />
+                  <Input name="firstName" label="Vorname" handleChange={handleChange} autoFocus half />
+                  <Input name="lastName" label="Nachname" handleChange={handleChange} half />
                 </>
               )} {isSignup ? '' : <>
                 <h3>Anmelden mit</h3>
                 <GoogleLogin
-                  clientId="1027572291297-g7d89jkfiko4pc7dffv435r1nqejue4g.apps.googleusercontent.com"
+                  clientId={process.env.REACT_APP_CLIENT_ID_GOOGLE}
                   render={(renderProps) => (
                     <Button id="googleButton" fullWidth onClick={renderProps.onClick} disabled={renderProps.disabled}>
                       <img src={google} alt="google" />
@@ -83,9 +93,9 @@ const SignUp = () => {
                 <h5>oder</h5>
                 <h3>Email</h3>
               </>}
-              <Input name="email" label="Email Address" handleChange={handleChange} type="email" />
-              <Input name="password" label="Password" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
-              {isSignup && <Input name="confirmPassword" label="Repeat Password" handleChange={handleChange} type="password" />}
+              <Input name="email" label="Email Adresse" handleChange={handleChange} type="email" />
+              <Input name="password" label="Passwort" handleChange={handleChange} type={showPassword ? 'text' : 'password'} handleShowPassword={handleShowPassword} />
+              {isSignup && <Input name="confirmPassword" label="Passwort wiederholen" handleChange={handleChange} type="password" />}
             </Grid>
             <button className="signUp" type="submit" fullwidth="true" variant="contained" color="primary">
               {isSignup ? 'Registrieren' : 'Log In'}
