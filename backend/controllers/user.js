@@ -2,7 +2,7 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 
 const UserModal = require('../models/user.js');
-const User = require('../models/user.js');
+
 
 const secret = 'test';
 
@@ -38,14 +38,14 @@ const signUp = async (req, res) => {
 
     const result = await UserModal.create({ email, password: hashedPassword, name: `${firstName} ${lastName}` });
 
-    const token = jwt.sign( { email: result.email, id: result._id }, secret, { expiresIn: "1h" } );
+    const token = jwt.sign({ email: result.email, id: result._id }, secret, { expiresIn: "1h" });
 
     res.status(201).json({ result, token });
   } catch (error) {
     res.status(500).json({ message: "Something went wrong" });
     console.log(error);
-    
+
   }
 };
 
-module.exports = {signIn, signUp};
+module.exports = { signIn, signUp };

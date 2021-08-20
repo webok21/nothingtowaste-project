@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import axios from 'axios';
 import './Marketplace.scss';
 import { useEffect, useState } from "react";
-import shoes from '../../img/shop/white-shoes.png'
+// import shoes from '../../img/shop/white-shoes.png'
 import Aside from "./Aside";
 import MarketplaceHeader from "./MarketplaceHeader";
 
