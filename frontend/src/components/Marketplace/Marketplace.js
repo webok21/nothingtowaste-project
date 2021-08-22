@@ -15,17 +15,25 @@ const Marketplace = () => {
     const [productData, setProductData] = useState(null)
     const [searchString, setSearchString] = useState('')
 
+    const [countElectric, setcountElectric] = useState(0)
+    const [countMöbel, setcountMöbel] = useState(0)
+    const [countKlamotten, setcountKlamotten] = useState(0)
+    const [countSonstiges, setcountSonstiges] = useState(0)
+    const [countApple, setcountApple] = useState(0)
+
 
     const handleSearch = (e) => {
         setSearchString(e.target.value)
         //using location
         history.push({
             // pathname: { searchString },
-            // search: "?id=5",
+            search: `search=${searchString}`,
             // hash: "#react"
         });
         // https://localhost:3000/blogs?id=5#react
+
     }
+
 
     let count = 0
     useEffect(() => {
@@ -49,12 +57,76 @@ const Marketplace = () => {
             console.log('cleanup: fetching aborted')
         }
     }, [count])
+
+
+    const filteredArr = (productData ? productData.filter((product) => {
+        if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
+            return product
+        }
+    }) : '')
+
+    const foundMarks = filteredArr && filteredArr.map(product => product.p_mark)
+
+    console.log(foundMarks)
+
+
+    const counts = {};
+
+    for (const mark of foundMarks) {
+        counts[mark.toLowerCase()] = counts[mark.toLowerCase()] ? counts[mark.toLowerCase()] + 1 : 1;
+    }
+
+    // console.log(counts['apple']);
+
     return (
         <main id="marketplace-main">
             <MarketplaceHeader />
             <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} />
             <section id="marketplace">
-                <Aside></Aside>
+                <aside>
+                    <div>
+                        <h3>Kategorie</h3>
+                        <ul>
+                            <li>
+                                <input type="checkbox" id="scales" name="scales"></input>
+                                <label for="scales">Klamotten</label>
+                            </li>
+
+                            <li>
+                                <input type="checkbox" id="horns" name="horns"></input>
+                                <label for="horns">Elektronik</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="horns" name="horns"></input>
+                                <label for="horns">Möbel</label>
+                            </li>
+                            <li>
+                                <input type="checkbox" id="horns" name="horns"></input>
+                                <label for="horns">Sonstiges</label>
+                            </li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Marken</h3>
+                        <ul>
+                            {foundMarks && [...new Set(foundMarks)].map((mark, i) =>
+                                <li key={i}> <input type="checkbox" id="horns" name="horns"></input>
+                                    <label for="horns">{mark}</label> <span>{counts[mark]}</span>
+                                </li>
+                            )}
+                        </ul>
+                    </div>
+                    <div>
+                        <h3>Preis</h3>
+                        <input type="range" name="auswertung" min="0" max="10" value="5"></input>
+                        <p><span>Min: </span> <span>0</span></p>
+                        <p><span>Max: </span> <span>000</span></p>
+                        <button>Anwenden</button>
+                        <button>Reset</button>
+
+                    </div>
+
+                </aside>
                 <div>
                     {productData && (productData.filter((product) => {
                         if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
