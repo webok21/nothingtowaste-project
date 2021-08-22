@@ -3,7 +3,9 @@ const path = require('path')
 
 //ALL PRODUCTS7ARTICLES
 const product_index_get = (req, res) => {
+
     console.log('a get index request ')
+    // console.log(req)
     Product.find({ p_isSold: false })
         .then((result) => {
             // console.log(result)
@@ -45,7 +47,7 @@ const product_detail_get = (req, res) => {
 }
 
 //NEW PRODUCT
-const product_add_post = (req, res, next) => {
+const product_add_post = (req, res) => {
     console.log(req.body)
     const product = new Product({
         //my req.body but more defined
