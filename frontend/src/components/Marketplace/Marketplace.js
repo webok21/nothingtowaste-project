@@ -66,16 +66,21 @@ const Marketplace = () => {
     }) : '')
 
     const foundMarks = filteredArr && filteredArr.map(product => product.p_mark)
+    const foundCateg = filteredArr && filteredArr.map(product => product.p_category)
 
     console.log(foundMarks)
-
+    console.log(foundCateg)
+    const allCategories = [['Klamotten'], ['Elektronik'], ['Möbel'], ['Sonstiges']]
 
     const counts = {};
 
     for (const mark of foundMarks) {
         counts[mark.toLowerCase()] = counts[mark.toLowerCase()] ? counts[mark.toLowerCase()] + 1 : 1;
     }
-
+    for (const category of foundCateg) {
+        counts[category] = counts[category] ? counts[category] + 1 : 1;
+    }
+    console.log(counts[['Sonstiges']])
     // console.log(counts['apple']);
 
     return (
@@ -89,20 +94,20 @@ const Marketplace = () => {
                         <ul>
                             <li>
                                 <input type="checkbox" id="scales" name="scales"></input>
-                                <label for="scales">Klamotten</label>
+                                <label for="scales">Klamotten </label><span>{counts[['Klamotten']] ? counts[['Klamotten']] : '0'}</span>
                             </li>
 
                             <li>
                                 <input type="checkbox" id="horns" name="horns"></input>
-                                <label for="horns">Elektronik</label>
+                                <label for="horns">Elektronik </label><span>{counts[['Elektronik']] ? counts[['Elektronik']] : '0'}</span>
                             </li>
                             <li>
                                 <input type="checkbox" id="horns" name="horns"></input>
-                                <label for="horns">Möbel</label>
+                                <label for="horns">Möbel </label><span>{counts[['Möbel']] ? counts[['Möbel']] : '0'}</span>
                             </li>
                             <li>
                                 <input type="checkbox" id="horns" name="horns"></input>
-                                <label for="horns">Sonstiges</label>
+                                <label for="horns">Sonstiges </label><span>{counts[['Sonstiges']] ? counts[['Sonstiges']] : '0'}</span>
                             </li>
                         </ul>
                     </div>
