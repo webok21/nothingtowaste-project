@@ -162,7 +162,7 @@ const EditProduct = () => {
                     </div>
                     <div className="submit-input">
                         {/* <button onClick={saveInputs}>Produkt einstellen</button> */}
-                        <input type="submit" value="Produkt einstellen" />
+                        <input type="submit" value="Änderungen speichern" />
                     </div>
                 </form >
                 {/* <button onClick={saveInputs}>Produkt einstellen</button> */}

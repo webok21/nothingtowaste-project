@@ -87,12 +87,8 @@ const AddProduct = () => {
 
     }
     const saveInputs = () => {
-
-        axios.post('/api/addProduct', inputs, {
-            headers: {
-                'Content-Type': 'multipart/form-data'
-            }
-        })
+        console.log('these are the inputs:' + inputs)
+        axios.post('/api/addProduct', inputs)
             .then((result) => {
                 console.log(result)
                 console.log('added article to db')
@@ -175,7 +171,7 @@ const AddProduct = () => {
                         <select name="category" id="" onChange={handleInputs} >
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Möbel">Möbel</option>
-                            <option value="Electronik" >Elektronik</option>
+                            <option value="Elektronik" >Elektronik</option>
                             <option value="Sonstiges" >Sonstiges</option>
                         </select>
                     </div >
