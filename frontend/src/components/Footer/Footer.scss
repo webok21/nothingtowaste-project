@@ -10,6 +10,9 @@ $yellow-color: #ffba49;
 
 $fontText: "Roboto", sans-serif;
 
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+
 
 footer {
     #footer-register {
@@ -24,7 +27,7 @@ footer {
                 font-size: 1.5rem;
                 color: $white-color;
             }
-            button {
+            .btn-register {
                 background: $purple-color;
                 color: $white-color;
                 border: 2px solid $white-color;
@@ -58,3 +61,13 @@ footer {
         }
     }  
 }      
+
+@media (max-width: $breakpoint-ipadpro) {
+    footer {
+        #footer-register {
+            
+            min-height: 10vh;
+            
+        }
+    }
+}

@@ -1,10 +1,13 @@
 import { useState, useEffect } from 'react';
 import { Link, useHistory, useLocation } from 'react-router-dom';
-import { Button } from '@material-ui/core';
+import { Avatar, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
 
 import * as actionType from '../../constants/actionsTypes';
+import './Nav.scss'
+
+import './Nav.scss'
 
 const Nav = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -15,7 +18,7 @@ const Nav = () => {
     const logout = () => {
         dispatch({ type: actionType.LOGOUT });
 
-        history.push('/auth');
+        history.push('/auth/login');
 
         setUser(null);
     };
@@ -38,27 +41,35 @@ const Nav = () => {
                 <div id="logo">
                     <Link to="/"><li>nothingtotrash</li></Link>
                 </div>
-                <ul>
+                <ul className="ul lgout">
                     <Link to="/marketplace"><li>Marktplatz</li></Link>
                     <Link to="/"><li>Über uns</li></Link>
-                    <Link to="/addproduct"><li>Füge ein Artikel hinzu</li></Link>
+                    {/* <Link to="/addproduct"><li>Füge ein Artikel hinzu</li></Link>
                     <Link to="/productsold"><li>Bereits verkauft</li></Link>
-                    <Link to="/wishlist"><li>Meine Wunschliste</li></Link>
+                    <Link to="/wishlist"><li>Meine Wunschliste</li></Link> */}
                 </ul>
-                <div className="toolbar">
-                    {user?.result ? (
-                        <div className="profile">
-                            <div className="avatar" alt={user?.result.name} src={user?.result.imageUrl}><p className="userName" >{user?.result.name}</p></div>
 
-                            <button className="logout" onClick={logout}>Logout</button>
+                {user?.result ? (
+                    <>
+                        <ul className="ul lgin">
+                            <Link to="/addproduct"><li>Füge ein Artikel hinzu</li></Link>
+                            <Link to="/productsold"><li>Bereits verkauft</li></Link>
+                            <Link to="/wishlist"><li>Meine Wunschliste</li></Link>
+                        </ul>
+                        <div className="toolbar">
+                            <div className="profile">
+                                <Avatar className="userName" >{user?.result.name.charAt(0)}</Avatar>
+                                <button className="btn logout" onClick={logout}>Logout</button>
+                            </div>
                         </div>
-                    ) : (
-                        <>
-                            <Button className="logIn" component={Link} to="/auth" >Log In</Button>
-                            <Button className="logIn" component={Link} to="/auth" >Registriere Dich</Button>
-                        </>
-                    )}
-                </div>
+                    </>
+                ) : (
+                    <>
+                        <Button className="btn login" type="submit" component={Link} to="/auth/login" >Log In</Button>
+                        <Button className="btn register" type="submit" component={Link} to="/auth/register" >Registriere Dich</Button>
+                    </>
+                )}
+
             </nav>
         </header>
     );

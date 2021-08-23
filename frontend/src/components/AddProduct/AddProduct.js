@@ -4,11 +4,16 @@ import fourCircles from '../../img/add/four-circles.png';
 import fiveCircles from '../../img/add/five-circles.png';
 import dotsCircles from '../../img/add/dots-circles.png';
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import firebase from '../../config/firebase';
+// import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
+// const storage = getStorage();
+
+// import Upload from './Upload';
 
 const AddProduct = () => {
     const [inputs, setInputs] = useState({})
-    const [fileChosen, setFileChosen] = useState(null)
+    const [filesChosen, setFilesChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
     const [err, setErr] = useState('');
     const handleInputs = (event) => {
@@ -19,30 +24,70 @@ const AddProduct = () => {
             }
         })
     }
-    const handleFile = (event) => {
-        console.log(event.target.files);
-        setFileChosen(event.target.files[0])
+
+    const handleUpload = (e) => {
+        // console.log(e.target.files);
+        // setFilesChosen(e.target.files[0])
         setIsFilePicked(true);
-    }
-    const handleUpload = () => {
-        if (!isFilePicked) {
-            console.log('no file chosen')
-            setErr('Zuerst Datei auswählen und dann hochladen')
-        } else {
-            const formdata = new FormData()
-            formdata.append('uploaded_file', fileChosen, fileChosen.name)
-            axios.post('/api/addProduct', formdata, {
-                onUploadProgress: ProgressEvent => {
-                    console.log('Upload Progress: ' + (ProgressEvent / ProgressEvent.total) * 100 + '%')
+        let storageRef = firebase.storage().ref()
+        // Create the file metadata
+        // var metadata = {
+        //     contentType: 'image/jpeg'
+        // };
+
+        // Upload file and metadata to the object 'images/mountains.jpg'
+        var uploadTask = storageRef.child('images/' + filesChosen.name).put(filesChosen);
+
+        // Listen for state changes, errors, and completion of the upload.
+        uploadTask.on('state_changed', // or 'state_changed'
+            (snapshot) => {
+                // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                console.log('Upload is ' + progress + '% done');
+                switch (snapshot.state) {
+                    case 'paused':// or 'paused'
+                        console.log('Upload is paused');
+                        break;
+                    case 'running':// or 'running'
+                        console.log('Upload is running');
+                        break;
                 }
-            })
-                .then(res => {
-                    console.log(res.statusText);
-                })
-        }
+            },
+            (error) => {
+                // A full list of error codes is available at
+                // https://firebase.google.com/docs/storage/web/handle-errors
+                switch (error.code) {
+                    case 'storage/unauthorized':
+                        // User doesn't have permission to access the object
+                        break;
+                    case 'storage/canceled':
+                        // User canceled the upload
+                        break;
+
+                    // ...
+
+                    case 'storage/unknown':
+                        // Unknown error occurred, inspect error.serverResponse
+                        break;
+                }
+            },
+            () => {
+                // Upload completed successfully, now we can get the download URL
+                uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
+                    // console.log('File available at', downloadURL);
+                    setInputs(prev => {
+                        return {
+                            ...prev,
+                            p_imageUrl: downloadURL
+                        }
+                    })
+                });
+            }
+        );
+
     }
     const saveInputs = () => {
-
+        console.log('these are the inputs:' + inputs)
         axios.post('/api/addProduct', inputs)
             .then((result) => {
                 console.log(result)
@@ -53,10 +98,17 @@ const AddProduct = () => {
                 console.log(err)
             })
     }
+
+    useEffect(() => {
+        if (filesChosen) {
+            handleUpload()
+        }
+
+    }, [filesChosen])
     return (
         <main>
             <section id="add-product">
-                <form onSubmit={saveInputs} >
+                <form onSubmit={saveInputs} encType="multipart/form-data">
                     <div>
                         <label htmlFor="advert">Anzeigentyp:</label>
                         <input type="radio" name='advertType' value='offer' onChange={handleInputs} />
@@ -105,21 +157,21 @@ const AddProduct = () => {
                         <input type="radio" name="condition" value='free' onChange={handleInputs} />
                         <label htmlFor="give-away">Zu Verschenken</label>
                     </div>
-
                     <div className="upload">
+
                         <label>Bilder:</label>
                         <img src={camera} alt="" />
-                        <input type="file" name="uploaded_file" onChange={handleFile} />
+                        <input type="file" name="uploaded_file" onChange={(e) => setFilesChosen(e.target.files[0])} />
                         <p className='errorMessages'>{err}</p>
                         {/* <button onClick={handleUpload}>Hochladen</button> */}
-                    </div >
 
+                    </div>
                     <div>
                         <label>Kategorie</label>
                         <select name="category" id="" onChange={handleInputs} >
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Möbel">Möbel</option>
-                            <option value="Electronik" >Elektronik</option>
+                            <option value="Elektronik" >Elektronik</option>
                             <option value="Sonstiges" >Sonstiges</option>
                         </select>
                     </div >

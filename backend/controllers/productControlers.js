@@ -3,10 +3,12 @@ const path = require('path')
 
 //ALL PRODUCTS7ARTICLES
 const product_index_get = (req, res) => {
-    console.log('a get request ')
+
+    console.log('a get index request ')
+    // console.log(req)
     Product.find({ p_isSold: false })
         .then((result) => {
-            console.log(result)
+            // console.log(result)
             res.json(result)
             res.end()
         })
@@ -16,10 +18,10 @@ const product_index_get = (req, res) => {
         })
 }
 const product_sold_get = (req, res) => {
-    console.log('a get request ')
+    console.log('a get sold request ')
     Product.find({ p_isSold: true })
         .then((result) => {
-            console.log(result)
+            // console.log(result)
             res.json(result)
             res.end()
         })
@@ -34,7 +36,7 @@ const product_detail_get = (req, res) => {
 
     Product.findById(req.params.id)
         .then((result) => {
-            console.log(result)
+            // console.log(result)
             res.json(result)
             res.end()
         })
@@ -45,23 +47,12 @@ const product_detail_get = (req, res) => {
 }
 
 //NEW PRODUCT
-const product_add_post = (req, res, next) => {
-    if (!req.files) {
-        console.log("File was not found");
-    } else {
-        console.log(req.file)
-        const file = req.files.uploaded_file
-        const fileName = new Date().getTime().toString() + path.extname(file.name)
-        const savePath = path.join(__dirname, 'public', 'uploads', fileName)
-        console.log('here the id from backend: ' + req.params.id)
-        file.mv(savePath)
-    }
-
+const product_add_post = (req, res) => {
     console.log(req.body)
     const product = new Product({
         //my req.body but more defined
         p_titel: req.body.title,
-        p_imageUrl: '/img/shop/white-shoes.png' || savePath,
+        p_imageUrl: req.body.p_imageUrl,
         p_mark: req.body.mark,
         p_shiping: (req.body.delivery == 'no' ? false : true),
         p_pickup: (req.body.pickup == 'no' ? false : true),
