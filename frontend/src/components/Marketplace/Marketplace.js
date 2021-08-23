@@ -15,9 +15,12 @@ const Marketplace = () => {
     const [productData, setProductData] = useState(null)
     const [searchString, setSearchString] = useState('')
 
-    const [countElectric, setcountElectric] = useState(0)
-    const [countMöbel, setcountMöbel] = useState(0)
-    const [countKlamotten, setcountKlamotten] = useState(0)
+    const [filterCategories, setfilterCategories] = useState('')
+    const [filterPrice, setfilterPrice] = useState('')
+    const [filterPriceMin, setfilterPriceMin] = useState('')
+    const [filterPriceMax, setfilterPriceMax] = useState('')
+    const [filterMark, setfilterMark] = useState('')
+
     const [countSonstiges, setcountSonstiges] = useState(0)
     const [countApple, setcountApple] = useState(0)
 
@@ -31,7 +34,22 @@ const Marketplace = () => {
             // hash: "#react"
         });
         // https://localhost:3000/blogs?id=5#react
+    }
 
+    const handleFilterInputs = () => {
+        history.push({
+            search: `search=${searchString}&&category=${filterCategories}&&mark=${filterMark}&&price=${filterPrice}&&min=${filterPriceMin}&&max=${filterPriceMax}`,
+        });
+    }
+    const handleReset = () => {
+        setfilterCategories('')
+        setfilterPrice('')
+        setfilterPriceMin('')
+        setfilterPriceMax('')
+        setfilterMark('')
+        history.push({
+            pathname: '/marketplace',
+        });
     }
 
 
@@ -65,12 +83,11 @@ const Marketplace = () => {
         }
     }) : '')
 
-    const foundMarks = filteredArr && filteredArr.map(product => product.p_mark)
+    const foundMarks = filteredArr && filteredArr.map(product => product.p_mark.toLowerCase())
     const foundCateg = filteredArr && filteredArr.map(product => product.p_category)
 
     console.log(foundMarks)
     console.log(foundCateg)
-    const allCategories = [['Klamotten'], ['Elektronik'], ['Möbel'], ['Sonstiges']]
 
     const counts = {};
 
@@ -81,7 +98,7 @@ const Marketplace = () => {
         counts[category] = counts[category] ? counts[category] + 1 : 1;
     }
     console.log(counts[['Sonstiges']])
-    // console.log(counts['apple']);
+    console.log(counts['Amazon']);
 
     return (
         <main id="marketplace-main">
@@ -93,21 +110,21 @@ const Marketplace = () => {
                         <h3>Kategorie</h3>
                         <ul>
                             <li>
-                                <input type="checkbox" id="scales" name="scales"></input>
-                                <label for="scales">Klamotten </label><span>{counts[['Klamotten']] ? counts[['Klamotten']] : '0'}</span>
+                                <input type="checkbox" id="Klamotten" name="Klamotten" onChange={(e) => e.target.selected ? setfilterCategories(filterCategories + '#Klamotten') : ''}></input>
+                                <label htmlFor="Klamotten">Klamotten </label><span>{counts[['Klamotten']] ? counts[['Klamotten']] : '0'}</span>
                             </li>
 
                             <li>
-                                <input type="checkbox" id="horns" name="horns"></input>
-                                <label for="horns">Elektronik </label><span>{counts[['Elektronik']] ? counts[['Elektronik']] : '0'}</span>
+                                <input type="checkbox" id="Elektronik" name="Elektronik" onChange={() => setfilterCategories(filterCategories + '#Elektronik')}></input>
+                                <label htmlFor="Elektronik">Elektronik </label><span>{counts[['Elektronik']] ? counts[['Elektronik']] : '0'}</span>
                             </li>
                             <li>
-                                <input type="checkbox" id="horns" name="horns"></input>
-                                <label for="horns">Möbel </label><span>{counts[['Möbel']] ? counts[['Möbel']] : '0'}</span>
+                                <input type="checkbox" id="Möbel" name="Möbel" onChange={() => setfilterCategories(filterCategories + '#Möbel')}></input>
+                                <label htmlFor="Möbel">Möbel </label><span>{counts[['Möbel']] ? counts[['Möbel']] : '0'}</span>
                             </li>
                             <li>
-                                <input type="checkbox" id="horns" name="horns"></input>
-                                <label for="horns">Sonstiges </label><span>{counts[['Sonstiges']] ? counts[['Sonstiges']] : '0'}</span>
+                                <input type="checkbox" id="Sonstiges" name="Sonstiges" onChange={() => setfilterCategories(filterCategories + '#Sonstiges')}></input>
+                                <label htmlFor="Sonstiges">Sonstiges </label><span>{counts[['Sonstiges']] ? counts[['Sonstiges']] : '0'}</span>
                             </li>
                         </ul>
                     </div>
@@ -115,20 +132,19 @@ const Marketplace = () => {
                         <h3>Marken</h3>
                         <ul>
                             {foundMarks && [...new Set(foundMarks)].map((mark, i) =>
-                                <li key={i}> <input type="checkbox" id="horns" name="horns"></input>
-                                    <label for="horns">{mark}</label> <span>{counts[mark]}</span>
+                                <li key={i}> <input type="checkbox" id={mark} name={mark} onChange={() => setfilterMark(filterMark + '#Möbel')}></input>
+                                    <label htmlFor={mark}>{mark}</label> <span>{counts[mark] ? counts[mark] : '0'}</span>
                                 </li>
                             )}
                         </ul>
                     </div>
                     <div>
                         <h3>Preis</h3>
-                        <input type="range" name="auswertung" min="0" max="10" value="5"></input>
-                        <p><span>Min: </span> <span>0</span></p>
-                        <p><span>Max: </span> <span>000</span></p>
-                        <button>Anwenden</button>
-                        <button>Reset</button>
-
+                        <input type="range" name="price" min="0" max="1000" onChange={(e) => setfilterPrice(e.target.value)}></input>
+                        <span>Min: </span>  <input type="number" id="priceMin" placeholder='0 $' name="priceMin" onChange={(e) => setfilterPriceMin(e.target.value)} min='0'></input>
+                        <span>Max: </span>  <input type="number" id="priceMax" placeholder='1000 $' name="priceMax" min='0' onChange={(e) => setfilterPriceMax(e.target.value)} ></input>
+                        <button onClick={handleFilterInputs}>Anwenden</button>
+                        <button onClick={handleReset}>Reset</button>
                     </div>
 
                 </aside>
