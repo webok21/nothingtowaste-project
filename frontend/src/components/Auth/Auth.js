@@ -31,7 +31,7 @@ const SignUp = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    if (id == 'login') {
+    if (id === 'login') {
       setIsSignup(false)
     } else {
       setIsSignup(true)
