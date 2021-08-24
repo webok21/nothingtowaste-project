@@ -7,6 +7,11 @@ $purple-color: #7854f7;
 $yellow-color: #ffba49;
 $logout-color: #dc004e;
 
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+$breakpoint-ipad-end: 769px;
+$breakpoint-ipad: 768px;
+
 $fontText: "Roboto", sans-serif;
 
 nav {
@@ -46,12 +51,6 @@ nav {
   }
 }
 
-<<<<<<< HEAD
-  .toolbar {
-    display: flex;
-    align-items: center;
-    width: 30%;
-=======
 .toolbar {
   display: flex;
   align-items: center;
@@ -82,7 +81,6 @@ nav {
       }
     }
   }
->>>>>>> 9757c507c5d97670d06c03cd8c63dc992355b034
 
   .profile {
     display: flex;
@@ -100,24 +98,87 @@ nav {
       margin-left: 10%;
     }
   }
-<<<<<<< HEAD
+}
 
-  .btn {
-    text-transform: inherit;
-    border-radius: 5px;
-    border: none;
-    padding: 15px 30px;
-  }
 
-  .login {
-    width: 30%;
+@media (max-width: $breakpoint-ipadpro) { 
+  nav {
+    
+    background-color: red;
+    padding: 0 5%;
+    width: 100%;
+    
+  
+    #logo {
+      font-weight: 700;
+      width: 12%;
+    }
+  
+    .ul {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  
+      li {
+        padding-right: 2rem;
+        font-size: .9rem;
+      }
+    }
+  
+    .lgout {
+      width: 30%;
+    }
+    .lgin {
+      width: 70%;
+    }
   }
   
-  .register {
-    background-color: $purple-color;
-    color: $white-color;
+  .toolbar {
+    display: flex;
+    align-items: center;
+    width: 20%;
+  
+    .profile {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+  
+      .btn {
+        border-radius: 5px;
+        border: none;
+      }
+  
+      .register {
+        background-color: $purple-color;
+        color: $white-color;
+        padding: 15px 25px;
+        span {
+          text-transform: capitalize;
+        }
+      }
+      .login {
+        padding: 15px 5px;
+        span {
+          text-transform: capitalize;
+        }
+      }
+    }
+  
+    .profile {
+      display: flex;
+      align-items: center;
+  
+      .userName {
+        color: $white-color;
+        background-color: $yellow-color;
+      }
+  
+      .logout {
+        color: $white-color;
+        background-color: $purple-light_color;
+        padding: 15px 25px;
+        margin-left: 10%;
+      }
+    }
   }
 }
-=======
-}
->>>>>>> 9757c507c5d97670d06c03cd8c63dc992355b034
