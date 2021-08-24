@@ -68,6 +68,9 @@ $fontText: "Roboto", sans-serif;
       }
       div {
         padding: 2em;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
         .price,
         .title {
           font-weight: 700;
@@ -80,9 +83,8 @@ $fontText: "Roboto", sans-serif;
           color: $white-color;
           text-align: center;
           .arrow::after {
-            content: ">";
+            content: "\003E";
             font-weight: bold;
-            font-size: 1.2rem;
           }
         }
         .like {
@@ -91,8 +93,12 @@ $fontText: "Roboto", sans-serif;
           background-color: $grayish-color;
           text-align: center;
           .heart::after {
-            content: "\2661";
-            font-size: 1.2rem;
+            background-image: url("../../img/shop/like.svg");
+            background-size: 16px 16px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            content: "";
           }
         }
         p {
