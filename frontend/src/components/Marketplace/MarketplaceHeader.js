@@ -6,12 +6,6 @@ const MarketplaceHeader = () => {
                 Sie kosten Abertausende Meerestiere das Leben. Seevögel verwechseln Plastik mit natürlicher Nahrung,
                 Delfine verfangen sich in alten Fischernetzen. Hilf mit Müll zu reduzieren und trashnothing.
             </p>
-            <form action="" method="GET">
-                <input type="search" placeholder="Suche nach Produkt, Kategorie..." />
-                <div className="submit-input">
-                    <input type="submit" name="submit" value="Produkt einstellen" />
-                </div>
-            </form>
         </section>
     );
 }

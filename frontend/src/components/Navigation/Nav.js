@@ -7,7 +7,6 @@ import decode from 'jwt-decode';
 import * as actionType from '../../constants/actionsTypes';
 import './Nav.scss'
 
-import './Nav.scss'
 
 const Nav = () => {
     const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
@@ -64,9 +63,12 @@ const Nav = () => {
                         </div>
                     </>
                 ) : (
-                    <>
+                    <><div className="toolbar">
+                    <div className="profile">
                         <Button className="btn login" type="submit" component={Link} to="/auth/login" >Log In</Button>
                         <Button className="btn register" type="submit" component={Link} to="/auth/register" >Registriere Dich</Button>
+                        </div>
+                        </div>
                     </>
                 )}
 
