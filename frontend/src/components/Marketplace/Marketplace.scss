@@ -7,54 +7,98 @@ $blue-light_color: #1a88ee;
 $purple-light_color: #b6a6fb;
 $purple-color: #7854f7;
 $yellow-color: #ffba49;
-$grayish-color:#F5F5F5;
+$grayish-color: #f5f5f5;
+$frame-color: #d1d1d1;
 $fontText: "Roboto", sans-serif;
 
+#marketplace-main {
+  #search {
+    width: 35%;
+    margin: 0 auto;
+    display: block;
+    background: $purple-light_color url(../../img/shop/search.png) 3% / 16px
+      no-repeat;
+    border: none;
+    border-radius: 5px;
+    height: 6vh;
+    padding-left: 5%;
+  }
+  ::placeholder {
+    font-size: 0.8rem;
+    color: $blue-dark_color;
+  }
+  .marketplace-headers {
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-#marketplace-main .marketplace-headers {
     h1 {
-        margin: 10% 0% 4%; 
+      width: 80%;
+      margin-bottom: 3%;
     }
     p {
-        margin-bottom: 4%;
+      width: 68%;
+      margin-bottom: 4%;
     }
+  }
 }
+#marketplace,
+#product-sold {
+  padding: 5em;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
 
-#marketplace,#product-sold {
-    padding: 5em;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    
-    aside {
-    }
-    div{
-        display: flex;
-        flex-direction: column;
-        
-        article {
-            margin-bottom: 2em;
-            align-items: center;
-            display: flex;
-            gap: 2em;
-            border:solid 1px $blue-dark_color;
-            div{
-                padding: 2em;
-                a{
-                    padding: 1em;
-                    background-color: $purple-color;
-                    border-radius: 0.5em;
-                    margin-bottom: 1em;
-                    color: $white-color;
-                }
-                .like{
-                    padding: 1em;
-                    border-radius: 0.5em;
-                    background-color: $grayish-color;
-                }
-                p{
-                    margin-bottom: 1em;
-                }
-            }
+  // aside {
+  // }
+  div {
+    display: flex;
+    flex-direction: column;
+
+    article {
+      margin-bottom: 2em;
+      align-items: center;
+      display: flex;
+      gap: 2em;
+      border: solid 1px $frame-color;
+      img {
+        width: 360px;
+        height: 360px;
+        object-fit: cover;
+      }
+      div {
+        padding: 2em;
+        .price,
+        .title {
+          font-weight: 700;
         }
+        a {
+          padding: 1em;
+          background-color: $purple-color;
+          border-radius: 0.5em;
+          margin-bottom: 1em;
+          color: $white-color;
+          text-align: center;
+          .arrow::after {
+            content: ">";
+            font-weight: bold;
+            font-size: 1.2rem;
+          }
+        }
+        .like {
+          padding: 1em;
+          border-radius: 0.5em;
+          background-color: $grayish-color;
+          text-align: center;
+          .heart::after {
+            content: "\2661";
+            font-size: 1.2rem;
+          }
+        }
+        p {
+          margin-bottom: 1em;
+        }
+      }
     }
+  }
 }

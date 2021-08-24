@@ -7,7 +7,6 @@ import axios from 'axios';
 import './Marketplace.scss';
 import { useEffect, useState } from "react";
 // import shoes from '../../img/shop/white-shoes.png'
-import Aside from "./Aside";
 import MarketplaceHeader from "./MarketplaceHeader";
 
 const Marketplace = () => {
@@ -16,18 +15,18 @@ const Marketplace = () => {
     const [searchString, setSearchString] = useState('')
 
     const [filterCategories, setfilterCategories] = useState('')
-    const [filterPrice, setfilterPrice] = useState('')
-    const [filterPriceMin, setfilterPriceMin] = useState('')
-    const [filterPriceMax, setfilterPriceMax] = useState('')
+    const [filterPriceMin, setfilterPriceMin] = useState(0)
+    const [filterPriceMax, setfilterPriceMax] = useState(5000)
     const [filterMark, setfilterMark] = useState('')
 
-    const [countSonstiges, setcountSonstiges] = useState(0)
-    const [countApple, setcountApple] = useState(0)
+    const [resultMessage, setResultMessage] = useState('')
+    const [renderComp, setRenderComp] = useState(false)
 
 
     const handleSearch = (e) => {
-        setSearchString(e.target.value)
-        //using location
+        let str = e.target.value
+        setSearchString(str.replace(/\s+/g))
+        //using locations
         history.push({
             // pathname: { searchString },
             search: `search=${searchString}`,
@@ -35,18 +34,29 @@ const Marketplace = () => {
         });
         // https://localhost:3000/blogs?id=5#react
     }
+    const queryStr = `text=${searchString}&category=${filterCategories}&mark=${filterMark}&min=${filterPriceMin}&max=${filterPriceMax}`;
+    // const urlSearch = new URLSearchParams(queryStr);
+    const urlSearch = new URLSearchParams({
+        text: `${searchString}`,
+        category: `${filterCategories}`,
+        mark: `${filterMark}`,
+        min: `${filterPriceMin}`,
+        max: `${filterPriceMax}`
+    });
+    console.log('this is urlSearch: ' + urlSearch);
 
-    const handleFilterInputs = () => {
-        history.push({
-            search: `search=${searchString}&&category=${filterCategories}&&mark=${filterMark}&&price=${filterPrice}&&min=${filterPriceMin}&&max=${filterPriceMax}`,
-        });
+
+    for (const [key, value] of urlSearch) {
+        console.log(`${key}=>${value}`)
     }
+
     const handleReset = () => {
+        setSearchString('')
         setfilterCategories('')
-        setfilterPrice('')
-        setfilterPriceMin('')
-        setfilterPriceMax('')
+        setfilterPriceMin(0)
+        setfilterPriceMax(5000)
         setfilterMark('')
+        setResultMessage('')
         history.push({
             pathname: '/marketplace',
         });
@@ -74,7 +84,44 @@ const Marketplace = () => {
             abortControl.abort();
             console.log('cleanup: fetching aborted')
         }
-    }, [count])
+    }, [])
+
+    const handleFilterInputs = () => {
+        history.push({
+            search: `${urlSearch.toString()}`,
+        });
+        // const filteredArr2 = (productData ? productData.filter((product) => {
+        //     if (searchString.replace(/\s+/g, '') !== '') {
+        //         if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
+        //             if (filterCategories.toLowerCase().includes(product.p_category[0].toLowerCase()) && filterMark.toLowerCase().includes(product.p_mark.toLowerCase()) && product.p_price >= filterPriceMin && product.p_price <= filterPriceMax) {
+        //                 return product
+        //             }
+        //         } else {
+        //             setResultMessage(`No matching results for "${searchString}"`)
+        //         }
+        //     }
+        // }) : 'nothing')
+
+        const filteredArr2 = (productData ? productData.filter((product) => {
+            if (searchString.replace(/\s+/g, '') !== '') {
+                if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
+                    setResultMessage('yep string in searchfielf matches with these objects')
+                    if (filterCategories.toLowerCase().includes(product.p_category[0].toLowerCase()) && filterMark.toLowerCase().includes(product.p_mark.toLowerCase()) && product.p_price >= filterPriceMin && product.p_price <= filterPriceMax) {
+                        return product
+                    } else {
+                        setResultMessage(`No matching results for second level search`)
+                    }
+                } else {
+                    setResultMessage(`No matching results for "${searchString}"`)
+                }
+            }
+        }) : 'nothing')
+        setProductData(filteredArr)
+        console.log('searchstring without space: ' + searchString.replace(/\s+/g, ''))
+        // setRenderComp(!renderComp)
+        console.log(`filter1 => ${filteredArr}`)
+        console.log(`filter2 => ${filteredArr2}`)
+    }
 
 
     const filteredArr = (productData ? productData.filter((product) => {
@@ -103,27 +150,67 @@ const Marketplace = () => {
     return (
         <main id="marketplace-main">
             <MarketplaceHeader />
-            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} />
+            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search"/>
             <section id="marketplace">
                 <aside>
                     <div>
                         <h3>Kategorie</h3>
                         <ul>
                             <li>
-                                <input type="checkbox" id="Klamotten" name="Klamotten" onChange={(e) => e.target.selected ? setfilterCategories(filterCategories + '#Klamotten') : ''}></input>
+                                <input type="checkbox" id="Klamotten" name="Klamotten" onClick={(e) => {
+                                    if (e.target.checked) {
+                                        if (!filterCategories.toLocaleLowerCase().search('klamotten') > -1) {
+                                            setfilterCategories(filterCategories + `-Klamotten`)
+                                        }
+                                    } else if (!e.target.checked) {
+                                        if (filterCategories.toLocaleLowerCase().search('klamotten') > -1) {
+                                            setfilterCategories(filterCategories.replace(`-Klamotten`, ''))
+                                        }
+                                    }
+                                }}></input>
                                 <label htmlFor="Klamotten">Klamotten </label><span>{counts[['Klamotten']] ? counts[['Klamotten']] : '0'}</span>
                             </li>
 
                             <li>
-                                <input type="checkbox" id="Elektronik" name="Elektronik" onChange={() => setfilterCategories(filterCategories + '#Elektronik')}></input>
+                                <input type="checkbox" id="Elektronik" name="Elektronik" onClick={(e) => {
+                                    if (e.target.checked) {
+                                        if (!filterCategories.toLocaleLowerCase().search('elektronik') > -1) {
+                                            setfilterCategories(filterCategories + `-Elektronik`)
+                                        }
+                                    } else if (!e.target.checked) {
+                                        if (filterCategories.toLocaleLowerCase().search('elektronik') > -1) {
+                                            setfilterCategories(filterCategories.replace(`-Elektronik`, ''))
+                                        }
+                                    }
+                                }}></input>
                                 <label htmlFor="Elektronik">Elektronik </label><span>{counts[['Elektronik']] ? counts[['Elektronik']] : '0'}</span>
                             </li>
                             <li>
-                                <input type="checkbox" id="Möbel" name="Möbel" onChange={() => setfilterCategories(filterCategories + '#Möbel')}></input>
+                                <input type="checkbox" id="Möbel" name="Möbel" onClick={(e) => {
+                                    if (e.target.checked) {
+                                        if (!filterCategories.toLocaleLowerCase().search('moebel') > -1) {
+                                            setfilterCategories(filterCategories + `-Moebel`)
+                                        }
+                                    } else if (!e.target.checked) {
+                                        if (filterCategories.toLocaleLowerCase().search('moebel') > -1) {
+                                            setfilterCategories(filterCategories.replace(`-Moebel`, ''))
+                                        }
+                                    }
+                                }}></input>
                                 <label htmlFor="Möbel">Möbel </label><span>{counts[['Möbel']] ? counts[['Möbel']] : '0'}</span>
                             </li>
                             <li>
-                                <input type="checkbox" id="Sonstiges" name="Sonstiges" onChange={() => setfilterCategories(filterCategories + '#Sonstiges')}></input>
+                                <input type="checkbox" id="Sonstiges" name="Sonstiges" onClick={(e) => {
+                                    if (e.target.checked) {
+                                        if (!filterCategories.toLocaleLowerCase().search('sonstiges') > -1) {
+                                            setfilterCategories(filterCategories + `-Sonstiges`)
+                                        }
+                                    } else if (!e.target.checked) {
+                                        if (filterCategories.toLocaleLowerCase().search('sonstiges') > -1) {
+                                            setfilterCategories(filterCategories.replace(`-Sonstiges`, ''))
+                                        }
+                                    }
+                                }}></input>
                                 <label htmlFor="Sonstiges">Sonstiges </label><span>{counts[['Sonstiges']] ? counts[['Sonstiges']] : '0'}</span>
                             </li>
                         </ul>
@@ -132,7 +219,17 @@ const Marketplace = () => {
                         <h3>Marken</h3>
                         <ul>
                             {foundMarks && [...new Set(foundMarks)].map((mark, i) =>
-                                <li key={i}> <input type="checkbox" id={mark} name={mark} onChange={() => setfilterMark(filterMark + '#Möbel')}></input>
+                                <li key={i}> <input type="checkbox" id={mark} name={mark} onClick={(e) => {
+                                    if (e.target.checked) {
+                                        if (!filterMark.toLocaleLowerCase().search(`${mark}`) > -1) {
+                                            setfilterMark(filterMark + `-${mark}`)
+                                        }
+                                    } else if (!e.target.checked) {
+                                        if (filterMark.toLocaleLowerCase().search(`${mark}`) > -1) {
+                                            setfilterMark(filterMark.replace(`-${mark}`, ''))
+                                        }
+                                    }
+                                }}></input>
                                     <label htmlFor={mark}>{mark}</label> <span>{counts[mark] ? counts[mark] : '0'}</span>
                                 </li>
                             )}
@@ -140,34 +237,47 @@ const Marketplace = () => {
                     </div>
                     <div>
                         <h3>Preis</h3>
-                        <input type="range" name="price" min="0" max="1000" onChange={(e) => setfilterPrice(e.target.value)}></input>
-                        <span>Min: </span>  <input type="number" id="priceMin" placeholder='0 $' name="priceMin" onChange={(e) => setfilterPriceMin(e.target.value)} min='0'></input>
-                        <span>Max: </span>  <input type="number" id="priceMax" placeholder='1000 $' name="priceMax" min='0' onChange={(e) => setfilterPriceMax(e.target.value)} ></input>
+                        <input type="range" name="priceMin" min='0' max="500" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
+                        <p>Min: {filterPriceMin}</p>
+                        <input type="range" name="priceMax" min='500' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
+                        <p>Max: {filterPriceMax}</p>
                         <button onClick={handleFilterInputs}>Anwenden</button>
                         <button onClick={handleReset}>Reset</button>
                     </div>
 
                 </aside>
                 <div>
+                    <p>{resultMessage}</p>
+                    {/* {productData && {
+                        p=() => setProductData(productData.filter((product) => {
+
+                            if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
+                                return product
+                            }
+
+                        }))
+                    }} */}
                     {productData && (productData.filter((product) => {
+
                         if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
                             return product
                         }
+
                     }).map(productObj =>
                         <article key={productObj._id} >
                             <img src={productObj.p_imageUrl} alt="img"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
-                                <p>{productObj.p_titel}</p>
+                                <p className="price">{productObj.p_price} EUR</p>
+                                <p className="title">{productObj.p_titel}</p>
                                 <p>Marke: {productObj.p_mark}</p>
-                                <p>Preis pro Stück: {productObj.p_price} $</p>
                                 <p>Anzahl: {productObj.p_amount}</p>
                                 <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productObj.p_pickup ? 'Ja' : 'Nein'}</p>
                             </div>
                             <div>
-                                <Link to={`/productDetail/${productObj._id}`}> Details </Link>
-                                <p className='like'>Auf die Wunschliste</p>
+                                <Link to={`/productDetail/${productObj._id}`}>Details <span className="arrow"></span> </Link>
+                                <p className="like"><span className="heart"></span> Auf die Wunschliste</p>
                             </div>
                         </article>))}
                 </div>

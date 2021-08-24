@@ -7,10 +7,13 @@ $purple-color: #7854f7;
 $yellow-color: #ffba49;
 $logout-color: #dc004e;
 
-$fontText: "Roboto",
-sans-serif;
+$fontText: "Roboto", sans-serif;
 
 nav {
+  position: fixed;
+  top: 0;
+  background-color: $white-color;
+  z-index: 99999;
   min-height: 10vh;
   padding: 0 5%;
   display: flex;
@@ -41,29 +44,63 @@ nav {
   .lgin {
     width: 70%;
   }
+}
 
+<<<<<<< HEAD
   .toolbar {
     display: flex;
     align-items: center;
     width: 30%;
+=======
+.toolbar {
+  display: flex;
+  align-items: center;
+  width: 20%;
 
-    .profile {
-      display: flex;
-      align-items: center;
+  .profile {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
 
-      .userName {
-        color: $white-color;
-        background-color: $purple-color;
+    .btn {
+      border-radius: 5px;
+      border: none;
+    }
+
+    .register {
+      background-color: $purple-color;
+      color: $white-color;
+      padding: 15px 25px;
+      span {
+        text-transform: capitalize;
       }
-
-      .logout {
-        color: $white-color;
-        background-color: $logout-color;
-        padding: 15px 25px;
-        margin-left: 10%;
+    }
+    .login {
+      padding: 15px 5px;
+      span {
+        text-transform: capitalize;
       }
     }
   }
+>>>>>>> 9757c507c5d97670d06c03cd8c63dc992355b034
+
+  .profile {
+    display: flex;
+    align-items: center;
+
+    .userName {
+      color: $white-color;
+      background-color: $yellow-color;
+    }
+
+    .logout {
+      color: $white-color;
+      background-color: $purple-light_color;
+      padding: 15px 25px;
+      margin-left: 10%;
+    }
+  }
+<<<<<<< HEAD
 
   .btn {
     text-transform: inherit;
@@ -81,3 +118,6 @@ nav {
     color: $white-color;
   }
 }
+=======
+}
+>>>>>>> 9757c507c5d97670d06c03cd8c63dc992355b034

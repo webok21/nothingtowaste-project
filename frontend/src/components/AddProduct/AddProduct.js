@@ -110,25 +110,25 @@ const AddProduct = () => {
             <section id="add-product">
                 <form onSubmit={saveInputs} encType="multipart/form-data">
                     <div>
-                        <label htmlFor="advert">Anzeigentyp:</label>
-                        <input type="radio" name='advertType' value='offer' onChange={handleInputs} />
+                        <label>Anzeigentyp:</label>
+                        <input type="radio" id="offer" name='advertType' value='offer' onChange={handleInputs} />
                         <label htmlFor="offer">Ich biete</label>
-                        <input type="radio" name='advertType' value='search' onChange={handleInputs} />
+                        <input type="radio" id="search" name='advertType' value='search' onChange={handleInputs} />
                         <label htmlFor="search">Ich suche</label>
                     </div>
                     <div>
                         <label>Lieferung:</label>
-                        <input type="radio" name="delivery" value='yes' onChange={handleInputs} />
-                        <label htmlFor="offer">Ja</label>
-                        <input type="radio" id="delivery-no" name="delivery" value='no' onChange={handleInputs} />
-                        <label htmlFor="offer">Nein</label>
+                        <input type="radio" id="delivery-no" name="delivery" value='yes' onChange={handleInputs} />
+                        <label htmlFor="delivery-no">Ja</label>
+                        <input type="radio" id="delivery-yes" name="delivery" value='no' onChange={handleInputs} />
+                        <label htmlFor="delivery-yes">Nein</label>
                     </div>
                     <div>
                         <label>Abholung:</label>
-                        <input type="radio" name="pickup" value='yes' onChange={handleInputs} />
-                        <label htmlFor="offer">Ja</label>
+                        <input type="radio" name="pickup-yes" value='yes' onChange={handleInputs} />
+                        <label htmlFor="pickup-yes">Ja</label>
                         <input type="radio" id="pickup-no" name="pickup" value='no' onChange={handleInputs} />
-                        <label htmlFor="offer">Nein</label>
+                        <label htmlFor="pickup-no">Nein</label>
                     </div>
                     <div>
                         <label>Titel der Anzeige:</label>
@@ -139,7 +139,7 @@ const AddProduct = () => {
                         <input type="text" name="mark" onChange={handleInputs} />
                     </div>
                     <div>
-                        <label>Beschreibung:</label>
+                        <label htmlFor="description-input">Beschreibung:</label>
                         <input type="text" id="description-input" name="description" onChange={handleInputs} />
                     </div>
 
@@ -147,52 +147,56 @@ const AddProduct = () => {
                         <label>Anzahl:</label>
                         <input type="number" name="quantity" required onChange={handleInputs} min='0' />
                     </div>
-                    <div>
+                    <div className="price">
                         <label>Preis:</label>
-                        <input type="number" name="price" required onChange={handleInputs} min='0' /> EUR
-                        <input type="radio" checked name="condition" value='fixed' onChange={handleInputs} />
+                        <input type="number" id="currency" name="price" required onChange={handleInputs} min='0' />
+                        <label htmlFor="currency">EUR</label>
+                        <input type="radio" id="fixed-price" name="condition" value='fixed' checked onChange={handleInputs} />
                         <label htmlFor="fixed-price">Festpreis</label>
-                        <input type="radio" name="condition" value='flex' onChange={handleInputs} />
+                        <input type="radio" id="negotiable" name="condition" value='flex' onChange={handleInputs} />
                         <label htmlFor="negotiable">VB</label>
-                        <input type="radio" name="condition" value='free' onChange={handleInputs} />
+                        <input type="radio" id="give-away" name="condition" value='free' onChange={handleInputs} />
                         <label htmlFor="give-away">Zu Verschenken</label>
                     </div>
                     <div className="upload">
-
                         <label>Bilder:</label>
-                        <img src={camera} alt="" />
-                        <input type="file" name="uploaded_file" onChange={(e) => setFilesChosen(e.target.files[0])} />
-                        <p className='errorMessages'>{err}</p>
-                        {/* <button onClick={handleUpload}>Hochladen</button> */}
-
+                        <div className="upload-btn">
+                            <img src={camera} alt="" />
+                            <input type="file" name="uploaded_file" onChange={(e) => setFilesChosen(e.target.files[0])} />
+                            <p className='errorMessages'>{err}</p>
+                            {/* <button onClick={handleUpload}>Hochladen</button> */}
+                        </div>
                     </div>
                     <div>
-                        <label>Kategorie</label>
-                        <select name="category" id="" onChange={handleInputs} >
+                        <label htmlFor="category-select">Kategorie</label>
+                        <select name="category" id="category-select" onChange={handleInputs} >
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Möbel">Möbel</option>
                             <option value="Elektronik" >Elektronik</option>
                             <option value="Sonstiges" >Sonstiges</option>
                         </select>
-                    </div >
-
-                    <div>
+                    </div>
+                    <div className="form-images">
                         <img className="dots-circles" src={dotsCircles} alt="cirlces" />
                         <img className="four-circles" src={fourCircles} alt="dots-circles" />
                         <img className="five-circles" src={fiveCircles} alt="circles" />
-
+                    </div>
+                    <div className="address">
                         <label>PLZ*</label>
-                        <input type="text" name="postcode" placeholder="PLZ" onChange={handleInputs} /><br></br>
+                        <input type="text" id="postcode" name="postcode" placeholder="PLZ" onChange={handleInputs} /><br></br>
                         <input type="text" id="city-input" name="city" placeholder="Ort" required onChange={handleInputs} />
                     </div>
                     <div>
-                        <label>Straße/Nr.*</label><input type="text" name="street" required onChange={handleInputs} />
+                        <label>Straße/Nr.*</label>
+                        <input type="text" name="street" required onChange={handleInputs} />
                     </div>
                     <div>
-                        <label>Name*</label><input type="text" name="name" required onChange={handleInputs} />
+                        <label>Name*</label>
+                        <input type="text" name="name" required onChange={handleInputs} />
                     </div>
-                    <div>
-                        <label>Telefonnummer*</label><input id="phone-input" type="number" name="phone" required onChange={handleInputs} min='0' />
+                    <div className="phone-container">
+                        <label>Telefonnummer*</label>
+                        <input type="number" name="phone" required onChange={handleInputs} min='0' />
                     </div>
                     <div className="submit-input">
                         {/* <button onClick={saveInputs}>Produkt einstellen</button> */}
