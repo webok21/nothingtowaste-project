@@ -103,7 +103,7 @@ const Marketplace = () => {
     return (
         <main id="marketplace-main">
             <MarketplaceHeader />
-            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} />
+            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search"/>
             <section id="marketplace">
                 <aside>
                     <div>
@@ -158,16 +158,16 @@ const Marketplace = () => {
                             <img src={productObj.p_imageUrl} alt="img"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
-                                <p>{productObj.p_titel}</p>
+                                <p className="price">{productObj.p_price} EUR</p>
+                                <p className="title">{productObj.p_titel}</p>
                                 <p>Marke: {productObj.p_mark}</p>
-                                <p>Preis pro Stück: {productObj.p_price} $</p>
                                 <p>Anzahl: {productObj.p_amount}</p>
                                 <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productObj.p_pickup ? 'Ja' : 'Nein'}</p>
                             </div>
                             <div>
-                                <Link to={`/productDetail/${productObj._id}`}> Details </Link>
-                                <p className='like'>Auf die Wunschliste</p>
+                                <Link to={`/productDetail/${productObj._id}`}>Details <span className="arrow"></span> </Link>
+                                <p className="like"><span className="heart"></span> Auf die Wunschliste</p>
                             </div>
                         </article>))}
                 </div>
