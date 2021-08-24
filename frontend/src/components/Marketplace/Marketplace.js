@@ -50,14 +50,13 @@ const Marketplace = () => {
         console.log(`${key}=>${value}`)
     }
 
-
-
     const handleReset = () => {
         setSearchString('')
         setfilterCategories('')
         setfilterPriceMin(0)
         setfilterPriceMax(5000)
         setfilterMark('')
+        setResultMessage('')
         history.push({
             pathname: '/marketplace',
         });
