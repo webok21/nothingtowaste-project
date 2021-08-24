@@ -4,10 +4,15 @@ import {
 } from "react-router-dom";
 import axios from 'axios';
 import './Marketplace.scss';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import MarketplaceHeader from "./MarketplaceHeader";
+import { UserContext } from "../context/UserContext";
 
 const Marketplace = () => {
+    let logged_user = useContext(UserContext) //added!!
+    const [productDetail, setDetail] = useState({})
+
+
     let history = useHistory();
     const [productData, setProductData] = useState(null)
     const [searchString, setSearchString] = useState('')
@@ -120,6 +125,7 @@ const Marketplace = () => {
     }
     console.log(counts[['Sonstiges']])
     console.log(counts['Amazon']);
+
 
     return (
         <main id="marketplace-main">
@@ -243,7 +249,7 @@ const Marketplace = () => {
                             </div>
                             <div>
                                 <Link to={`/productDetail/${productObj._id}`}>Details <span className="arrow"></span> </Link>
-                                <p className="like"><span className="heart"></span> Auf die Wunschliste</p>
+                                <p className="like"><span className={productObj.p_isFav ? 'heart liked' : 'heart'}></span> Auf die Wunschliste</p>
                             </div>
                         </article>))}
                 </div>

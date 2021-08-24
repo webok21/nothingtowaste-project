@@ -1,5 +1,6 @@
 const Product = require('../models/product')
 const path = require('path')
+const User = require('./user.js')
 
 //ALL PRODUCTS7ARTICLES
 const product_index_get = (req, res) => {
@@ -69,7 +70,8 @@ const product_add_post = (req, res) => {
         p_city: req.body.city,
         p_PLZ: req.body.postcode,
         p_isSold: false,
-        p_ownerID: '611e44bb2e64921e848d7f19'
+        p_isFav: false,
+        p_ownerID: req.body.p_ownerID
     })
     product.save()
         .then((result) => {
@@ -117,6 +119,28 @@ const product_edit_put = (req, res) => {
         })
 
 }
+const product_add_lover_put = (req, res) => {
+    console.log(req.params.id)
+    console.log('new loverID to add sent')
+    const Product = Product.findByIdAndUpdate(req.params.id, req.body)
+        .then(result => {
+            console.log('edited product in db')
+            console.log(result)
+        })
+        .catch(err => {
+            console.log(err)
+            res.end()
+        })
+}
+// const contact_remove_favorite = (req, res) => {
+//     console.log(req.params.id)
+//     const currentContact = Contact.where({ _id: req.params.id });
+//     // console.log(currentContact)
+//     currentContact.update({ $set: { isFavorite: false } }).exec()
+//     console.log('contact removed from favorite')
+//     // res.redirect('/favorites')
+
+// }
 
 //Please don't delete here, i still need it for tests
 // const product_add_post = (req, res) => {
@@ -162,5 +186,6 @@ module.exports = {
     product_set_isSold,
     product_sold_get,
     product_edit_get,
-    product_edit_put
+    product_edit_put,
+    product_add_lover_put
 }

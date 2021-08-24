@@ -84,6 +84,11 @@ const productSchema = new Schema({
         required: true,
         default: false
     },
+    p_lovers: {
+        type: [String],
+        required: true,
+        default: ['611e44bb2e64921e848d7f19']
+    },
     p_ownerID: {
         // type: [User],
         type: mongoose.Schema.Types.ObjectId,
