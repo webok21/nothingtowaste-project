@@ -16,17 +16,18 @@ import Footer from "./components/Footer/Footer";
 import EditProduct from "./components/EditProduct/EditProduct";
 
 import Auth from './components/Auth/Auth';
-const UserIDContext = React.createContext();
+import { UserContext } from "./components/context/UserContext";
 
 function App() {
+
   let user = JSON.parse(localStorage.getItem('profile'))
   console.log(user)
-  console.log(user.result._id)
-  let userID = user.result._id
+  console.log(user ? user.result._id : 'no logged user found')
 
   return (
+
     <Router>
-      <UserIDContext.Provider value={userID}>
+      <UserContext.Provider value={user}>
         <Nav />
         <Switch>
           <Route path="/" exact component={Home} />
@@ -39,8 +40,9 @@ function App() {
           <Route path="/wishlist" component={Wishlist} />
         </Switch>
         <Footer />
-      </UserIDContext.Provider>
+      </UserContext.Provider >
     </Router >
+
   );
 }
 
