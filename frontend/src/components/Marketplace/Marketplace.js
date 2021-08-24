@@ -249,7 +249,10 @@ const Marketplace = () => {
                             </div>
                             <div>
                                 <Link to={`/productDetail/${productObj._id}`}>Details <span className="arrow"></span> </Link>
-                                <p className="like"><span className={productObj.p_isFav ? 'heart liked' : 'heart'}></span> Auf die Wunschliste</p>
+                                <p className="like"><span className={
+                                    productObj.p_lovers.includes(`${logged_user.result._id}`) ? 'heart liked' : 'heart'
+                                }>
+                                </span> Auf die Wunschliste</p>
                             </div>
                         </article>))}
                 </div>
