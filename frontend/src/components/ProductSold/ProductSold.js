@@ -119,6 +119,7 @@ const ProductSold = () => {
     return (
         <main>
             <ProductSoldHeader />
+            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search" />
             <section id="product-sold">
                 <aside>
                     <div>
