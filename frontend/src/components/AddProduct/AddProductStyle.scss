@@ -13,81 +13,107 @@ $fontText: "Roboto", sans-serif;
 
 #add-product {
     margin: 8vh 20% 12vh 14%;
+    form {
+        div {
+            width: 100%;
+            margin-bottom: 5vh;
+                input[type=text], input[type=number], select {
+                    background: $input-purple;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 8px 0;
+                    color: $blue-dark_color;
+                    padding-left: 10px;
+                }
+                select {
+                    width: 35%;
+                }
+                input[type=text] {
+                    color: $blue-dark_color;
+                    width: 75%;
+                }
+                input[type=radio] {
+                    margin-right: 6px;
+                }
+            } 
+        div label:first-of-type {
+            display: inline-block;
+            width: 25%;
+        }
+        #search {
+            margin-left: 8%;
+        }
+        #delivery-yes, #pickup-no {
+            margin-left: 13%;
+        }
 
-form {
-    
-    div {
-        width: 100%;
-        margin-bottom: 5vh;
-        input[type=text], input[type=number], select {
-            background: $input-purple;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 0;
-            color: $blue-dark_color
+        #description-input {
+            padding: 30px 10px;
         }
-        select {
-            width: 35%;
+        .price { 
+            input[type=radio]:not(:first-of-type) {
+                margin-left: 5%;
+            }
+            label:nth-of-type(2) {
+                padding-left: 10px;
+            }
         }
-    
-    } 
-    #pickup-no, #delivery-no {
-        margin-left: 13%;
-    }
-    div label:first-of-type {
-        display: inline-block;
-        width: 20%;
-    }
-    #search {
-        margin-left: 6vw;
-    }
-    input[type=text] {
-            width: 80%;
-            color: $blue-dark_color;
-    }
-    input[type=number] {
-        width: 15%;
-    }
-    #phone-input {
-        width: 80%;
-    }
-    input[type=radio]:not(:first-of-type) {
-        margin-left: 7%;
-    }
-    #description-input {
-        padding: 30px 0;
-    }
-        .dots-circles {
-            position: relative;
-            bottom: 35vh;
-            left: 100%;
-            width: 30%;
+        .upload {
+            display: flex;
+            align-items: center;
+            .upload-btn {
+                width: 0%;
+                img {
+                margin-bottom: 20px;
+                }
+                input {
+                    background: $blue-light_color;
+                }
+            }
         }
-        .four-circles {
-            position: relative;
-            bottom: 5vh;
-            right: 45%;
-            width: 25%;
+        .form-images { 
+            .dots-circles {
+                position: relative;
+                bottom: 35vh;
+                left: 100%;
+                width: 30%;
+            }
+            .four-circles {
+                position: relative;
+                bottom: 5vh;
+                right: 45%;
+                width: 25%;
+            }
+            .five-circles {
+                position: relative;
+                top: 20vh;
+                left: 45%;
+                width: 25%;
+            } 
         }
-        .five-circles {
-            position: relative;
-            top: 20vh;
-            left: 45%;
-            width: 25%;
-        } 
-        #city-input {
-            width: 60%;
+        .address {
+            display: flex;
+            #postcode {
+                width: 20%;
+                margin-right: 10px;
+            }
+            #city-input {
+            width: 55%;
+            }
+        }
+        .phone-container input {
+            width: 75%;
         }
         .submit-input {
             text-align: center;
             padding-top: 5vh;
-            input[type=submit] {
-                color: $white-color;
-                background: $purple-color;
-                border: none;
-                border-radius: 5px;
-                padding: 20px 40px;
-            }
+                input[type=submit] {
+                    color: $white-color;
+                    background: $purple-color;
+                    border: none;
+                    border-radius: 5px;
+                    padding: 20px 40px;
+                }
         }
     }
 }
