@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { Button, Paper, Grid, Typography } from '@material-ui/core';
+import { Button, Paper, Grid } from '@material-ui/core';
 import { useHistory, useParams } from 'react-router-dom';
 import { GoogleLogin } from 'react-google-login';
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
@@ -31,7 +31,7 @@ const SignUp = () => {
   let { id } = useParams();
 
   useEffect(() => {
-    if(id == 'login') {
+    if (id === 'login') {
       setIsSignup(false)
     } else {
       setIsSignup(true)
@@ -78,7 +78,7 @@ const SignUp = () => {
                   <Input name="lastName" label="Nachname" handleChange={handleChange} half />
                 </>
               )} {isSignup ? '' : <>
-                <h3>Anmelden mit</h3>
+                <h3><LockOutlinedIcon /> Anmelden mit</h3>
                 <GoogleLogin
                   clientId={process.env.REACT_APP_CLIENT_ID_GOOGLE}
                   render={(renderProps) => (

@@ -1,8 +1,11 @@
-import {
-    Link
-} from "react-router-dom";
+import { useState } from 'react';
+import { Link } from "react-router-dom";
 
 const Hero = () => {
+
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem('profile')));
+    console.log(setUser);
+
     return ( 
         <section id="hero">
             <div>
@@ -11,7 +14,13 @@ const Hero = () => {
         Sie kosten Abertausende Meerestiere das Leben. Seevögel verwechseln Plastik mit natürlicher Nahrung, 
         Delfine verfangen sich in alten Fischernetzen. Hilf mit Müll zu reduzieren und trashnothing.
         </p>
-        <Link to="/"><li>Starte jetzt!</li></Link>
+        {user?.result ? (
+                    <>
+                        <Link to="/marketplace"><li>Starte jetzt!</li></Link>
+                    </>
+                ) : (
+                    <Link to="/auth/login"><li>Starte jetzt!</li></Link>
+                )}
         </div>
         </section>
      );
