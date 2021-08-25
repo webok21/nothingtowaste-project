@@ -1,15 +1,18 @@
 import {
     BrowserRouter as Router,
-    Link,
-    useLocation, useHistory
+    Link, useHistory
 } from "react-router-dom";
 import axios from 'axios';
 import './Marketplace.scss';
-import { useEffect, useState } from "react";
-// import shoes from '../../img/shop/white-shoes.png'
+import { useEffect, useState, useContext } from "react";
 import MarketplaceHeader from "./MarketplaceHeader";
+import { UserContext } from "../context/UserContext";
 
 const Marketplace = () => {
+    let logged_user = useContext(UserContext) //added!!
+    const [productDetail, setDetail] = useState({})
+
+
     let history = useHistory();
     const [productData, setProductData] = useState(null)
     const [searchString, setSearchString] = useState('')
@@ -20,21 +23,17 @@ const Marketplace = () => {
     const [filterMark, setfilterMark] = useState('')
 
     const [resultMessage, setResultMessage] = useState('')
-    const [renderComp, setRenderComp] = useState(false)
+    const [backupData, setbackupData] = useState(false)
 
 
     const handleSearch = (e) => {
         let str = e.target.value
-        setSearchString(str.replace(/\s+/g))
-        //using locations
+        setSearchString(str.replace(/\s+/g, ''))
         history.push({
-            // pathname: { searchString },
             search: `search=${searchString}`,
-            // hash: "#react"
         });
-        // https://localhost:3000/blogs?id=5#react
     }
-    const queryStr = `text=${searchString}&category=${filterCategories}&mark=${filterMark}&min=${filterPriceMin}&max=${filterPriceMax}`;
+    // const queryStr = `text=${searchString}&category=${filterCategories}&mark=${filterMark}&min=${filterPriceMin}&max=${filterPriceMax}`;
     // const urlSearch = new URLSearchParams(queryStr);
     const urlSearch = new URLSearchParams({
         text: `${searchString}`,
@@ -57,9 +56,7 @@ const Marketplace = () => {
         setfilterPriceMax(5000)
         setfilterMark('')
         setResultMessage('')
-        history.push({
-            pathname: '/marketplace',
-        });
+        setProductData(backupData)
     }
 
 
@@ -71,6 +68,7 @@ const Marketplace = () => {
             .then((result) => {
                 console.log(result.data)
                 setProductData(result.data)
+                setbackupData(result.data)
             })
             .catch((err) => {
                 if (err.name === 'AbortError') {
@@ -90,37 +88,18 @@ const Marketplace = () => {
         history.push({
             search: `${urlSearch.toString()}`,
         });
-        // const filteredArr2 = (productData ? productData.filter((product) => {
-        //     if (searchString.replace(/\s+/g, '') !== '') {
-        //         if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
-        //             if (filterCategories.toLowerCase().includes(product.p_category[0].toLowerCase()) && filterMark.toLowerCase().includes(product.p_mark.toLowerCase()) && product.p_price >= filterPriceMin && product.p_price <= filterPriceMax) {
-        //                 return product
-        //             }
-        //         } else {
-        //             setResultMessage(`No matching results for "${searchString}"`)
-        //         }
-        //     }
-        // }) : 'nothing')
 
         const filteredArr2 = (productData ? productData.filter((product) => {
-            if (searchString.replace(/\s+/g, '') !== '') {
-                if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
-                    setResultMessage('yep string in searchfielf matches with these objects')
-                    if (filterCategories.toLowerCase().includes(product.p_category[0].toLowerCase()) && filterMark.toLowerCase().includes(product.p_mark.toLowerCase()) && product.p_price >= filterPriceMin && product.p_price <= filterPriceMax) {
-                        return product
-                    } else {
-                        setResultMessage(`No matching results for second level search`)
-                    }
-                } else {
-                    setResultMessage(`No matching results for "${searchString}"`)
-                }
+            console.log(filterCategories.toLowerCase().includes(product.p_category[0].toLowerCase()))
+            if ((filterMark.length > 0 ? filterMark.toLowerCase().includes(product.p_mark.toLowerCase()) : true)
+                && (filterCategories.length > 0 ? filterCategories.toLowerCase().includes(product.p_category[0].toLowerCase()) : true)
+                && (product.p_price * 1 >= filterPriceMin * 1)
+                && (product.p_price * 1 <= filterPriceMax * 1)) {
+                return product
             }
-        }) : 'nothing')
-        setProductData(filteredArr)
-        console.log('searchstring without space: ' + searchString.replace(/\s+/g, ''))
-        // setRenderComp(!renderComp)
-        console.log(`filter1 => ${filteredArr}`)
-        console.log(`filter2 => ${filteredArr2}`)
+        }) : setResultMessage(`No matching results for ${searchString} and all filters combined :(
+        Try to reset and refine the search`))
+        setProductData(filteredArr2)
     }
 
 
@@ -147,10 +126,11 @@ const Marketplace = () => {
     console.log(counts[['Sonstiges']])
     console.log(counts['Amazon']);
 
+
     return (
         <main id="marketplace-main">
             <MarketplaceHeader />
-            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search"/>
+            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search" />
             <section id="marketplace">
                 <aside>
                     <div>
@@ -248,15 +228,7 @@ const Marketplace = () => {
                 </aside>
                 <div>
                     <p>{resultMessage}</p>
-                    {/* {productData && {
-                        p=() => setProductData(productData.filter((product) => {
 
-                            if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
-                                return product
-                            }
-
-                        }))
-                    }} */}
                     {productData && (productData.filter((product) => {
 
                         if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
@@ -270,6 +242,7 @@ const Marketplace = () => {
                             <div>
                                 <p className="price">{productObj.p_price} EUR</p>
                                 <p className="title">{productObj.p_titel}</p>
+                                <p>AnzeigeTyp: {productObj.p_toGiveAway ? 'Suche' : 'Angebot'}</p>
                                 <p>Marke: {productObj.p_mark}</p>
                                 <p>Anzahl: {productObj.p_amount}</p>
                                 <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
@@ -277,7 +250,10 @@ const Marketplace = () => {
                             </div>
                             <div>
                                 <Link to={`/productDetail/${productObj._id}`}>Details <span className="arrow"></span> </Link>
-                                <p className="like"><span className="heart"></span> Auf die Wunschliste</p>
+                                <p className="like"><span className={
+                                    productObj.p_lovers.includes(`${logged_user.result._id}`) ? 'heart liked' : 'heart'
+                                }>
+                                </span> Auf die Wunschliste</p>
                             </div>
                         </article>))}
                 </div>

@@ -4,14 +4,14 @@ import fourCircles from '../../img/add/four-circles.png';
 import fiveCircles from '../../img/add/five-circles.png';
 import dotsCircles from '../../img/add/dots-circles.png';
 import axios from "axios";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import firebase from '../../config/firebase';
-// import { getStorage, ref, uploadBytesResumable } from "firebase/storage";
-// const storage = getStorage();
+import { UserContext } from '../context/UserContext';
 
-// import Upload from './Upload';
 
 const AddProduct = () => {
+    let logged_user = useContext(UserContext)
+    // console.log(logged_user.result._id)
     const [inputs, setInputs] = useState({})
     const [filesChosen, setFilesChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
@@ -78,7 +78,8 @@ const AddProduct = () => {
                     setInputs(prev => {
                         return {
                             ...prev,
-                            p_imageUrl: downloadURL
+                            p_imageUrl: downloadURL,
+                            p_ownerID: logged_user ? logged_user.result._id : ''
                         }
                     })
                 });
