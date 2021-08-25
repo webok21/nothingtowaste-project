@@ -20,7 +20,7 @@ const Wishlist = () => {
 
     const [filterCategories, setfilterCategories] = useState('')
     const [filterPriceMin, setfilterPriceMin] = useState(0)
-    const [filterPriceMax, setfilterPriceMax] = useState(5000)
+    const [filterPriceMax, setfilterPriceMax] = useState(1000)
     const [filterMark, setfilterMark] = useState('')
 
     const [resultMessage, setResultMessage] = useState('')
@@ -54,7 +54,7 @@ const Wishlist = () => {
         setSearchString('')
         setfilterCategories('')
         setfilterPriceMin(0)
-        setfilterPriceMax(5000)
+        setfilterPriceMax(1000)
         setfilterMark('')
         setResultMessage('')
         setProductData(backupData)
@@ -230,9 +230,9 @@ const Wishlist = () => {
                     </div>
                     <div className="price-filter">
                         <h3>Preis</h3>
-                        <input type="range" name="priceMin" min='0' max="500" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
+                        <input type="range" name="priceMin" min='0' max="200" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
                         <p>Min: {filterPriceMin}</p>
-                        <input type="range" name="priceMax" min='1' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
+                        <input type="range" name="priceMax" min='200' max="1000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
                         <p>Max: {filterPriceMax}</p>
 
                         <div className="filter-btn">

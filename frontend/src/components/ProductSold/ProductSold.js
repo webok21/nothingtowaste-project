@@ -17,7 +17,7 @@ const ProductSold = () => {
 
     const [filterCategories, setfilterCategories] = useState('')
     const [filterPriceMin, setfilterPriceMin] = useState(0)
-    const [filterPriceMax, setfilterPriceMax] = useState(5000)
+    const [filterPriceMax, setfilterPriceMax] = useState(1000)
     const [filterMark, setfilterMark] = useState('')
 
     const [resultMessage, setResultMessage] = useState('')
@@ -215,9 +215,9 @@ const ProductSold = () => {
                     </div>
                     <div>
                         <h3>Preis</h3>
-                        <input type="range" name="priceMin" min='0' max="500" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
+                        <input type="range" name="priceMin" min='0' max="200" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
                         <p>Min: {filterPriceMin}</p>
-                        <input type="range" name="priceMax" min='1' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
+                        <input type="range" name="priceMax" min='200' max="1000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
                         <p>Max: {filterPriceMax}</p>
                         <div className="filter-btn">
                             <button onClick={handleFilterInputs}>Anwenden</button>
