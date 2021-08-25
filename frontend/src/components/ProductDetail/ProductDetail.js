@@ -105,7 +105,7 @@ const ProductDetail = () => {
                 {productDetail &&
                     <article key={productDetail._id} >
                         <figure>
-                            <img src={productDetail.p_imageUrl} alt="img"></img>
+                            <img src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
                                 <h3>{productDetail.p_titel}</h3>
@@ -133,6 +133,7 @@ const ProductDetail = () => {
                                     productDetail.p_category && (productDetail.p_category.map((el, i) =>
                                         <span key={i}>{el} </span>))
                                 }</p>
+                                <p><b>Produktbeschreibung</b></p>
                                 <p>{productDetail.p_description}</p>
                                 <p>Bei Interesse kontaktieren Sie mich gern telefonisch!</p>
                                 <p>Verkäufername: {productDetail.p_owner}</p>
