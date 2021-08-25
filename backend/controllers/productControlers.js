@@ -112,7 +112,6 @@ const product_edit_get = (req, res) => {
         .then((result) => {
             console.log(result)
             res.json(result)
-            res.end()
         })
         .catch((err) => {
             console.log(err)
@@ -120,7 +119,7 @@ const product_edit_get = (req, res) => {
 }
 const product_edit_put = (req, res) => {
     console.log('new edit request sent')
-    const Product = Product.findByIdAndUpdate(req.params.id, req.body)
+    Product.findByIdAndUpdate(req.params.id, req.body)
         .then(result => {
             console.log('edited product in db')
             console.log(result)
@@ -134,10 +133,11 @@ const product_edit_put = (req, res) => {
 const product_add_lover_put = (req, res) => {
     console.log(req.params.id)
     console.log('new loverID to add sent')
-    const Product = Product.findByIdAndUpdate(req.params.id, req.body)
+    Product.findByIdAndUpdate(req.params.id, req.body)
         .then(result => {
             console.log('edited product in db')
             console.log(result)
+            res.json({ redirect: "/wishlist" })
         })
         .catch(err => {
             console.log(err)
