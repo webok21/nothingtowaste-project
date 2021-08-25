@@ -27,6 +27,16 @@ $fontText: "Roboto", sans-serif;
     font-size: 0.8rem;
     color: $blue-dark_color;
   }
+  #addproduct {
+    padding: 1.5rem;
+    background-color: $purple-color;
+    border-radius: 0.5em;
+    color: $white-color;
+    text-align: center;
+    display: block;
+    width: 15%;
+    margin: 2% auto;
+  }
   .marketplace-headers {
     margin: 0 auto;
     display: flex;
@@ -128,12 +138,15 @@ $fontText: "Roboto", sans-serif;
       gap: 2em;
       border: solid 1px $frame-color;
       img {
-        width: 360px;
-        height: 360px;
+        width: 400px;
+        height: 400px;
         object-fit: cover;
       }
       div {
         padding: 2em;
+        display: flex;
+        width: 100%;
+        justify-content: space-around;
         .price,
         .title {
           font-weight: 700;
@@ -146,9 +159,8 @@ $fontText: "Roboto", sans-serif;
           color: $white-color;
           text-align: center;
           .arrow::after {
-            content: ">";
+            content: "\003E";
             font-weight: bold;
-            font-size: 1.2rem;
           }
         }
         .like {
@@ -157,8 +169,12 @@ $fontText: "Roboto", sans-serif;
           background-color: $grayish-color;
           text-align: center;
           .heart::after {
-            content: "\2661";
-            font-size: 1.2rem;
+            background-image: url("../../img/shop/like.svg");
+            background-size: 16px 16px;
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            content: "";
           }
         }
         p {

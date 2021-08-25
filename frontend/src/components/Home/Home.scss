@@ -15,6 +15,10 @@ $breakpoint-ipadpro-end: 1025px;
 $breakpoint-ipadpro: 1024px;
 $breakpoint-ipad-end: 769px;
 $breakpoint-ipad: 768px;
+$breakpoint-surface-end: 541px;
+$breakpoint-surface: 540px;
+$breakpoint-iphone-end: 375px;
+$breakpoint-iphone: 375px;
 // Hero-Section
 
 #hero {
@@ -44,10 +48,56 @@ $breakpoint-ipad: 768px;
 
 //Mediaqueries Hero
 // Ipad Pro
-@media (max-width: $breakpoint-ipadpro) {
+@media (min-width: $breakpoint-ipad-end) and (max-width: $breakpoint-ipadpro) {
   #hero {
     min-height: 60vh;
     background: url(../../img/home/header.png) no-repeat right top/70%;
+  }
+}
+//Ipad
+@media (min-width: $breakpoint-surface-end) and (max-width: $breakpoint-ipad) {
+  #hero {
+    background-size: 70%;
+  }
+}
+//Surface
+@media (min-width: $breakpoint-iphone-end) and (max-width: $breakpoint-surface) {
+  #hero {
+    margin-top: 10%;
+    background-size: cover;
+    div {
+      width: 80%;
+
+      h1 {
+        font-size: 2rem;
+      }
+      p {
+        background-color: rgba(255, 255, 255, 0.5);
+      }
+    }
+  }
+}
+//Iphone X
+@media (max-width: $breakpoint-iphone) {
+  #hero {
+    align-items: center;
+    div {
+      width: 80%;
+      padding: 0;
+      h1 {
+        text-align: center;
+      }
+      p {
+        text-align: center;
+        padding: 1%;
+      }
+      li {
+        padding: 13px 20px;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+      }
+    }
   }
 }
 
@@ -57,7 +107,7 @@ $breakpoint-ipad: 768px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-bottom:2%;
+  margin-bottom: 2%;
 
   h2 {
     width: 35%;
@@ -212,6 +262,46 @@ $breakpoint-ipad: 768px;
     }
   }
 }
+//Ipad
+@media (min-width: $breakpoint-surface-end) and (max-width: $breakpoint-ipad) {
+  #live-different {
+    margin-bottom: 5%;
+    h2 {
+      font-size: 2rem;
+    }
+    div {
+      article {
+        h3 {
+          font-size: 1.25rem;
+        }
+      }
+    }
+  }
+}
+//Surface
+@media (max-width: $breakpoint-surface) {
+  #live-different {
+    margin-bottom: 5%;
+    h2 {
+      font-size: 1.75rem;
+    }
+    div {
+      flex-direction: column;
+      article {
+        width: 100%;
+        align-items: center;
+        img {
+          width: 100%;
+          align-self: end;
+          margin-top: 5%;
+        }
+        h3 {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
+}
 
 // Color section
 
@@ -320,44 +410,103 @@ $breakpoint-ipad: 768px;
   }
 }
 //Ipad Pro
-@media (max-width: $breakpoint-ipadpro) {
+@media (min-width: $breakpoint-ipad) and (max-width: $breakpoint-ipadpro) {
   #color {
-    background-size:120%;
-   
-    div{
-      
-      article{
-      padding-left: 30px;
-      align-self:center;
-        img{
-          height:250px;
+    background-size: 120%;
+
+    div {
+      article {
+        padding-left: 30px;
+        align-self: center;
+        img {
+          height: 250px;
         }
-        .article-text{
+        .article-text {
           padding: 0 0 0 30px;
-          width:70%;
+          width: 70%;
           height: auto;
-          h3{
-            font-size:1.5rem;
+          h3 {
+            font-size: 1.5rem;
           }
-          p{
-            font-size:0.75rem;
+          p {
+            font-size: 0.75rem;
           }
           li {
             width: 128px;
             height: 32px;
             border-radius: 5px;
-            font-size:0.75rem;
+            font-size: 0.75rem;
             text-align: center;
             padding-top: 8px;
           }
         }
+      }
+      article:nth-of-type(2) {
+        justify-content: space-evenly;
+        max-width: 100%;
+        align-self: center;
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+  }
+}
+//Surface
+@media (max-width: $breakpoint-surface) {
+  #color {
+    background-color: $purple-color;
+    margin-bottom: 5%;
+    padding: 5% 0;
+    div {
+      display: flex;
+      flex-direction: column;
+
+      article {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-between;
+        padding-left: 0;
+        img {
+          height: 300px;
         }
-        article:nth-of-type(2) {
-          justify-content: space-evenly;
-          max-width: 100%;
-          align-self: center;
-          padding-left: 0;
-          padding-right: 0;
+      }
+
+      article:nth-of-type(2) {
+        justify-content: auto;
+        max-width: 100%;
+        align-self: auto;
+        padding-left: 0;
+        padding-right: 0;
+        margin-top: 10%;
+        img {
+          display: none;
+        }
+      }
+      .article-text {
+        width: 80%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: auto;
+        padding: 0;
+        margin: 0 auto;
+        align-items: center;
+        h3,
+        p {
+          color: $white-color;
+          width: 80%;
+          text-align: center;
+        }
+        h3 {
+          width: auto;
+        }
+      }
+      article:nth-of-type(2) .article-text {
+        padding: 0;
+        h3 {
+          width: auto;
+        }
       }
     }
   }
@@ -377,9 +526,16 @@ $breakpoint-ipad: 768px;
   }
 }
 
-@media (max-width: $breakpoint-ipadpro) {
-  #people{
-    min-height:30vh;
+@media (min-width: $breakpoint-ipad) and (max-width: $breakpoint-ipadpro) {
+  #people {
+    min-height: 30vh;
   }
 }
-
+//Surface
+@media (max-width: $breakpoint-surface) {
+  #people {
+    h2 {
+      font-size: 2rem;
+    }
+  }
+}
