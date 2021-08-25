@@ -16,25 +16,32 @@ import Footer from "./components/Footer/Footer";
 import EditProduct from "./components/EditProduct/EditProduct";
 import Error from './components/404/Error'
 import Auth from './components/Auth/Auth';
+import { UserContext } from "./components/context/UserContext";
 
 function App() {
+
+  let user = JSON.parse(localStorage.getItem('profile'))
+  console.log(user)
+  console.log(user ? user.result._id : 'no logged user found')
 
   return (
 
     <Router>
-      <Nav />
-      <Switch>
-        <Route path="/" exact component={Home} />
-        <Route path="/auth/:id" component={Auth} />
-        <Route path="/marketplace" component={Marketplace} />
-        <Route path="/addproduct" component={AddProduct} />
-        <Route path="/editproduct/:id" component={EditProduct} />
-        <Route path="/productdetail/:id" component={ProductDetail} />
-        <Route path="/productsold" component={ProductSold} />
-        <Route path="/wishlist" component={Wishlist} />
-        <Route path="*" component={Error} />
-      </Switch>
-      <Footer />
+      <UserContext.Provider value={user}>
+        <Nav />
+        <Switch>
+          <Route path="/" exact component={Home} />
+          <Route path="/auth/:id" component={Auth} />
+          <Route path="/marketplace" component={Marketplace} />
+          <Route path="/addproduct" component={AddProduct} />
+          <Route path="/editproduct/:id" component={EditProduct} />
+          <Route path="/productdetail/:id" component={ProductDetail} />
+          <Route path="/productsold" component={ProductSold} />
+          <Route path="/wishlist" component={Wishlist} />
+          <Route path="*" component={Error} />
+        </Switch>
+        <Footer />
+      </UserContext.Provider >
     </Router >
 
   );
