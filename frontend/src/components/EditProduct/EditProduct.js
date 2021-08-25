@@ -98,7 +98,7 @@ const EditProduct = () => {
                     </div>
                     <div>
                         <label>Titel der Anzeige:</label>
-                        <input type="text" name="title" required onChange={handleInputs} defaultValue={productDetails.p_titel} />
+                        <input type="text" name="title" required onChange={handleInputs} value={productDetails.p_titel} />
                     </div>
                     <div>
                         <label>Marke des Artikels:</label>
@@ -106,16 +106,16 @@ const EditProduct = () => {
                     </div>
                     <div>
                         <label>Beschreibung:</label>
-                        <input type="text" id="description-input" name="description" onChange={handleInputs} />
+                        <input type="text" id="description-input" name="description" onChange={handleInputs} value={productDetails.p_description} />
                     </div>
 
                     <div>
                         <label>Anzahl:</label>
-                        <input type="number" name="quantity" required onChange={handleInputs} min='0' />
+                        <input type="number" name="quantity" required onChange={handleInputs} min='0' value={productDetails.p_amount} />
                     </div>
                     <div>
                         <label>Preis:</label>
-                        <input type="number" name="price" required onChange={handleInputs} min='0' /> EUR
+                        <input type="number" name="price" required onChange={handleInputs} min='0' value={productDetails.p_price} /> EUR
                         <input type="radio" checked name="condition" value='fixed' onChange={handleInputs} />
                         <label htmlFor="fixed-price">Festpreis</label>
                         <input type="radio" name="condition" value='flex' onChange={handleInputs} />
@@ -134,7 +134,7 @@ const EditProduct = () => {
 
                     <div>
                         <label>Kategorie</label>
-                        <select name="category" id="" onChange={handleInputs} >
+                        <select name="category" id="" onChange={handleInputs} value={productDetails.p_category}>
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Möbel">Möbel</option>
                             <option value="Electronik" >Elektronik</option>
@@ -148,17 +148,17 @@ const EditProduct = () => {
                         <img className="five-circles" src={fiveCircles} alt="circles" />
 
                         <label>PLZ*</label>
-                        <input type="text" name="postcode" placeholder="PLZ" onChange={handleInputs} /><br></br>
-                        <input type="text" id="city-input" name="city" placeholder="Ort" required onChange={handleInputs} />
+                        <input type="text" name="postcode" placeholder="PLZ" onChange={handleInputs} value={productDetails.p_PLZ} /><br></br>
+                        <input type="text" id="city-input" name="city" placeholder="Ort" required onChange={handleInputs} value={productDetails.p_city} />
                     </div>
                     <div>
-                        <label>Straße/Nr.*</label><input type="text" name="street" required onChange={handleInputs} />
+                        <label>Straße/Nr.*</label><input type="text" name="street" required onChange={handleInputs} value={productDetails.p_street} />
                     </div>
                     <div>
-                        <label>Name*</label><input type="text" name="name" required onChange={handleInputs} />
+                        <label>Name*</label><input type="text" name="name" required onChange={handleInputs} value={productDetails.p_owner} />
                     </div>
                     <div>
-                        <label>Telefonnummer*</label><input id="phone-input" type="number" name="phone" required onChange={handleInputs} min='0' />
+                        <label>Telefonnummer*</label><input id="phone-input" type="number" name="phone" required onChange={handleInputs} min='0' value={productDetails.p_call} />
                     </div>
                     <div className="submit-input">
                         {/* <button onClick={saveInputs}>Produkt einstellen</button> */}
