@@ -26,7 +26,7 @@ const Footer = () => {
             </section>
             <section id="footer-icons">
                 <div className="icons">
-                    <a href="http://www.twitter.com"><img src={twitter} alt="twitter" /></a>
+                    <a href="http://www.twitter.com"><img className="twitter-icon" src={twitter} alt="twitter" /></a>
                     <a href="http://www.facebook.com"><img src={facebook} alt="facebook" /></a>
                     <a href="/"><img src={wiwi} alt="wiwi" /></a>
                     <a href="http://www.instagram.com"><img src={insta} alt="insta" /></a>

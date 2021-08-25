@@ -229,17 +229,10 @@ const Marketplace = () => {
                     </div>
                     <div className="price-filter">
                         <h3>Preis</h3>
-
                         <input type="range" name="priceMin" min='0' max="500" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
-                        <div className="min-max-container">
-                            <span>Min</span>
-                            <div className="min-max">{filterPriceMin}</div>
-                        </div>
-                        <input type="range" name="priceMax" min='500' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
-                        <div className="min-max-container">
-                            <span>Max</span>
-                            <div className="min-max">{filterPriceMax}</div>
-                        </div>
+                        <p>Min: {filterPriceMin}</p>
+                        <input type="range" name="priceMax" min='1' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
+                        <p>Max: {filterPriceMax}</p>
 
                         <div className="filter-btn">
                             <button onClick={handleFilterInputs}>Anwenden</button>

@@ -12,6 +12,10 @@ $fontText: "Roboto", sans-serif;
 
 $breakpoint-ipadpro-end: 1025px;
 $breakpoint-ipadpro: 1024px;
+$breakpoint-ipad-end: 769px;
+$breakpoint-ipad: 768px;
+$breakpoint-surface-end: 541px;
+$breakpoint-surface: 540px;
 
 
 footer {
@@ -65,9 +69,42 @@ footer {
 @media (max-width: $breakpoint-ipadpro) {
     footer {
         #footer-register {
-            
-            min-height: 10vh;
-            
+            background: #7854f7;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            padding: 0 3%;
+            position: relative;
+            min-height: 15vh;
+            h4 {
+                font-size: 1rem;
+            }
+            .MuiButton-label {
+                font-size: .6rem;
+            }
+        }
+    }
+}
+
+@media (max-width: $breakpoint-surface) {
+    footer {
+        text-align: center;
+        #footer-register {
+            h4 {
+                font-size: .9rem;
+            }
+            .MuiButton-label {
+                font-size: .8rem;
+            }
+        }
+        #footer-icons {
+            display: block;
+            margin: 5% 0;
+            .icons {
+                .twitter-icon {
+                    padding-left: 0;
+                }
+            }
         }
     }
 }

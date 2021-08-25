@@ -217,7 +217,7 @@ const ProductSold = () => {
                         <h3>Preis</h3>
                         <input type="range" name="priceMin" min='0' max="500" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
                         <p>Min: {filterPriceMin}</p>
-                        <input type="range" name="priceMax" min='500' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
+                        <input type="range" name="priceMax" min='1' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
                         <p>Max: {filterPriceMax}</p>
                         <div className="filter-btn">
                             <button onClick={handleFilterInputs}>Anwenden</button>
