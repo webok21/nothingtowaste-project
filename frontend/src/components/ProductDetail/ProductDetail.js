@@ -54,6 +54,11 @@ const ProductDetail = () => {
         console.log('added to sold listitems')
 
     }
+    const handleDelete = () => {
+        axios.delete(`/api/deleteProduct/${id}`)
+            .then(result => window.location.href = result.data.redirect)
+            .catch(err => console.log(err))
+    }
 
     // setDetail2(() => {
     //     if (productDetail && logged_user) {
@@ -144,6 +149,7 @@ const ProductDetail = () => {
                                 {(`${productDetail.p_ownerID}` == `${logged_user.result._id}`) ?
                                     <div>
                                         <Link to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
+                                        <button onClick={handleDelete}>Löschen</button>
                                         <button onClick={handleSoldStatus}>Als Verkauft markieren</button>
                                         <i>    (Die Aktion kann zuerzeit nicht rückgängig gemacht werden!)</i>
                                     </div> : <div></div>

@@ -59,10 +59,10 @@ const EditProduct = () => {
     const saveInputs = () => {
 
 
-        axios.post('/api/addProduct', productDetails)
+        axios.put(`api/editProduct/${id}`, productDetails)
             .then((result) => {
                 console.log(result)
-                console.log('added article to db')
+                console.log('edited article from db')
                 window.location.href = result.data.redirect
             })
             .catch((err) => {
@@ -102,7 +102,7 @@ const EditProduct = () => {
                     </div>
                     <div>
                         <label>Marke des Artikels:</label>
-                        <input type="text" name="mark" onChange={handleInputs} />
+                        <input type="text" name="mark" onChange={handleInputs} value={productDetails.p_mark} />
                     </div>
                     <div>
                         <label>Beschreibung:</label>

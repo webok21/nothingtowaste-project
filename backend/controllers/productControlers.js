@@ -124,12 +124,12 @@ const product_edit_put = (req, res) => {
         .then(result => {
             console.log('edited product in db')
             console.log(result)
+            res.json({ redirect: "/marketplace" })
         })
         .catch(err => {
             console.log(err)
             res.end()
         })
-
 }
 const product_add_lover_put = (req, res) => {
     console.log(req.params.id)
@@ -144,6 +144,12 @@ const product_add_lover_put = (req, res) => {
             res.end()
         })
 }
+const product_detail_delete = (req, res) => {
+    Product.findByIdAndDelete(req.params.id)
+        .then(result => res.json({ redirect: "/marketplace" }))
+        .catch(err => res.json(err))
+}
+
 // const contact_remove_favorite = (req, res) => {
 //     console.log(req.params.id)
 //     const currentContact = Contact.where({ _id: req.params.id });
@@ -154,18 +160,6 @@ const product_add_lover_put = (req, res) => {
 
 // }
 
-//Please don't delete here, i still need it for tests
-// const product_add_post = (req, res) => 
-//     product.save()
-//         .then((result) => {
-//             console.log(result)
-//             res.json({ result })
-//         })
-//         .catch((err) => {
-//             console.log(err)
-//             // res.json({ redirect: "/404" })
-//         })
-// }
 
 module.exports = {
     product_index_get,
@@ -176,6 +170,7 @@ module.exports = {
     product_sold_get,
     product_edit_get,
     product_edit_put,
+    product_detail_delete,
     product_add_lover_put,
     product_wishlist_get
 }

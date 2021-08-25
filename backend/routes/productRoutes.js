@@ -10,6 +10,7 @@ router.get('/productDetails/:id', productControlers.product_detail_get)
 router.put('/makeSold/:id', productControlers.product_set_isSold)
 router.get('/editProduct/:id', productControlers.product_edit_get)
 router.put('/editProduct/:id', productControlers.product_edit_put)
+router.delete('/deleteProduct/:id', productControlers.product_detail_delete)
 router.put('/addLover/:id', productControlers.product_add_lover_put)
 router.get('/wishlist/:id', productControlers.product_wishlist_get)
 module.exports = router;
