@@ -88,7 +88,7 @@ const SignUp = () => {
                   )}
                   onSuccess={googleSuccess}
                   onFailure={googleError}
-                  cookiePolicy="single_host_origin"
+                  cookiePolicy={'single_host_origin'}
                 />
                 <h5>oder</h5>
                 <h3>Email</h3>
