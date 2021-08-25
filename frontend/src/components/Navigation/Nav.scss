@@ -7,12 +7,12 @@ $purple-color: #7854f7;
 $yellow-color: #ffba49;
 $logout-color: #dc004e;
 
-$breakpoint-ipadpro-end: 1025px;
+
 $breakpoint-ipadpro: 1024px;
-$breakpoint-ipad-end: 769px;
 $breakpoint-ipad: 768px;
 
-$fontText: "Roboto", sans-serif;
+$fontText: "Roboto",
+sans-serif;
 
 nav {
   position: fixed;
@@ -26,6 +26,12 @@ nav {
   justify-content: space-between;
   align-items: center;
   margin-bottom: 1%;
+  border-bottom: 1px solid $purple-light_color;
+  box-shadow: -1px 11px 23px 1px #b6a6fb3d;
+  
+  .icon {
+    display: none;
+  }
 
   #logo {
     font-weight: 700;
@@ -46,9 +52,11 @@ nav {
   .lgout {
     width: 30%;
   }
+
   .lgin {
     width: 70%;
   }
+
 }
 
 .toolbar {
@@ -70,12 +78,15 @@ nav {
       background-color: $purple-color;
       color: $white-color;
       padding: 15px 25px;
+
       span {
         text-transform: capitalize;
       }
     }
+
     .login {
       padding: 15px 5px;
+
       span {
         text-transform: capitalize;
       }
@@ -89,6 +100,8 @@ nav {
     .userName {
       color: $white-color;
       background-color: $yellow-color;
+      width: 27%;
+      height: 27%;
     }
 
     .logout {
@@ -101,83 +114,112 @@ nav {
 }
 
 
-@media (max-width: $breakpoint-ipadpro) { 
+// BREAK-POINT: 1024px
+@media (max-width: $breakpoint-ipadpro) {
   nav {
-    
-    background-color: red;
-    padding: 0 5%;
-    width: 100%;
-    
-  
+
+    li {
+      display: none;
+    }
+
+    .icon {
+      display: inline-block;
+      font-size: 2rem;
+      color: $purple-light_color;
+    }
+
     #logo {
       font-weight: 700;
-      width: 12%;
-    }
-  
-    .ul {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-  
-      li {
-        padding-right: 2rem;
-        font-size: .9rem;
+      width: 15%;
+
+      .home {
+        color: $purple-color;
+        font-size: 2.8rem;
       }
     }
-  
+
     .lgout {
-      width: 30%;
+      width: 19%;
     }
+
     .lgin {
-      width: 70%;
+      width: 30%;
+      justify-content: space-between;
     }
   }
-  
+
   .toolbar {
-    display: flex;
-    align-items: center;
-    width: 20%;
-  
+    justify-content: flex-end;
+    width: 55%;
+
     .profile {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-  
+      width: 50%;
+
       .btn {
-        border-radius: 5px;
-        border: none;
+        padding: 6px 10px;
       }
-  
-      .register {
-        background-color: $purple-color;
-        color: $white-color;
+
+      .logout {
         padding: 15px 25px;
-        span {
-          text-transform: capitalize;
-        }
       }
-      .login {
-        padding: 15px 5px;
-        span {
-          text-transform: capitalize;
-        }
+
+      .userName {
+        width: 35%;
+        height: 35%;
       }
     }
-  
-    .profile {
-      display: flex;
-      align-items: center;
-  
-      .userName {
-        color: $white-color;
-        background-color: $yellow-color;
+  }
+}
+
+// BREAK-POINT: 768px
+@media (max-width: $breakpoint-ipad) {
+  nav {
+    #logo {
+      margin-right: 5%;
+    }
+
+    .ul {
+      .icon {
+        display: inline-block;
+        font-size: 2.2rem;
       }
-  
+    }
+
+    .lgout {
+      width: 15%;
+    }
+
+    .lgin {
+      width: 30%;
+      justify-content: space-between;
+    }
+  }
+
+  .toolbar {
+    justify-content: flex-end;
+    width: 50%;
+
+    .profile {
+      width: 65%;
+      .btn {
+        padding: 6px 10px;
+      }
+
       .logout {
-        color: $white-color;
-        background-color: $purple-light_color;
         padding: 15px 25px;
-        margin-left: 10%;
+      }
+
+      .userName {
+        width: 35%;
+        height: 35%;
+      }
+
+      .login {
+        padding: 10px 5px;
+      }
+
+      .register {
+        padding: 10px 10px;
       }
     }
   }
