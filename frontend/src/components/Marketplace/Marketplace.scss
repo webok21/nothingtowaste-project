@@ -11,6 +11,18 @@ $grayish-color: #f5f5f5;
 $frame-color: #d1d1d1;
 $fontText: "Roboto", sans-serif;
 
+$breakpoint-macbook: 1440px;
+$breakpoint-laptop-end: 1281px;
+$breakpoint-laptop: 1280px;
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+$breakpoint-ipad-end: 769px;
+$breakpoint-ipad: 768px;
+$breakpoint-surface-end: 541px;
+$breakpoint-surface: 540px;
+$breakpoint-iphone-end: 375px;
+$breakpoint-iphone: 375px;
+
 #marketplace-main {
   #search {
     width: 35%;
@@ -214,4 +226,81 @@ input[type="range"]::-webkit-slider-thumb {
 
 .heart.liked {
   background-color: red;
+}
+
+//Mediaqueries
+// Ipad Pro
+@media (min-width: $breakpoint-ipad-end) and (max-width: $breakpoint-ipadpro) {
+  #marketplace,
+  #product-sold {
+    article {
+      flex-direction: column;
+    }
+  }
+}
+// Ipad
+@media (min-width: $breakpoint-surface-end) and (max-width: $breakpoint-ipad) {
+  #marketplace,
+  #product-sold {
+    padding: 2em;
+    display: flex;
+
+    aside {
+      min-width: 30%;
+      div {
+        display: flex;
+        flex-direction: column;
+        width: 100%;
+      }
+    }
+    article {
+      flex-direction: column;
+      margin-left: 10%;
+      img {
+        max-width: 100%;
+      }
+    }
+  }
+}
+
+// Surface
+@media (min-width: $breakpoint-iphone-end) and (max-width: $breakpoint-surface) {
+  #marketplace,
+  #product-sold {
+    margin: 0;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    aside {
+      display: none;
+    }
+    article {
+      margin-bottom: 2em;
+      flex-direction: column;
+      width: 100%;
+    }
+  }
+}
+
+// Iphone
+@media (max-width: $breakpoint-iphone) {
+  #marketplace,
+  #product-sold {
+    margin: 0;
+    padding: 2%;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+
+    article {
+      margin-bottom: 2em;
+      flex-direction: column;
+      width: 100%;
+      img {
+        width: 370px;
+        height: 370px;
+      }
+    }
+  }
 }
