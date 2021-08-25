@@ -11,7 +11,7 @@ import { UserContext } from "../context/UserContext";
 const ProductDetail = () => {
     let logged_user = useContext(UserContext) //added!!
     const [productDetail, setDetail] = useState({})
-    const [productDetail2, setDetail2] = useState({})
+    const [productDetail2, setDetail2] = useState(null)
     const [productSold, setProductSold] = useState(false)
     let { id } = useParams();
     let count = 0
@@ -54,50 +54,25 @@ const ProductDetail = () => {
         console.log('added to sold listitems')
 
     }
+
     const handleDelete = () => {
         axios.delete(`/api/deleteProduct/${id}`)
             .then(result => window.location.href = result.data.redirect)
             .catch(err => console.log(err))
     }
 
-    // setDetail2(() => {
-    //     if (productDetail && logged_user) {
-    //         return {
-    //             ...productDetail,
-    //             p_lovers: [...productDetail.p_lovers, logged_user.result._id]
-    //         }
-    //     }
-    // })
 
-    // setDetail2(() => {
-    //     if (productDetail && logged_user) {
-    //         return {
-    //             p_titel: productDetail.p_titel,
-    //             p_imageUrl: productDetail.p_imageUrl,
-    //             p_mark: productDetail.p_mark,
-    //             p_shiping: productDetail.p_shiping,
-    //             p_pickup: productDetail.p_pickup,
-    //             p_price: productDetail.p_price,
-    //             p_amount: productDetail.p_amount,
-    //             p_category: productDetail.p_category,
-    //             p_description: productDetail.p_description,
-    //             p_owner: productDetail.p_owner,
-    //             p_forFree: productDetail.p_forFree,
-    //             p_priceFlex: productDetail.p_priceFlex,
-    //             p_toGiveAway: productDetail.p_toGiveAway,
-    //             p_call: productDetail.p_call,
-    //             p_street: productDetail.p_street,
-    //             p_city: productDetail.p_city,
-    //             p_PLZ: productDetail.p_PLZ,
-    //             p_isSold: productDetail.p_isSold,
-    //             p_ownerID: productDetail.p_ownerID,
-    //             p_lovers: [...productDetail.p_lovers, logged_user.result._id]
+    useEffect(() => {
+        if (productDetail2) {
+            axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
+                .then((result) => {
+                    console.log(result.data)
+                    window.location.href = result.data.redirect
+                })
+                .catch((err) => { console.log(err) })
+        }
 
-    //         }
-    //     }
-    // })
-
-
+    }, [productDetail2])
     return (
         <main>
             <section id="product-detail">
@@ -105,30 +80,40 @@ const ProductDetail = () => {
                 {productDetail &&
                     <article key={productDetail._id} >
                         <figure>
-                            <img src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
+                            <img className={productDetail.p_isSold ? 'soldProduct' : ''} src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
                                 <h3>{productDetail.p_titel}</h3>
                                 <p>Anzeige-Typ: {productDetail.p_toGiveAway ? 'Suche' : 'Angebot'}</p>
                                 <p>Marke: {productDetail.p_mark}</p>
-                                <p>Preis pro Stück: {productDetail.p_price} Euros, {productDetail.p_priceFlex ? 'VB' : 'Festpreis'}</p>
+                                <p>Preis pro Stück: {productDetail.p_price} Euros, {(ProductDetail.p_forFree || productDetail.p_price * 1 == 0) ? 'Zu Verschenken' : productDetail.p_priceFlex ? 'VB' : 'Festpreis'}</p>
                                 <p>Anzahl: {productDetail.p_amount}</p>
                                 <p>PLZ/Ort: {productDetail.p_PLZ} / {productDetail.p_city}</p>
                                 <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
-                                {productDetail.p_isSold ? '' : <p className='like'>
-                                    <span className='heart'
-                                        onClick={() => {
-                                            axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
-                                                .then((result) => {
-                                                    console.log(result.data)
-                                                    // setData(result.data)
-                                                })
-                                                .catch((err) => { console.log(err) })
+                                {productDetail.p_isSold ? '' : (productDetail.p_lovers &&
+                                    productDetail.p_lovers.includes(`${logged_user.result._id}`)) ?
+                                    <p className='inWishlist'><span className={productDetail.p_lovers &&
+                                        productDetail.p_lovers.includes(`${logged_user.result._id}`) ? 'heart liked' : 'heart'
+                                    }></span>In der Wunschliste</p> :
+                                    <p onClick={() => {
+                                        (setDetail2(() => {
+                                            if (productDetail && logged_user) {
 
-                                        }}
-                                    >
-                                    </span>Auf die Wunschliste</p>}
+                                                return {
+                                                    ...productDetail,
+                                                    p_lovers: [...productDetail.p_lovers, logged_user.result._id]
+                                                }
+
+                                            }
+                                        }))
+                                    }} className='like'>
+                                        <span className={productDetail.p_lovers &&
+                                            productDetail.p_lovers.includes(`${logged_user.result._id}`) ? 'heart liked' : 'heart'
+                                        }
+
+                                        >
+                                        </span>Auf die Wunschliste</p>}
                                 <p>Kategorie: {
                                     productDetail.p_category && (productDetail.p_category.map((el, i) =>
                                         <span key={i}>{el} </span>))
