@@ -8,8 +8,11 @@ $yellow-color: #ffba49;
 $logout-color: #dc004e;
 
 
+$breakpoint-laptop: 1280px;
 $breakpoint-ipadpro: 1024px;
 $breakpoint-ipad: 768px;
+$breakpoint-surface: 540px;
+$breakpoint-iphone: 375px;
 
 $fontText: "Roboto",
 sans-serif;
@@ -28,7 +31,7 @@ nav {
   margin-bottom: 1%;
   border-bottom: 1px solid $purple-light_color;
   box-shadow: -1px 11px 23px 1px #b6a6fb3d;
-  
+
   .icon {
     display: none;
   }
@@ -100,8 +103,8 @@ nav {
     .userName {
       color: $white-color;
       background-color: $yellow-color;
-      width: 27%;
-      height: 27%;
+      width: 2.5rem;
+      height: 2.5rem;
     }
 
     .logout {
@@ -163,10 +166,6 @@ nav {
         padding: 15px 25px;
       }
 
-      .userName {
-        width: 35%;
-        height: 35%;
-      }
     }
   }
 }
@@ -201,6 +200,7 @@ nav {
 
     .profile {
       width: 65%;
+
       .btn {
         padding: 6px 10px;
       }
@@ -209,17 +209,51 @@ nav {
         padding: 15px 25px;
       }
 
-      .userName {
-        width: 35%;
-        height: 35%;
-      }
-
       .login {
         padding: 10px 5px;
       }
 
       .register {
         padding: 10px 10px;
+      }
+    }
+  }
+}
+
+
+// BREAK-POINT: 540px
+@media (max-width: $breakpoint-surface) {
+  nav {
+    .ul {
+      .icon {
+        display: inline-block;
+        font-size: 1.8rem;
+      }
+    }
+
+    .lgout {
+      width: 10%;
+    }
+    
+    .lgin {
+      width: 35%;
+      justify-content: space-between;
+    }
+  }
+
+  .toolbar {
+    justify-content: flex-end;
+    width: 30%;
+
+    .profile {
+      width: 100%;
+      justify-content: flex-end;
+      .userName {
+        display: none;
+      }
+
+      .register {
+        display: none;
       }
     }
   }
