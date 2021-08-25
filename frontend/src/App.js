@@ -14,7 +14,7 @@ import Wishlist from './components/WishList/Wishlist'
 import Nav from "./components/Navigation/Nav";
 import Footer from "./components/Footer/Footer";
 import EditProduct from "./components/EditProduct/EditProduct";
-
+import Error from './components/404/Error'
 import Auth from './components/Auth/Auth';
 import { UserContext } from "./components/context/UserContext";
 
@@ -38,6 +38,7 @@ function App() {
           <Route path="/productdetail/:id" component={ProductDetail} />
           <Route path="/productsold" component={ProductSold} />
           <Route path="/wishlist" component={Wishlist} />
+          <Route path="*" component={Error} />
         </Switch>
         <Footer />
       </UserContext.Provider >
