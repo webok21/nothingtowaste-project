@@ -115,7 +115,7 @@ const EditProduct = () => {
                     </div>
                     <div>
                         <label>Preis:</label>
-                        <input type="number" name="price" required onChange={handleInputs} min='0' value={productDetails.p_price} /> EUR
+                        <input step=".01" type="number" name="price" required onChange={handleInputs} min='0' value={productDetails.p_price} /> EUR
                         <input type="radio" checked name="condition" value='fixed' onChange={handleInputs} />
                         <label htmlFor="fixed-price">Festpreis</label>
                         <input type="radio" name="condition" value='flex' onChange={handleInputs} />

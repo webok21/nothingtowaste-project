@@ -150,7 +150,7 @@ const AddProduct = () => {
                     </div>
                     <div className="price">
                         <label>Preis:</label>
-                        <input type="number" id="currency" name="price" required onChange={handleInputs} min='0' />
+                        <input step=".01" type="number" id="currency" name="price" required onChange={handleInputs} min='0' />
                         <label htmlFor="currency">EUR</label>
                         <input type="radio" id="fixed-price" name="condition" value='fixed' checked onChange={handleInputs} />
                         <label htmlFor="fixed-price">Festpreis</label>
