@@ -83,3 +83,9 @@ $fontText: "Roboto", sans-serif;
     }
   }
 }
+.soldProduct {
+  filter: grayscale(100%); /* Standard */
+  -webkit-filter: grayscale(100%); /* Webkit */
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Old WebKit */
+}

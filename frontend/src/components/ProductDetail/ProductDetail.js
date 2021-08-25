@@ -105,7 +105,7 @@ const ProductDetail = () => {
                 {productDetail &&
                     <article key={productDetail._id} >
                         <figure>
-                            <img src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
+                            <img className={productDetail.p_isSold ? 'soldProduct' : ''} src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
                                 <h3>{productDetail.p_titel}</h3>

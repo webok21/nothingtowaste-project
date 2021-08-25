@@ -15,7 +15,7 @@ const AddProduct = () => {
     const [inputs, setInputs] = useState({})
     const [filesChosen, setFilesChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
-    const [err, setErr] = useState('');
+    const [err, setErr] = useState('Supported: .png, .jpeg, .jpg');
     const handleInputs = (event) => {
         setInputs(prev => {
             return {
