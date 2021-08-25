@@ -7,6 +7,7 @@ import {
 import './App.scss';
 import Home from './components/Home/Home'
 import Marketplace from './components/Marketplace/Marketplace'
+import About from './components/AboutUs/About'
 import AddProduct from './components/AddProduct/AddProduct'
 import ProductDetail from './components/ProductDetail/ProductDetail'
 import ProductSold from './components/ProductSold/ProductSold'
@@ -33,6 +34,7 @@ function App() {
           <Route path="/" exact component={Home} />
           <Route path="/auth/:id" component={Auth} />
           <Route path="/marketplace" component={Marketplace} />
+          <Route path="/aboutus" component={About} />
           <Route path="/addproduct" component={AddProduct} />
           <Route path="/editproduct/:id" component={EditProduct} />
           <Route path="/productdetail/:id" component={ProductDetail} />
