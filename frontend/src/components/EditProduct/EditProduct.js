@@ -19,7 +19,7 @@ const EditProduct = () => {
 
     useEffect(() => {
         const abortControl = new AbortController();
-        axios.get(`api/editProduct/${id}`)
+        axios.get(`/api/editProduct/${id}`)
             .then((result) => {
                 if (result.data) {
                     console.log(result.data)
@@ -39,7 +39,7 @@ const EditProduct = () => {
             abortControl.abort();
             console.log('cleanup: fetching aborted')
         }
-    }, [0])
+    }, [id])
 
     const handleInputs = (event) => {
         setProductDetails(prev => {
@@ -98,7 +98,7 @@ const EditProduct = () => {
                     </div>
                     <div>
                         <label>Titel der Anzeige:</label>
-                        <input type="text" name="title" required onChange={handleInputs} value={productDetails.p_titel} />
+                        <input type="text" name="title" required onChange={handleInputs} defaultValue={productDetails.p_titel} />
                     </div>
                     <div>
                         <label>Marke des Artikels:</label>

@@ -11,7 +11,7 @@ import { UserContext } from "../context/UserContext";
 const ProductDetail = () => {
     let logged_user = useContext(UserContext) //added!!
     const [productDetail, setDetail] = useState({})
-    const [productDetail2, setDetail2] = useState({})
+    const [productDetail2, setDetail2] = useState(null)
     const [productSold, setProductSold] = useState(false)
     let { id } = useParams();
     let count = 0
@@ -54,20 +54,14 @@ const ProductDetail = () => {
         console.log('added to sold listitems')
 
     }
+
     const handleDelete = () => {
         axios.delete(`/api/deleteProduct/${id}`)
             .then(result => window.location.href = result.data.redirect)
             .catch(err => console.log(err))
     }
 
-    // setDetail2(() => {
-    //     if (productDetail && logged_user) {
-    //         return {
-    //             ...productDetail,
-    //             p_lovers: [...productDetail.p_lovers, logged_user.result._id]
-    //         }
-    //     }
-    // })
+
 
     // setDetail2(() => {
     //     if (productDetail && logged_user) {
@@ -97,7 +91,17 @@ const ProductDetail = () => {
     //     }
     // })
 
+    useEffect(() => {
+        if (productDetail2) {
+            axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
+                .then((result) => {
+                    console.log(result.data)
+                    window.location.href = result.data.redirect
+                })
+                .catch((err) => { console.log(err) })
+        }
 
+    }, [productDetail2])
     return (
         <main>
             <section id="product-detail">
@@ -116,19 +120,25 @@ const ProductDetail = () => {
                                 <p>PLZ/Ort: {productDetail.p_PLZ} / {productDetail.p_city}</p>
                                 <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
-                                {productDetail.p_isSold ? '' : <p className='like'>
-                                    <span className='heart'
-                                        onClick={() => {
-                                            axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
-                                                .then((result) => {
-                                                    console.log(result.data)
-                                                    // setData(result.data)
-                                                })
-                                                .catch((err) => { console.log(err) })
+                                {productDetail.p_isSold ? '' :
+                                    <p onClick={() => {
+                                        (setDetail2(() => {
+                                            if (productDetail && logged_user) {
 
-                                        }}
-                                    >
-                                    </span>Auf die Wunschliste</p>}
+                                                return {
+                                                    ...productDetail,
+                                                    p_lovers: [...productDetail.p_lovers, logged_user.result._id]
+                                                }
+
+                                            }
+                                        }))
+
+
+                                    }} className='like'>
+                                        <span className='heart'
+
+                                        >
+                                        </span>Auf die Wunschliste</p>}
                                 <p>Kategorie: {
                                     productDetail.p_category && (productDetail.p_category.map((el, i) =>
                                         <span key={i}>{el} </span>))
