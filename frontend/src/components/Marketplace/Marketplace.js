@@ -151,6 +151,7 @@ const Marketplace = () => {
         <main id="marketplace-main">
             <MarketplaceHeader />
             <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search"/>
+            <Link id="addproduct" to="/addproduct"><li>Produkt einstellen</li></Link>
             <section id="marketplace">
                 <aside>
                     <div>

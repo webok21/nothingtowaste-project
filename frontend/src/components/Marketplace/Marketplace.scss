@@ -27,6 +27,16 @@ $fontText: "Roboto", sans-serif;
     font-size: 0.8rem;
     color: $blue-dark_color;
   }
+  #addproduct {
+    padding: 1.5rem;
+    background-color: $purple-color;
+    border-radius: 0.5em;
+    color: $white-color;
+    text-align: center;
+    display: block;
+    width: 15%;
+    margin: 2% auto;
+  }
   .marketplace-headers {
     margin: 0 auto;
     display: flex;

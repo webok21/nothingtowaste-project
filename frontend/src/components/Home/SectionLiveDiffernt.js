@@ -13,20 +13,26 @@ const SectionLiveDifferent = () => {
                 <article>
                     <img src={Iphone} alt="" />
                     <img src={Verkaufen} alt="" />
+                    
                     <h3>Verkaufen statt wegwerfen</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus faucibus egestas neque, quis nunc in turpis cursus eget.</p>
+                    
                 </article>
                 <article>
                     <img src={Verschenken} alt="" />
+                    
                     <h3>Verschenke und schütze</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus faucibus egestas neque, quis nunc in turpis cursus eget.</p>
+                    
                 </article>
                 <article>
                 <img src={Umwelt2} alt="" />
                 <img src={Umwelt3} alt="" />
                     <img src={Umwelt} alt="" />
+                    
                     <h3>Der Umwelt zuliebe</h3>
                     <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Risus faucibus egestas neque, quis nunc in turpis cursus eget.</p>
+                    
                 </article>
             </div>
         </section>

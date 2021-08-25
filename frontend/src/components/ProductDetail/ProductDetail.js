@@ -57,12 +57,13 @@ const ProductDetail = () => {
                 {productDetail &&
                     <article key={productDetail._id} >
                         <figure>
-                            <img src={productDetail.p_imageUrl} alt="img"></img>
+                            <img src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
-                                <h3>{productDetail.p_titel}</h3>
+                                <p id="bigtitle">{productDetail.p_titel}</p>
+                                <p id="bigprice">{productDetail.p_price} EUR</p>
                                 <p>Marke: {productDetail.p_mark}</p>
-                                <p>Preis pro Stück: {productDetail.p_price} $</p>
+                                
                                 <p>Anzahl: {productDetail.p_amount}</p>
                                 <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
@@ -71,11 +72,12 @@ const ProductDetail = () => {
                                     productDetail.p_category && (productDetail.p_category.map((el, i) =>
                                         <span key={i}>{el}, </span>))
                                 }</p>
+                                <p><b>Produktbeschreibung</b></p>
                                 <p>{productDetail.p_description}</p>
                             </div>
                         </figure>
                         {productDetail.p_isSold ? <p>This item is no longer available</p> : <div>
-                            <Link to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
+                            <Link to={`/editproduct/${productDetail._id}`} className="btn-white"> Bearbeiten </Link>
                             {/* <Link to={`/productDetail/${productDetail._id}`}> Verkauft </Link> */}
                             <button onClick={handleSoldStatus}>Verkauft</button>
                         </div>}

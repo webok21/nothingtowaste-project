@@ -4,6 +4,8 @@ import { useEffect, useState } from "react";
 // import shoes from '../../img/shop/white-shoes.png'
 import Aside from "../Marketplace/Aside";
 import ProductSoldHeader from "./ProductSoldHeader";
+import '../Marketplace/Marketplace.scss';
+import './ProductSold.scss'
 
 const ProductSold = () => {
     const [productData, setProductData] = useState(null)
@@ -41,15 +43,15 @@ const ProductSold = () => {
                             <img src={productObj.p_imageUrl} alt="img"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
-                                <p>{productObj.p_titel}</p>
+                            <p className="price">{productObj.p_price} EUR</p>
+                                <p className="title">{productObj.p_titel}</p>
                                 <p>Marke: {productObj.p_mark}</p>
-                                <p>Preis pro Stück: {productObj.p_price} $</p>
                                 <p>Anzahl: {productObj.p_amount}</p>
-                                <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
-                                <p>Abholung möglich: {productObj.p_pickup ? 'Ja' : 'Nein'}</p>
+                                {/* <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
+                                <p>Abholung möglich: {productObj.p_pickup ? 'Ja' : 'Nein'}</p> */}
                             </div>
                             <div>
-                                <Link to={`/productDetail/${productObj._id}`}> Details </Link>
+                                <Link to={`/productDetail/${productObj._id}`}>Details <span className="arrow"></span></Link>
                                 {/* <p className='like'>Auf die Wunschliste</p> */}
                             </div>
                         </article>))}
