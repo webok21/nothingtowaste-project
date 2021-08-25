@@ -67,14 +67,16 @@ $fontText: "Roboto", sans-serif;
       .like {
         padding: 1em;
         border-radius: 0.5em;
-        background-color: $grayish-color;
+        background-color: $purple-color;
         display: flex;
         align-items: center;
-        span {
-          margin-right: 1em;
-          img {
-            width: 1em;
-          }
+        .heart::after {
+          background-image: url("../../img/shop/like.svg");
+          background-size: 16px 16px;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          content: "";
         }
       }
       p {
@@ -82,4 +84,31 @@ $fontText: "Roboto", sans-serif;
       }
     }
   }
+}
+.soldProduct {
+  filter: grayscale(100%); /* Standard */
+  -webkit-filter: grayscale(100%); /* Webkit */
+  filter: gray; /* IE6-9 */
+  -webkit-filter: grayscale(1); /* Old WebKit */
+}
+
+
+.heart.liked {
+  color: red;
+}
+
+.inWishlist{
+        padding: 1em;
+        border-radius: 0.5em;
+        background-color: $grayish-color;
+        display: flex;
+        align-items: center;
+        .heart::after {
+          background-image: url("../../img/shop/like.svg");
+          background-size: 16px 16px;
+          display: inline-block;
+          width: 16px;
+          height: 16px;
+          content: "";
+        }
 }

@@ -68,8 +68,8 @@ const Wishlist = () => {
         axios.get(`/api/products`, { signal: abortControl.signal })
             .then((result) => {
                 console.log(result.data)
-                setProductData(result.data)
-                const wishData = productData.filter((product) => {
+
+                const wishData = result.data.filter((product) => {
                     if (product.p_lovers.includes(logged_user.result._id)) {
                         return product
                     }
