@@ -143,30 +143,7 @@ const product_add_lover_put = (req, res) => {
 // }
 
 //Please don't delete here, i still need it for tests
-// const product_add_post = (req, res) => {
-//     console.log(req.body)
-//     const product = new Product({
-//         //my req.body but more defined
-//         p_titel: 'white-shooooes',
-//         p_imageUrl: '/img/shop/white-shoes.png',
-//         p_mark: 'Apple',
-//         p_shiping: false,
-//         p_pickup: true,
-//         p_price: 0,
-//         p_amount: 1,
-//         p_category: ['Shoes', 'Fashion'],
-//         p_description: 'Größe 38, Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam ac id elementum nec dolor. Ridiculus diam ac tellus id egestas mauris sed etiam. Amet, at eu tristique quis. Massa fermentum eget pharetra magna vitae vitae ultricies consequat. Amet, integer diam sit netus adipiscing eu vestibulum vitae ut. Sem vel fringilla malesuada amet. Tellus massa amet porta vel in. Viverra non proin tempus viverra rhoncus volutpat ac. Accumsan facilisi orci et amet vitae mauris scelerisque sed.',
-//         p_owner: 'ixavierayix@gmail.com',
-//         p_forFree: true,
-//         p_priceFlex: true,
-//         p_toGiveAway: false,
-//         p_call: 090098098,
-//         p_street: 'Liebigstraße 78',
-//         p_city: 'Frankfurt',
-//         p_PLZ: '9877',
-//         p_isSold: false,
-//         p_ownerID: '611e44bb2e64921e848d7f19'
-//     })
+// const product_add_post = (req, res) => 
 //     product.save()
 //         .then((result) => {
 //             console.log(result)

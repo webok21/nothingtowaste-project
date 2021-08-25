@@ -104,33 +104,52 @@ const ProductDetail = () => {
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
                                 <h3>{productDetail.p_titel}</h3>
+                                <p>Anzeige-Typ: {productDetail.p_toGiveAway ? 'Suche' : 'Angebot'}</p>
                                 <p>Marke: {productDetail.p_mark}</p>
-                                <p>Preis pro Stück: {productDetail.p_price} $</p>
+                                <p>Preis pro Stück: {productDetail.p_price} Euros, {productDetail.p_priceFlex ? 'VB' : 'Festpreis'}</p>
                                 <p>Anzahl: {productDetail.p_amount}</p>
+                                <p>PLZ/Ort: {productDetail.p_PLZ} / {productDetail.p_city}</p>
                                 <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
                                 <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
                                 {productDetail.p_isSold ? '' : <p className='like'>
-                                    <span onClick={() => {
-                                        axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
-                                            .then((result) => {
-                                                console.log(result.data)
-                                                // setData(result.data)
-                                            })
-                                            .catch((err) => { console.log(err) })
+                                    <span className='heart'
+                                        onClick={() => {
+                                            axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
+                                                .then((result) => {
+                                                    console.log(result.data)
+                                                    // setData(result.data)
+                                                })
+                                                .catch((err) => { console.log(err) })
 
-                                    }}><img src={like} alt='img'></img></span>Auf die Wunschliste</p>}
+                                        }}
+                                    >
+                                    </span>Auf die Wunschliste</p>}
                                 <p>Kategorie: {
                                     productDetail.p_category && (productDetail.p_category.map((el, i) =>
-                                        <span key={i}>{el}, </span>))
+                                        <span key={i}>{el} </span>))
                                 }</p>
                                 <p>{productDetail.p_description}</p>
+                                <p>Bei Interesse kontaktieren Sie mich gern telefonisch!</p>
+                                <p>Verkäufername: {productDetail.p_owner}</p>
+                                <p>Telefon: {productDetail.p_call}</p>
+
+
                             </div>
                         </figure>
-                        {productDetail.p_isSold ? <p>This item is no longer available</p> : <div>
-                            <Link to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
-                            {/* <Link to={`/productDetail/${productDetail._id}`}> Verkauft </Link> */}
-                            <button onClick={handleSoldStatus}>Verkauft</button>
-                        </div>}
+                        {productDetail.p_isSold ?
+                            <p>Dieses Produkt ist nicht mehr verfügbar.
+                                Sie können aber gern nach dem Namen des/der Verkäufers/in suchen
+                                (in der Marktplatz Seite) um weitere Angebote von ihm/ihr zu finden</p> :
+                            <div>
+                                {(`${productDetail.p_ownerID}` == `${logged_user.result._id}`) ?
+                                    <div>
+                                        <Link to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
+                                        <button onClick={handleSoldStatus}>Als Verkauft markieren</button>
+                                        <i>    (Die Aktion kann zuerzeit nicht rückgängig gemacht werden!)</i>
+                                    </div> : <div></div>
+                                }
+                            </div>
+                        }
 
                     </article>
                 }

@@ -242,6 +242,7 @@ const Marketplace = () => {
                             <div>
                                 <p className="price">{productObj.p_price} EUR</p>
                                 <p className="title">{productObj.p_titel}</p>
+                                <p>AnzeigeTyp: {productObj.p_toGiveAway ? 'Suche' : 'Angebot'}</p>
                                 <p>Marke: {productObj.p_mark}</p>
                                 <p>Anzahl: {productObj.p_amount}</p>
                                 <p>Lieferung möglich: {productObj.p_shiping ? 'Ja' : 'Nein'}</p>
