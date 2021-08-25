@@ -7,9 +7,8 @@ $purple-color: #7854f7;
 $yellow-color: #ffba49;
 $logout-color: #dc004e;
 
-$breakpoint-ipadpro-end: 1025px;
+
 $breakpoint-ipadpro: 1024px;
-$breakpoint-ipad-end: 769px;
 $breakpoint-ipad: 768px;
 
 $fontText: "Roboto",
@@ -28,7 +27,8 @@ nav {
   align-items: center;
   margin-bottom: 1%;
   border-bottom: 1px solid $purple-light_color;
-
+  box-shadow: -1px 11px 23px 1px #b6a6fb3d;
+  
   .icon {
     display: none;
   }

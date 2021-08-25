@@ -4,6 +4,10 @@ const Product = require('./product.js')
 
 const productTest = new Schema({ name: { type: String }, amount: { type: Number } });
 const userSchema = new Schema({
+    googleId: {
+        type: String,
+        required: true
+    },
     name: { type: String, required: true },
     email: { type: String, required: true },
     password: { type: String, required: true },
