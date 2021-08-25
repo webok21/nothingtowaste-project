@@ -7,7 +7,7 @@ const product_index_get = (req, res) => {
 
     console.log('a get index request ')
     // console.log(req)
-    Product.find({ p_isSold: false })
+    Product.find({ p_isSold: false }).sort({ p_titel: 'asc' })
         .then((result) => {
             // console.log(result)
             res.json(result)
@@ -20,6 +20,19 @@ const product_index_get = (req, res) => {
 }
 const product_sold_get = (req, res) => {
     console.log('a get sold request ')
+    Product.find({ p_isSold: true }).sort({ p_titel: 'asc' })
+        .then((result) => {
+            // console.log(result)
+            res.json(result)
+            res.end()
+        })
+        .catch((err) => {
+            console.log(err)
+            // res.json({ redirect: "/404" })
+        })
+}
+const product_wishlist_get = (req, res) => {
+    console.log('a get sold request ')
     Product.find({ p_isSold: true })
         .then((result) => {
             // console.log(result)
@@ -31,7 +44,6 @@ const product_sold_get = (req, res) => {
             // res.json({ redirect: "/404" })
         })
 }
-
 //DETAILS
 const product_detail_get = (req, res) => {
 
@@ -164,5 +176,6 @@ module.exports = {
     product_sold_get,
     product_edit_get,
     product_edit_put,
-    product_add_lover_put
+    product_add_lover_put,
+    product_wishlist_get
 }
