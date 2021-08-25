@@ -1,0 +1,26 @@
+$white-color: #ffffff;
+$blue-dark_color: #272d4e;
+$blue-color: #0e65f3;
+$blue-light_color: #1a88ee;
+$purple-light_color: #b6a6fb;
+$purple-color: #7854f7;
+$yellow-color: #ffba49;
+$logout-color: #dc004e;
+
+$fontText: "Roboto", sans-serif;
+
+#error-main { 
+    text-align: center;
+    h2 {
+        font-size: 2.2rem;
+        padding-top: 2%;
+    }
+    p {
+        width: 60%;
+        padding-top: 2%;
+        margin: 0 auto;
+    }
+    img {
+        width: 40%;
+    }
+}

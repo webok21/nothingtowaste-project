@@ -147,71 +147,83 @@ const Marketplace = () => {
     console.log(counts[['Sonstiges']])
     console.log(counts['Amazon']);
 
+
+
+
     return (
         <main id="marketplace-main">
             <MarketplaceHeader />
-            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search"/>
+            <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search" />
             <section id="marketplace">
                 <aside>
                     <div>
-                        <h3>Kategorie</h3>
+                        <h3>Kategorien</h3>
                         <ul>
                             <li>
-                                <input type="checkbox" id="Klamotten" name="Klamotten" onClick={(e) => {
-                                    if (e.target.checked) {
-                                        if (!filterCategories.toLocaleLowerCase().search('klamotten') > -1) {
-                                            setfilterCategories(filterCategories + `-Klamotten`)
+                                <label htmlFor="Klamotten">
+                                    <input type="checkbox" id="Klamotten" name="Klamotten" onClick={(e) => {
+                                        if (e.target.checked) {
+                                            if (!filterCategories.toLocaleLowerCase().search('klamotten') > -1) {
+                                                setfilterCategories(filterCategories + `-Klamotten`)
+                                            }
+                                        } else if (!e.target.checked) {
+                                            if (filterCategories.toLocaleLowerCase().search('klamotten') > -1) {
+                                                setfilterCategories(filterCategories.replace(`-Klamotten`, ''))
+                                            }
                                         }
-                                    } else if (!e.target.checked) {
-                                        if (filterCategories.toLocaleLowerCase().search('klamotten') > -1) {
-                                            setfilterCategories(filterCategories.replace(`-Klamotten`, ''))
-                                        }
-                                    }
-                                }}></input>
-                                <label htmlFor="Klamotten">Klamotten </label><span>{counts[['Klamotten']] ? counts[['Klamotten']] : '0'}</span>
+                                    }}></input>
+                                    Klamotten</label>
+                                <span>{counts[['Klamotten']] ? counts[['Klamotten']] : '0'}</span>
                             </li>
 
                             <li>
-                                <input type="checkbox" id="Elektronik" name="Elektronik" onClick={(e) => {
-                                    if (e.target.checked) {
-                                        if (!filterCategories.toLocaleLowerCase().search('elektronik') > -1) {
-                                            setfilterCategories(filterCategories + `-Elektronik`)
+                                <label htmlFor="Elektronik">
+                                    <input type="checkbox" id="Elektronik" name="Elektronik" onClick={(e) => {
+                                        if (e.target.checked) {
+                                            if (!filterCategories.toLocaleLowerCase().search('elektronik') > -1) {
+                                                setfilterCategories(filterCategories + `-Elektronik`)
+                                            }
+                                        } else if (!e.target.checked) {
+                                            if (filterCategories.toLocaleLowerCase().search('elektronik') > -1) {
+                                                setfilterCategories(filterCategories.replace(`-Elektronik`, ''))
+                                            }
                                         }
-                                    } else if (!e.target.checked) {
-                                        if (filterCategories.toLocaleLowerCase().search('elektronik') > -1) {
-                                            setfilterCategories(filterCategories.replace(`-Elektronik`, ''))
-                                        }
-                                    }
-                                }}></input>
-                                <label htmlFor="Elektronik">Elektronik </label><span>{counts[['Elektronik']] ? counts[['Elektronik']] : '0'}</span>
+                                    }}></input>
+                                    Elektronik </label>
+
+                                <span>{counts[['Elektronik']] ? counts[['Elektronik']] : '0'}</span>
                             </li>
                             <li>
-                                <input type="checkbox" id="Möbel" name="Möbel" onClick={(e) => {
-                                    if (e.target.checked) {
-                                        if (!filterCategories.toLocaleLowerCase().search('moebel') > -1) {
-                                            setfilterCategories(filterCategories + `-Moebel`)
+                                <label htmlFor="Möbel">
+                                    <input type="checkbox" id="Möbel" name="Möbel" onClick={(e) => {
+                                        if (e.target.checked) {
+                                            if (!filterCategories.toLocaleLowerCase().search('moebel') > -1) {
+                                                setfilterCategories(filterCategories + `-Moebel`)
+                                            }
+                                        } else if (!e.target.checked) {
+                                            if (filterCategories.toLocaleLowerCase().search('moebel') > -1) {
+                                                setfilterCategories(filterCategories.replace(`-Moebel`, ''))
+                                            }
                                         }
-                                    } else if (!e.target.checked) {
-                                        if (filterCategories.toLocaleLowerCase().search('moebel') > -1) {
-                                            setfilterCategories(filterCategories.replace(`-Moebel`, ''))
-                                        }
-                                    }
-                                }}></input>
-                                <label htmlFor="Möbel">Möbel </label><span>{counts[['Möbel']] ? counts[['Möbel']] : '0'}</span>
+                                    }}></input>
+                                    Möbel </label>
+                                <span>{counts[['Möbel']] ? counts[['Möbel']] : '0'}</span>
                             </li>
                             <li>
-                                <input type="checkbox" id="Sonstiges" name="Sonstiges" onClick={(e) => {
-                                    if (e.target.checked) {
-                                        if (!filterCategories.toLocaleLowerCase().search('sonstiges') > -1) {
-                                            setfilterCategories(filterCategories + `-Sonstiges`)
+                                <label htmlFor="Sonstiges">
+                                    <input type="checkbox" id="Sonstiges" name="Sonstiges" onClick={(e) => {
+                                        if (e.target.checked) {
+                                            if (!filterCategories.toLocaleLowerCase().search('sonstiges') > -1) {
+                                                setfilterCategories(filterCategories + `-Sonstiges`)
+                                            }
+                                        } else if (!e.target.checked) {
+                                            if (filterCategories.toLocaleLowerCase().search('sonstiges') > -1) {
+                                                setfilterCategories(filterCategories.replace(`-Sonstiges`, ''))
+                                            }
                                         }
-                                    } else if (!e.target.checked) {
-                                        if (filterCategories.toLocaleLowerCase().search('sonstiges') > -1) {
-                                            setfilterCategories(filterCategories.replace(`-Sonstiges`, ''))
-                                        }
-                                    }
-                                }}></input>
-                                <label htmlFor="Sonstiges">Sonstiges </label><span>{counts[['Sonstiges']] ? counts[['Sonstiges']] : '0'}</span>
+                                    }}></input>
+                                    Sonstiges </label>
+                                <span>{counts[['Sonstiges']] ? counts[['Sonstiges']] : '0'}</span>
                             </li>
                         </ul>
                     </div>
@@ -219,30 +231,43 @@ const Marketplace = () => {
                         <h3>Marken</h3>
                         <ul>
                             {foundMarks && [...new Set(foundMarks)].map((mark, i) =>
-                                <li key={i}> <input type="checkbox" id={mark} name={mark} onClick={(e) => {
-                                    if (e.target.checked) {
-                                        if (!filterMark.toLocaleLowerCase().search(`${mark}`) > -1) {
-                                            setfilterMark(filterMark + `-${mark}`)
-                                        }
-                                    } else if (!e.target.checked) {
-                                        if (filterMark.toLocaleLowerCase().search(`${mark}`) > -1) {
-                                            setfilterMark(filterMark.replace(`-${mark}`, ''))
-                                        }
-                                    }
-                                }}></input>
-                                    <label htmlFor={mark}>{mark}</label> <span>{counts[mark] ? counts[mark] : '0'}</span>
+                                <li key={i}>
+                                    <label htmlFor={mark}>
+                                        <input type="checkbox" id={mark} name={mark} onClick={(e) => {
+                                            if (e.target.checked) {
+                                                if (!filterMark.toLocaleLowerCase().search(`${mark}`) > -1) {
+                                                    setfilterMark(filterMark + `-${mark}`)
+                                                }
+                                            } else if (!e.target.checked) {
+                                                if (filterMark.toLocaleLowerCase().search(`${mark}`) > -1) {
+                                                    setfilterMark(filterMark.replace(`-${mark}`, ''))
+                                                }
+                                            }
+                                        }}></input>
+                                        {mark}</label>
+                                    <span>{counts[mark] ? counts[mark] : '0'}</span>
                                 </li>
                             )}
                         </ul>
                     </div>
-                    <div>
+                    <div className="price-filter">
                         <h3>Preis</h3>
+
                         <input type="range" name="priceMin" min='0' max="500" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
-                        <p>Min: {filterPriceMin}</p>
+                        <div className="min-max-container">
+                            <span>Min</span>
+                            <div className="min-max">{filterPriceMin}</div>
+                        </div>
                         <input type="range" name="priceMax" min='500' max="5000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
-                        <p>Max: {filterPriceMax}</p>
-                        <button onClick={handleFilterInputs}>Anwenden</button>
-                        <button onClick={handleReset}>Reset</button>
+                        <div className="min-max-container">
+                            <span>Max</span>
+                            <div className="min-max">{filterPriceMax}</div>
+                        </div>
+
+                        <div className="filter-btn">
+                            <button onClick={handleFilterInputs}>Anwenden</button>
+                            <button onClick={handleReset}>Reset</button>
+                        </div>
                     </div>
 
                 </aside>
@@ -282,7 +307,7 @@ const Marketplace = () => {
                         </article>))}
                 </div>
             </section>
-        </main>
+        </main >
     );
 }
 

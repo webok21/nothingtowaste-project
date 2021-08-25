@@ -66,6 +66,9 @@ app.get('/', (req, res) => {
 app.use('/api', apiProductRoutes);
 
 
+app.use('*', (req, res) => {
+    res.status(404).send('Sorry cant find that!');
+});
 // app.get('*', (req, res) => {
 //     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
 // })
