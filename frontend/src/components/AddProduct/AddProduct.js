@@ -87,7 +87,8 @@ const AddProduct = () => {
         );
 
     }
-    const saveInputs = () => {
+    const saveInputs = (e) => {
+        e.preventDefault();
         console.log('these are the inputs:' + inputs)
         axios.post('/api/addProduct', inputs)
             .then((result) => {
@@ -146,7 +147,7 @@ const AddProduct = () => {
 
                     <div>
                         <label>Anzahl:</label>
-                        <input type="number" name="quantity" required onChange={handleInputs} min='0' />
+                        <input type="number" name="quantity" required onChange={handleInputs} min='1' />
                     </div>
                     <div className="price">
                         <label>Preis:</label>
@@ -172,7 +173,7 @@ const AddProduct = () => {
                         <label htmlFor="category-select">Kategorie</label>
                         <select name="category" id="category-select" onChange={handleInputs} >
                             <option value="Klamotten" >Klamotten</option>
-                            <option value="Möbel">Möbel</option>
+                            <option value="Moebel">Möbel</option>
                             <option value="Elektronik" >Elektronik</option>
                             <option value="Sonstiges" >Sonstiges</option>
                         </select>

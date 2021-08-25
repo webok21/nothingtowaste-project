@@ -56,8 +56,8 @@ const EditProduct = () => {
         setIsFilePicked(true);
     }
 
-    const saveInputs = () => {
-
+    const saveInputs = (e) => {
+        e.preventDefault();
 
         axios.put(`api/editProduct/${id}`, productDetails)
             .then((result) => {
@@ -111,7 +111,7 @@ const EditProduct = () => {
 
                     <div>
                         <label>Anzahl:</label>
-                        <input type="number" name="quantity" required onChange={handleInputs} min='0' value={productDetails.p_amount} />
+                        <input type="number" name="quantity" required onChange={handleInputs} min='1' value={productDetails.p_amount} />
                     </div>
                     <div>
                         <label>Preis:</label>
@@ -136,7 +136,7 @@ const EditProduct = () => {
                         <label>Kategorie</label>
                         <select name="category" id="" onChange={handleInputs} value={productDetails.p_category}>
                             <option value="Klamotten" >Klamotten</option>
-                            <option value="Möbel">Möbel</option>
+                            <option value="Moebel">Möbel</option>
                             <option value="Electronik" >Elektronik</option>
                             <option value="Sonstiges" >Sonstiges</option>
                         </select>
