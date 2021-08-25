@@ -11,8 +11,11 @@ $yellow-color: #ffba49;
 $fontText: "Roboto",
 sans-serif;
 
+$breakpoint-laptop: 1280px;
 $breakpoint-ipadpro: 1024px;
 $breakpoint-ipad: 768px;
+$breakpoint-surface: 540px;
+$breakpoint-iphone: 375px;
 
 #auth {
     background: url('../../img/auth/authBG.png') center / 90% no-repeat, linear-gradient(180deg, rgba(236, 240, 253, 0) 0%, rgba(236, 240, 253, 0.53) 14.32%, #ECF0FD 45.83%, rgba(236, 240, 253, 0.43) 84.33%, rgba(236, 240, 253, 0) 100%);
@@ -105,6 +108,57 @@ $breakpoint-ipad: 768px;
 
         .container-auth {
             padding-top: 4rem;
+        }
+    }
+}
+
+// BREAK-POINT: 540x 
+@media (max-width: $breakpoint-surface) {
+    #auth {
+        width: 100%;
+        height: 150vmin;
+        padding: 10%;
+
+        .container-auth {
+            padding-top: 4rem;
+
+            .paper {
+                width: 80%;
+                padding: 20px;
+            }
+        }
+    }
+}
+
+// BREAK-POINT: 375px
+@media (max-width: $breakpoint-iphone) {
+    #auth {
+        width: 100%;
+        height: 200vmin;
+        padding: 10%;
+
+        .container-auth {
+            width: 100%;
+            height: 100%;
+            padding-top: 1rem;
+            .context h2 {
+                width: 70%;
+                font-size: 1.5rem;
+            }
+
+            .paper {
+                width: 83%;
+                height: 76%;
+                padding: 20px;
+                h3, h4, h5 {
+                    margin: 4% 0;
+                }
+                .form {
+                    .MuiButton-label {
+                        font-size: .8rem;
+                    }
+                }
+            }
         }
     }
 }
