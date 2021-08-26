@@ -82,14 +82,17 @@ const ProductDetail = () => {
                             <img className={productDetail.p_isSold ? 'soldProduct' : ''} src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
-                                <h3>{productDetail.p_titel}</h3>
-                                <p>Anzeige-Typ: {productDetail.p_toGiveAway ? 'Suche' : 'Angebot'}</p>
-                                <p>Marke: {productDetail.p_mark}</p>
-                                <p>Preis pro Stück: {productDetail.p_price} Euros, {(ProductDetail.p_forFree || productDetail.p_price * 1 == 0) ? 'Zu Verschenken' : productDetail.p_priceFlex ? 'VB' : 'Festpreis'}</p>
-                                <p>Anzahl: {productDetail.p_amount}</p>
-                                <p>PLZ/Ort: {productDetail.p_PLZ} / {productDetail.p_city}</p>
-                                <p>Lieferung möglich: {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
-                                <p>Abholung möglich: {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
+                                
+                                
+
+
+                                <p id="bigtitle">{productDetail.p_titel}</p>
+
+
+                                
+                                <p id="bigprice">{productDetail.p_price} Euro, {(ProductDetail.p_forFree || productDetail.p_price * 1 == 0) ? 'Zu Verschenken' : productDetail.p_priceFlex ? 'VB' : 'Festpreis'}</p>
+
+                                
                                 {productDetail.p_isSold ? '' : (productDetail.p_lovers &&
                                     productDetail.p_lovers.includes(`${logged_user.result._id}`)) ?
                                     <p className='inWishlist'><span className={productDetail.p_lovers &&
@@ -113,11 +116,20 @@ const ProductDetail = () => {
 
                                         >
                                         </span>Auf die Wunschliste</p>}
-                                <p>Kategorie: {
+
+                                <p><b>Anzeige-Typ:</b> {productDetail.p_toGiveAway ? 'Suche' : 'Angebot'}</p>
+                                <p><b>Marke:</b> {productDetail.p_mark}</p>
+                               
+                                <p><b>Anzahl:</b> {productDetail.p_amount}</p>
+                                <p><b>Ort:</b> {productDetail.p_PLZ}  {productDetail.p_city}</p>
+                                <p><b>Lieferung möglich:</b> {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
+                                <p><b>Abholung möglich:</b> {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
+                                
+                                <p><b>Kategorie:</b> {
                                     productDetail.p_category && (productDetail.p_category.map((el, i) =>
                                         <span key={i}>{el} </span>))
                                 }</p>
-                                <p><b>Produktbeschreibung</b></p>
+                                <p><b>Produktbeschreibung:</b></p>
                                 <p>{productDetail.p_description}</p>
                                 <p>Bei Interesse kontaktieren Sie mich gern telefonisch!</p>
                                 <p>Verkäufername: {productDetail.p_owner}</p>
@@ -132,11 +144,11 @@ const ProductDetail = () => {
                                 (in der Marktplatz Seite) um weitere Angebote von ihm/ihr zu finden</p> :
                             <div>
                                 {(`${productDetail.p_ownerID}` == `${logged_user.result._id}`) ?
-                                    <div>
-                                        <Link to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
+                                    <div id="edit">
+                                        <Link id="editbutton" to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
                                         <button onClick={handleDelete}>Löschen</button>
-                                        <button onClick={handleSoldStatus}>Als Verkauft markieren</button>
-                                        <i>    (Die Aktion kann zuerzeit nicht rückgängig gemacht werden!)</i>
+                                        <button onClick={handleSoldStatus}>Verkauft</button>
+                                        <i>(ACHTUNG: Die Aktion kann zurzeit nicht rückgängig gemacht werden!)</i>
                                     </div> : <div></div>
                                 }
                             </div>

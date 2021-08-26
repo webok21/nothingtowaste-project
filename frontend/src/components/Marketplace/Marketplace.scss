@@ -149,6 +149,7 @@ $breakpoint-iphone: 375px;
       width: 400px;
       height: 400px;
       object-fit: cover;
+      object-position: top center;
       min-width: 40%;
     }
     div {
@@ -176,16 +177,15 @@ $breakpoint-iphone: 375px;
       .like {
         padding: 1em;
         border-radius: 0.5em;
-        background-color: $grayish-color;
         text-align: center;
-        .heart::after {
-          background-image: url("../../img/shop/like.svg");
-          background-size: 16px 16px;
-          display: inline-block;
-          width: 16px;
-          height: 16px;
-          content: "";
-        }
+        // .heart::after {
+        //   background-image: url("../../img/shop/like.svg");
+        //   background-size: 16px 16px;
+        //   display: inline-block;
+        //   width: 16px;
+        //   height: 16px;
+        //   content: "";
+        // }
       }
       p {
         margin-bottom: 1em;
@@ -225,7 +225,11 @@ input[type="range"]::-webkit-slider-thumb {
 }
 
 .heart.liked {
-  background-color: red;
+  background-image: url("../../img/shop/like-red.svg");
+  background-size: 30px 30px;
+  display: inline-block;
+  width: 30px;
+  height: 30px;
 }
 
 
