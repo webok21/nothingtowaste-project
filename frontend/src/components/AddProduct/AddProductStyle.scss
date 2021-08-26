@@ -48,6 +48,8 @@ $breakpoint-iphone: 375px;
                     width: 75%;
                 }
                 input[type=radio] {
+                    width: 22px;
+                    // height: 5%;
                     margin-right: 6px;
                 }
             } 
@@ -58,7 +60,7 @@ $breakpoint-iphone: 375px;
         #search {
             margin-left: 8%;
         }
-        #delivery-no, #pickup-no {
+        #delivery-no, #pickup {
             margin-left: 13%;
         }
 
