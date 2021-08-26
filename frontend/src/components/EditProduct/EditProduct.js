@@ -165,7 +165,7 @@ const EditProduct = () => {
                         <label>Abholung:</label>
                         <input type="radio" name="pickup" value='yes' onChange={handleInputs} />
                         <label htmlFor="offer">Ja</label>
-                        <input type="radio" id="pickup-no" name="pickup" value='no' onChange={handleInputs} />
+                        <input type="radio" id="pickup" name="pickup" value='no' onChange={handleInputs} />
                         <label htmlFor="offer">Nein</label>
                     </div>
                     <div>

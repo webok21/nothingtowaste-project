@@ -1,4 +1,5 @@
 require('dotenv').config();
+const path = require('path')
 const express = require('express');
 const mongoose = require('mongoose')
 const cors = require('cors')
@@ -15,14 +16,14 @@ const app = express();
 app.use(fileUpload())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
-// app.use(express.static(path.join(__dirname, "frontend", "build")))
+app.use(express.static(path.join(__dirname, "frontend", "build")))
 app.use(cors());
 const PORT = process.env.PORT
 
 app.use('/user', user);
-app.get('/', (req, res) => {
-    res.send("start")
-})
+// app.get('/', (req, res) => {
+//     res.send("start")
+// })
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(result => {
@@ -32,9 +33,9 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
     .catch(err => console.log(err))
 
 
-app.get('/', (req, res) => {
-    res.send("responding")
-})
+// app.get('/', (req, res) => {
+//     res.send("responding")
+// })
 
 
 // const storage = multer.diskStorage({
@@ -66,9 +67,9 @@ app.get('/', (req, res) => {
 app.use('/api', apiProductRoutes);
 
 
-app.use('*', (req, res) => {
-    res.status(404).send('Sorry cant find that!');
-});
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
-// })
+// app.use('*', (req, res) => {
+//     res.status(404).send('Sorry cant find that!');
+// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'frontend', 'build', 'index.html'))
+})

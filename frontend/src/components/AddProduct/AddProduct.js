@@ -131,9 +131,9 @@ const AddProduct = () => {
                     </div>
                     <div>
                         <label>Abholung:</label>
-                        <input type="radio" name="pickup-yes" value='yes' onChange={handleInputs} />
+                        <input type="radio" name="pickup" value='yes' onChange={handleInputs} />
                         <label htmlFor="pickup-yes">Ja</label>
-                        <input type="radio" id="pickup-no" name="pickup" value='no' onChange={handleInputs} />
+                        <input type="radio" id="pickup" name="pickup" value='no' onChange={handleInputs} />
                         <label htmlFor="pickup-no">Nein</label>
                     </div>
                     <div>
