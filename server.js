@@ -16,7 +16,7 @@ app.use(fileUpload())
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(express.static(path.join(__dirname, "frontend", "build")))
-app.use(cors());
+// app.use(cors());
 const PORT = process.env.PORT
 
 app.use('/user', user);
