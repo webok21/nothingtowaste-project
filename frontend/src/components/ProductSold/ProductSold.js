@@ -167,7 +167,7 @@ const ProductSold = () => {
                             </li>
                             <li>
                                 <label htmlFor="Möbel">
-                                    <input type="checkbox" id="Möbel" name="Möbel" onClick={(e) => {
+                                    <input type="checkbox" id="Möbel" name="Moebel" onClick={(e) => {
                                         if (e.target.checked) {
                                             if (!filterCategories.toLocaleLowerCase().search('moebel') > -1) {
                                                 setfilterCategories(filterCategories + `-Moebel`)
@@ -178,7 +178,7 @@ const ProductSold = () => {
                                             }
                                         }
                                     }}></input>
-                                    Möbel</label><span>{counts[['Möbel']] ? counts[['Möbel']] : '0'}</span>
+                                    Möbel</label><span>{counts[['Moebel']] ? counts[['Moebel']] : '0'}</span>
                             </li>
                             <li>
                                 <label htmlFor="Sonstiges">
