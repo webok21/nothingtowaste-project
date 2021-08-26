@@ -133,9 +133,12 @@ $breakpoint-iphone: 375px;
         width: 110px;
       }
       .filter-btn button:last-of-type {
-        color: $blue-dark_color;
+        color: $purple-color;
         background: $white-color;
-        border: none;
+        border: 1px solid $purple-color;
+        border-radius: 10px;
+        height: 50px;
+        width: 110px;
         margin-left: 10%;
       }
     }
@@ -236,6 +239,22 @@ input[type="range"]::-webkit-slider-thumb {
 
 
 //Mediaqueries
+
+// Macbook
+@media (min-width: $breakpoint-ipadpro-end) and (max-width: $breakpoint-macbook) {
+  #marketplace {
+    aside {
+      div {
+        .filter-btn {
+          button:last-of-type {
+          margin-left: 0%;
+          margin-top: 5%;
+          }
+        }
+      }
+    }
+  }
+}
 // Ipad Pro
 @media (min-width: $breakpoint-ipad-end) and (max-width: $breakpoint-ipadpro) {
   #marketplace,
@@ -244,7 +263,10 @@ input[type="range"]::-webkit-slider-thumb {
       flex-direction: column;
     }
     .filter-btn button:first-of-type {
-      margin: 30px 0;
+      margin: 30px 0 30px 10%;
+    }
+    .filter-btn button:last-of-type {
+      margin-left: 0%;
     }
   }
   .marketplace-main .marketplace-headers h1 {
@@ -272,6 +294,9 @@ input[type="range"]::-webkit-slider-thumb {
       img {
         max-width: 100%;
       }
+    }
+    .filter-btn button:first-of-type {
+      margin: 30px 0 30px 10%;
     }
   }
   .marketplace-main .marketplace-headers h1 {

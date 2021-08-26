@@ -145,21 +145,21 @@ const EditProduct = () => {
     return (
         <main>
             <section id="add-product">
-                <h3>Edit this Product </h3>
+                <h3>Artikel bearbeiten</h3>
                 <form onSubmit={saveInputs} >
                     <div>
-                        <label htmlFor="advert">Anzeigentyp:</label>
-                        <input type="radio" name='advertType' value='offer' onChange={handleInputs} />
+                        <label>Anzeigentyp:</label>
+                        <input type="radio" id="offer" name='advertType' value='offer' onChange={handleInputs} />
                         <label htmlFor="offer">Ich biete</label>
-                        <input type="radio" name='advertType' value='search' onChange={handleInputs} />
+                        <input type="radio" id="search" name='advertType' value='search' onChange={handleInputs} />
                         <label htmlFor="search">Ich suche</label>
                     </div>
                     <div>
                         <label>Lieferung:</label>
-                        <input type="radio" name="delivery" value='yes' onChange={handleInputs} />
-                        <label htmlFor="offer">Ja</label>
+                        <input type="radio" id="delivery-yes" name="delivery" value='yes' onChange={handleInputs} />
+                        <label htmlFor="delivery-no">Ja</label>
                         <input type="radio" id="delivery-no" name="delivery" value='no' onChange={handleInputs} />
-                        <label htmlFor="offer">Nein</label>
+                        <label htmlFor="delivery-yes">Nein</label>
                     </div>
                     <div>
                         <label>Abholung:</label>
@@ -185,7 +185,7 @@ const EditProduct = () => {
                         <label>Anzahl:</label>
                         <input type="number" name="p_amount" required onChange={handleInputs} min='1' value={productDetails.p_amount} />
                     </div>
-                    <div>
+                    <div className="price">
                         <label>Preis:</label>
                         <input step=".01" type="number" name="p_price" required onChange={handleInputs} min='1' value={productDetails.p_price} /> EUR
                         <input type="radio" checked name="condition" value='fixed' onChange={handleInputs} />
@@ -198,23 +198,24 @@ const EditProduct = () => {
 
                     <div className="upload">
                         <label>Bilder:</label>
-                        <label htmlFor='imageChosen'>
-                            <img src={camera} alt="alt" />
-                        </label>
-                        <input
-                            style={{ display: 'none' }}
-                            id='imageChosen'
-                            type="file"
-                            name="uploaded_file"
-                            onChange={(e) => setFilesChosen(e.target.files[0])} />
-                        <p className='errorMessages'>{err}</p>
-                        {/* <button onClick={handleUpload}>Hochladen</button> */}
-                        <figure className='fileUploaded'>
-                            <img src={imgUrl} alt='imageChosen'></img>
-                            <figcaption>{filesChosen && filesChosen.name}</figcaption>
-                        </figure>
+                        <div className="upload-btn">
+                            <label htmlFor='imageChosen'>
+                                <img src={camera} alt="alt" />
+                            </label>
+                            <input
+                                style={{ display: 'none' }}
+                                id='imageChosen'
+                                type="file"
+                                name="uploaded_file"
+                                onChange={(e) => setFilesChosen(e.target.files[0])} />
+                            <p className='errorMessages'>{err}</p>
+                            {/* <button onClick={handleUpload}>Hochladen</button> */}
+                            <figure className='fileUploaded'>
+                                <img src={imgUrl} alt='imageChosen'></img>
+                                <figcaption>{filesChosen && filesChosen.name}</figcaption>
+                            </figure>
+                        </div>
                     </div >
-
                     <div>
                         <label>Kategorie</label>
                         <select name="p_category" id="" onChange={handleInputs} value={productDetails.p_category}>
@@ -225,13 +226,14 @@ const EditProduct = () => {
                         </select>
                     </div >
 
-                    <div>
+                    <div className="form-images">
                         <img className="dots-circles" src={dotsCircles} alt="cirlces" />
                         <img className="four-circles" src={fourCircles} alt="dots-circles" />
                         <img className="five-circles" src={fiveCircles} alt="circles" />
-
+                    </div>
+                    <div className="address">
                         <label>PLZ*</label>
-                        <input type="text" name="p_PLZ" placeholder="PLZ" onChange={handleInputs} value={productDetails.p_PLZ} /><br></br>
+                        <input type="text" id="postcode" name="p_PLZ" placeholder="PLZ" onChange={handleInputs} value={productDetails.p_PLZ} /><br></br>
                         <input type="text" id="city-input" name="p_city" placeholder="Ort" required onChange={handleInputs} value={productDetails.p_city} />
                     </div>
                     <div>

@@ -113,6 +113,7 @@ const AddProduct = () => {
     return (
         <main>
             <section id="add-product">
+                <h3>Artikel einstellen</h3>
                 <form onSubmit={saveInputs} encType="multipart/form-data">
                     <div>
                         <label>Anzeigentyp:</label>
@@ -123,9 +124,9 @@ const AddProduct = () => {
                     </div>
                     <div>
                         <label>Lieferung:</label>
-                        <input type="radio" id="delivery-no" name="delivery" value='yes' onChange={handleInputs} />
+                        <input type="radio" id="delivery-yes" name="delivery" value='yes' onChange={handleInputs} />
                         <label htmlFor="delivery-no">Ja</label>
-                        <input type="radio" id="delivery-yes" name="delivery" value='no' onChange={handleInputs} />
+                        <input type="radio" id="delivery-no" name="delivery" value='no' onChange={handleInputs} />
                         <label htmlFor="delivery-yes">Nein</label>
                     </div>
                     <div>
