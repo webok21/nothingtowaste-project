@@ -239,6 +239,22 @@ input[type="range"]::-webkit-slider-thumb {
 
 
 //Mediaqueries
+
+// Macbook
+@media (min-width: $breakpoint-ipadpro-end) and (max-width: $breakpoint-macbook) {
+  #marketplace {
+    aside {
+      div {
+        .filter-btn {
+          button:last-of-type {
+          margin-left: 0%;
+          margin-top: 5%;
+          }
+        }
+      }
+    }
+  }
+}
 // Ipad Pro
 @media (min-width: $breakpoint-ipad-end) and (max-width: $breakpoint-ipadpro) {
   #marketplace,

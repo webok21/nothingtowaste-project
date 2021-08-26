@@ -25,6 +25,9 @@ $breakpoint-iphone: 375px;
 
 #add-product {
     margin: 8vh 20% 12vh 14%;
+    h3 {
+        margin-bottom: 5%;
+    }
     form {
         div {
             width: 100%;
@@ -55,7 +58,7 @@ $breakpoint-iphone: 375px;
         #search {
             margin-left: 8%;
         }
-        #delivery-yes, #pickup-no {
+        #delivery-no, #pickup-no {
             margin-left: 13%;
         }
 
