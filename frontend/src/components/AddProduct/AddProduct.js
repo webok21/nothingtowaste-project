@@ -172,7 +172,6 @@ const AddProduct = () => {
                             <input
                                 style={{ display: 'none' }}
                                 id='imageChosen'
-                                multiple
                                 type="file"
                                 name="uploaded_file"
                                 onChange={(e) => setFilesChosen(e.target.files[0])} />
