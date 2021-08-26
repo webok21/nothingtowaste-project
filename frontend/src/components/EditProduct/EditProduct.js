@@ -14,7 +14,6 @@ const EditProduct = () => {
     let { id } = useParams();
     const [productDetails, setProductDetails] = useState({})
     let logged_user = useContext(UserContext)
-    const [inputs, setInputs] = useState({})
     const [imgUrl, setImgUrl] = useState(null)
     const [filesChosen, setFilesChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
@@ -111,11 +110,11 @@ const EditProduct = () => {
                 // Upload completed successfully, now we can get the download URL
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     // console.log('File available at', downloadURL);
-                    setInputs(prev => {
-                        setImgUrl(downloadURL)
+                    setImgUrl(downloadURL)
+                    setProductDetails(prev => {
                         return {
                             ...prev,
-                            p_imageUrl: imgUrl
+                            p_imageUrl: downloadURL
                         }
                     })
                 });
@@ -205,7 +204,6 @@ const EditProduct = () => {
                         <input
                             style={{ display: 'none' }}
                             id='imageChosen'
-                            multiple
                             type="file"
                             name="uploaded_file"
                             onChange={(e) => setFilesChosen(e.target.files[0])} />
