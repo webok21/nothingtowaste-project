@@ -17,11 +17,11 @@ const ProductDetail = () => {
     let count = 0
     useEffect(() => {
         const abortControl = new AbortController();
-        console.log(productDetail)
+        // console.log(productDetail)
         axios.get(`/api/productDetails/${id}`, { signal: abortControl.signal })
             .then((result) => {
                 if (result.data) {
-                    console.log(result.data)
+                    // console.log(result.data)
                     setDetail(result.data)
                     setProductSold(productDetail.p_isSold)
                 }
@@ -43,7 +43,7 @@ const ProductDetail = () => {
 
         axios.put(`/api/makeSold/${id}`)
             .then((result) => {
-                console.log(result.data)
+                // console.log(result.data)
                 setDetail(result.data)
                 setProductSold(productDetail.p_isSold)
                 window.location.href = result.data.redirect
@@ -65,7 +65,7 @@ const ProductDetail = () => {
         if (productDetail2) {
             axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
                 .then((result) => {
-                    console.log(result.data)
+                    // console.log(result.data)
                     window.location.href = result.data.redirect
                 })
                 .catch((err) => { console.log(err) })

@@ -47,8 +47,10 @@ $breakpoint-iphone: 375px;
           padding:2em 5em 2em 0;
         }
         img {
-          width: 100%;
+          // width: 100%;
           object-fit: contain;
+          width: 900px;
+          height: 630px;
         }
         // #img-product-full {
         //   width: 900px;

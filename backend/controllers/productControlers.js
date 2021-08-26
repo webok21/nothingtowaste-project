@@ -5,7 +5,7 @@ const User = require('./user.js')
 //ALL PRODUCTS7ARTICLES
 const product_index_get = (req, res) => {
 
-    console.log('a get index request ')
+    // console.log('a get index request ')
     // console.log(req)
     Product.find({ p_isSold: false }).sort({ p_titel: 'asc' })
         .then((result) => {
@@ -19,7 +19,7 @@ const product_index_get = (req, res) => {
         })
 }
 const product_sold_get = (req, res) => {
-    console.log('a get sold request ')
+    // console.log('a get sold request ')
     Product.find({ p_isSold: true }).sort({ p_titel: 'asc' })
         .then((result) => {
             // console.log(result)
@@ -32,7 +32,7 @@ const product_sold_get = (req, res) => {
         })
 }
 const product_wishlist_get = (req, res) => {
-    console.log('a get sold request ')
+    // console.log('a get sold request ')
     Product.find({ p_isSold: true })
         .then((result) => {
             // console.log(result)
@@ -61,7 +61,7 @@ const product_detail_get = (req, res) => {
 
 //NEW PRODUCT
 const product_add_post = (req, res) => {
-    console.log(req.body)
+    // console.log(req.body)
     const product = new Product({
         //my req.body but more defined
         p_titel: req.body.title,
@@ -87,7 +87,7 @@ const product_add_post = (req, res) => {
     })
     product.save()
         .then((result) => {
-            console.log(result)
+            // console.log(result)
             // res.json({ result })
             res.json({ redirect: "/marketplace" })
         })
@@ -98,7 +98,7 @@ const product_add_post = (req, res) => {
 }
 
 const product_set_isSold = (req, res) => {
-    console.log(req.params.id)
+    // console.log(req.params.id)
     const currentProduct = Product.where({ _id: req.params.id });
     // console.log(currentProduct)
     currentProduct.update({ $set: { p_isSold: true } }).exec()
@@ -107,7 +107,7 @@ const product_set_isSold = (req, res) => {
 }
 
 const product_edit_get = (req, res) => {
-    console.log(req.params.id)
+    // console.log(req.params.id)
     Product.findById(req.params.id)
         .then((result) => {
             console.log(result)
@@ -118,7 +118,7 @@ const product_edit_get = (req, res) => {
         })
 }
 const product_edit_put = (req, res) => {
-    console.log('new edit request sent')
+    // console.log('new edit request sent')
     Product.findByIdAndUpdate(req.params.id, req.body)
         .then(result => {
             console.log('edited product in db')
@@ -131,8 +131,8 @@ const product_edit_put = (req, res) => {
         })
 }
 const product_add_lover_put = (req, res) => {
-    console.log(req.params.id)
-    console.log('new loverID to add sent')
+    // console.log(req.params.id)
+    // console.log('new loverID to add sent')
     Product.findByIdAndUpdate(req.params.id, req.body)
         .then(result => {
             console.log('edited product in db')
