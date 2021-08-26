@@ -47,6 +47,7 @@ const EditProduct = () => {
     }, [id])
 
     const handleInputs = (event) => {
+        console.log(event)
         setProductDetails(prev => {
             return {
                 ...prev,
@@ -114,8 +115,7 @@ const EditProduct = () => {
                         setImgUrl(downloadURL)
                         return {
                             ...prev,
-                            p_imageUrl: downloadURL,
-                            p_ownerID: logged_user ? logged_user.result._id : ''
+                            p_imageUrl: imgUrl
                         }
                     })
                 });
@@ -126,7 +126,7 @@ const EditProduct = () => {
     const saveInputs = (e) => {
         e.preventDefault();
 
-        axios.put(`api/editProduct/${id}`, productDetails)
+        axios.put(`/api/editProduct/${id}`, productDetails)
             .then((result) => {
                 console.log(result)
                 console.log('edited article from db')
@@ -171,24 +171,24 @@ const EditProduct = () => {
                     </div>
                     <div>
                         <label>Titel der Anzeige:</label>
-                        <input type="text" name="title" required onChange={handleInputs} value={productDetails.p_titel} />
+                        <input type="text" name="p_titel" required onChange={handleInputs} value={productDetails.p_titel} />
                     </div>
                     <div>
                         <label>Marke des Artikels:</label>
-                        <input type="text" name="mark" onChange={handleInputs} value={productDetails.p_mark} />
+                        <input type="text" name="p_mark" onChange={handleInputs} value={productDetails.p_mark} />
                     </div>
                     <div>
                         <label>Beschreibung:</label>
-                        <input type="text" id="description-input" name="description" onChange={handleInputs} value={productDetails.p_description} />
+                        <input type="text" id="p_description" name="p_description" onChange={handleInputs} value={productDetails.p_description} />
                     </div>
 
                     <div>
                         <label>Anzahl:</label>
-                        <input type="number" name="quantity" required onChange={handleInputs} min='1' value={productDetails.p_amount} />
+                        <input type="number" name="p_amount" required onChange={handleInputs} min='1' value={productDetails.p_amount} />
                     </div>
                     <div>
                         <label>Preis:</label>
-                        <input step=".01" type="number" name="price" required onChange={handleInputs} min='1' value={productDetails.p_price} /> EUR
+                        <input step=".01" type="number" name="p_price" required onChange={handleInputs} min='1' value={productDetails.p_price} /> EUR
                         <input type="radio" checked name="condition" value='fixed' onChange={handleInputs} />
                         <label htmlFor="fixed-price">Festpreis</label>
                         <input type="radio" name="condition" value='flex' onChange={handleInputs} />
@@ -199,8 +199,16 @@ const EditProduct = () => {
 
                     <div className="upload">
                         <label>Bilder:</label>
-                        <img src={camera} alt="alt" />
-                        <input multiple type="file" name="uploaded_file" onChange={handleFile} />
+                        <label htmlFor='imageChosen'>
+                            <img src={camera} alt="alt" />
+                        </label>
+                        <input
+                            style={{ display: 'none' }}
+                            id='imageChosen'
+                            multiple
+                            type="file"
+                            name="uploaded_file"
+                            onChange={(e) => setFilesChosen(e.target.files[0])} />
                         <p className='errorMessages'>{err}</p>
                         {/* <button onClick={handleUpload}>Hochladen</button> */}
                         <figure className='fileUploaded'>
@@ -211,7 +219,7 @@ const EditProduct = () => {
 
                     <div>
                         <label>Kategorie</label>
-                        <select name="category" id="" onChange={handleInputs} value={productDetails.p_category}>
+                        <select name="p_category" id="" onChange={handleInputs} value={productDetails.p_category}>
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Moebel">Möbel</option>
                             <option value="Electronik" >Elektronik</option>
@@ -225,17 +233,17 @@ const EditProduct = () => {
                         <img className="five-circles" src={fiveCircles} alt="circles" />
 
                         <label>PLZ*</label>
-                        <input type="text" name="postcode" placeholder="PLZ" onChange={handleInputs} value={productDetails.p_PLZ} /><br></br>
-                        <input type="text" id="city-input" name="city" placeholder="Ort" required onChange={handleInputs} value={productDetails.p_city} />
+                        <input type="text" name="p_PLZ" placeholder="PLZ" onChange={handleInputs} value={productDetails.p_PLZ} /><br></br>
+                        <input type="text" id="city-input" name="p_city" placeholder="Ort" required onChange={handleInputs} value={productDetails.p_city} />
                     </div>
                     <div>
-                        <label>Straße/Nr.*</label><input type="text" name="street" required onChange={handleInputs} value={productDetails.p_street} />
+                        <label>Straße/Nr.*</label><input type="text" name="p_street" required onChange={handleInputs} value={productDetails.p_street} />
                     </div>
                     <div>
-                        <label>Name*</label><input type="text" name="name" required onChange={handleInputs} value={productDetails.p_owner} />
+                        <label>Name*</label><input type="text" name="p_owner" required onChange={handleInputs} value={productDetails.p_owner} />
                     </div>
                     <div>
-                        <label>Telefonnummer*</label><input id="phone-input" type="number" name="phone" required onChange={handleInputs} min='0' value={productDetails.p_call} />
+                        <label>Telefonnummer*</label><input id="phone-input" type="number" name="p_call" required onChange={handleInputs} min='0' value={productDetails.p_call} />
                     </div>
                     <div className="submit-input">
                         {/* <button onClick={saveInputs}>Produkt einstellen</button> */}
