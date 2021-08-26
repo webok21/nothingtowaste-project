@@ -18,7 +18,7 @@ const EditProduct = () => {
     const [imgUrl, setImgUrl] = useState(null)
     const [filesChosen, setFilesChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
-    const [err, setErr] = useState('Supported: .png, .jpeg, .jpg');
+    const [err, setErr] = useState('Formate: .png, .jpeg, .jpg');
 
 
     useEffect(() => {
