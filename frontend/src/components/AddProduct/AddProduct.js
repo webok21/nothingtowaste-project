@@ -12,10 +12,12 @@ import { UserContext } from '../context/UserContext';
 const AddProduct = () => {
     let logged_user = useContext(UserContext)
     // console.log(logged_user.result._id)
+    const [imgUrl, setImgUrl] = useState(null)
     const [inputs, setInputs] = useState({})
     const [filesChosen, setFilesChosen] = useState(null)
     const [isFilePicked, setIsFilePicked] = useState(false);
     const [err, setErr] = useState('Supported: .png, .jpeg, .jpg');
+
     const handleInputs = (event) => {
         setInputs(prev => {
             return {
@@ -76,6 +78,7 @@ const AddProduct = () => {
                 uploadTask.snapshot.ref.getDownloadURL().then((downloadURL) => {
                     // console.log('File available at', downloadURL);
                     setInputs(prev => {
+                        setImgUrl(downloadURL)
                         return {
                             ...prev,
                             p_imageUrl: downloadURL,
@@ -87,7 +90,8 @@ const AddProduct = () => {
         );
 
     }
-    const saveInputs = () => {
+    const saveInputs = (e) => {
+        e.preventDefault();
         console.log('these are the inputs:' + inputs)
         axios.post('/api/addProduct', inputs)
             .then((result) => {
@@ -146,7 +150,7 @@ const AddProduct = () => {
 
                     <div>
                         <label>Anzahl:</label>
-                        <input type="number" name="quantity" required onChange={handleInputs} min='0' />
+                        <input type="number" name="quantity" required onChange={handleInputs} min='1' />
                     </div>
                     <div className="price">
                         <label>Preis:</label>
@@ -162,9 +166,17 @@ const AddProduct = () => {
                     <div className="upload">
                         <label>Bilder:</label>
                         <div className="upload-btn">
-                            <img src={camera} alt="" />
-                            <input type="file" name="uploaded_file" onChange={(e) => setFilesChosen(e.target.files[0])} />
+                            <img src={camera} alt="img" />
+                            <input
+                                multiple
+                                type="file"
+                                name="uploaded_file"
+                                onChange={(e) => setFilesChosen(e.target.files[0])} />
                             <p className='errorMessages'>{err}</p>
+                            <figure className='fileUploaded'>
+                                <img src={imgUrl} alt='imageChosen'></img>
+                                <figcaption>{filesChosen && filesChosen.name}</figcaption>
+                            </figure>
                             {/* <button onClick={handleUpload}>Hochladen</button> */}
                         </div>
                     </div>
@@ -172,7 +184,7 @@ const AddProduct = () => {
                         <label htmlFor="category-select">Kategorie</label>
                         <select name="category" id="category-select" onChange={handleInputs} >
                             <option value="Klamotten" >Klamotten</option>
-                            <option value="Möbel">Möbel</option>
+                            <option value="Moebel">Möbel</option>
                             <option value="Elektronik" >Elektronik</option>
                             <option value="Sonstiges" >Sonstiges</option>
                         </select>

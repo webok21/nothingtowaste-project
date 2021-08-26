@@ -232,7 +232,7 @@ const Wishlist = () => {
                         </ul>
                     </div>
                     <div className="price-filter">
-                        <h3>Preis</h3>
+                        <h3>Preis (€)</h3>
                         <input type="range" name="priceMin" min='0' max="200" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
                         <p>Min: {filterPriceMin}</p>
                         <input type="range" name="priceMax" min='200' max="1000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
@@ -255,7 +255,8 @@ const Wishlist = () => {
                         }
 
                     }).map(productObj =>
-                        <article key={productObj._id} >
+                        <article key={productObj._id}
+                            className={logged_user.result._id && (`${productObj.p_ownerID}` === `${logged_user.result._id}`) ? 'myArticles' : ''}>
                             <img src={productObj.p_imageUrl} alt="img"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
