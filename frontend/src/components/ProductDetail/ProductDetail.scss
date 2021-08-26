@@ -10,6 +10,18 @@ $yellow-color: #ffba49;
 $grayish-color: #f5f5f5;
 $fontText: "Roboto", sans-serif;
 
+$breakpoint-macbook: 1440px;
+$breakpoint-laptop-end: 1281px;
+$breakpoint-laptop: 1280px;
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+$breakpoint-ipad-end: 769px;
+$breakpoint-ipad: 768px;
+$breakpoint-surface-end: 541px;
+$breakpoint-surface: 540px;
+$breakpoint-iphone-end: 375px;
+$breakpoint-iphone: 375px;
+
 #product-detail {
   padding: 5em;
   article {
@@ -68,14 +80,15 @@ $fontText: "Roboto", sans-serif;
         padding: 1em;
         border-radius: 0.5em;
         background-color: $purple-color;
-        display: flex;
-        align-items: center;
+        display: inline-block;
+        color: $white-color;
+        text-align: center;
         .heart::after {
-          background-image: url("../../img/shop/like.svg");
-          background-size: 16px 16px;
+          background-image: url("../../img/shop/like-plus.svg");
+          background-size: 34px 21px;
           display: inline-block;
-          width: 16px;
-          height: 16px;
+          width: 34px;
+          height: 21px;
           content: "";
         }
       }
@@ -92,23 +105,127 @@ $fontText: "Roboto", sans-serif;
   -webkit-filter: grayscale(1); /* Old WebKit */
 }
 
-
-.heart.liked {
-  color: red;
+.inWishlist {
+  padding: 1em;
+  border-radius: 0.5em;
+  display: flex;
+  align-items: center;
+  width: 240px;
+  justify-content: space-between;
+  // .heart::after {
+  //   background-image: url("../../img/shop/like.svg");
+  //   background-size: 16px 16px;
+  //   display: inline-block;
+  //   width: 16px;
+  //   height: 16px;
+  //   content: "";
+  // }
 }
 
-.inWishlist{
-        padding: 1em;
-        border-radius: 0.5em;
-        background-color: $grayish-color;
-        display: flex;
-        align-items: center;
-        .heart::after {
-          background-image: url("../../img/shop/like.svg");
-          background-size: 16px 16px;
-          display: inline-block;
-          width: 16px;
-          height: 16px;
-          content: "";
+#edit {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  #editbutton {
+    width: 152px;
+    height: 45px;
+    border: 1px solid $purple-color;
+    border-radius: 0.5em;
+    background-color: $white-color;
+    color: $purple-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 0;
+  }
+}
+
+// Mediaqueries
+// Ipad Pro
+@media (min-width: $breakpoint-ipad-end) and (max-width: $breakpoint-ipadpro) {
+  #product-detail {
+    padding: 2em;
+
+    article {
+      figure {
+        flex-direction: column;
+        img {
+          width: 100%;
         }
+        div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+// Ipad
+@media (min-width: $breakpoint-surface-end) and (max-width: $breakpoint-ipad) {
+  #product-detail {
+    padding: 0;
+    padding-top: 10%;
+
+    article {
+      figure {
+        flex-direction: column;
+        img {
+          width: 100%;
+        }
+        #img-product-full {
+          width: 600px;
+          height: 420px;
+          object-fit: cover;
+        }
+        div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Surface
+@media (min-width: $breakpoint-iphone-end) and (max-width: $breakpoint-surface) {
+  #product-detail {
+    padding: 0;
+    padding-top: 10%;
+    article {
+      figure {
+        flex-direction: column;
+        img {
+          width: 100%;
+        }
+        #img-product-full {
+          width: 500px;
+          height: 350px;
+        }
+        div {
+          width: 100%;
+        }
+      }
+    }
+  }
+}
+
+// Iphone
+@media (max-width: $breakpoint-iphone) {
+  #product-detail {
+    padding-top: 10%;
+    article {
+      figure {
+        flex-direction: column;
+        img {
+          width: 100%;
+        }
+        #img-product-full {
+          width: 350px;
+          height: 245px;
+        }
+        div {
+          width: 100%;
+        }
+      }
+    }
+  }
 }
