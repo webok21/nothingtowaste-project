@@ -166,8 +166,12 @@ const AddProduct = () => {
                     <div className="upload">
                         <label>Bilder:</label>
                         <div className="upload-btn">
-                            <img src={camera} alt="img" />
+                            <label htmlFor='imageChosen'>
+                                <img src={camera} alt="img" />
+                            </label>
                             <input
+                                style={{ display: 'none' }}
+                                id='imageChosen'
                                 multiple
                                 type="file"
                                 name="uploaded_file"
