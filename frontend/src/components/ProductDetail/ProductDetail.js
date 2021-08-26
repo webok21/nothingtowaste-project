@@ -45,7 +45,6 @@ const ProductDetail = () => {
             .then((result) => {
                 console.log(result.data)
                 setDetail(result.data)
-                setDetail2(result.data)
                 setProductSold(productDetail.p_isSold)
                 window.location.href = result.data.redirect
             })

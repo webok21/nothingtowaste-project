@@ -3,14 +3,17 @@ import {
     Link, useHistory
 } from "react-router-dom";
 import axios from 'axios';
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 // import shoes from '../../img/shop/white-shoes.png'
 import Aside from "../Marketplace/Aside";
 import ProductSoldHeader from "./ProductSoldHeader";
 import '../Marketplace/Marketplace.scss';
 import './ProductSold.scss'
+import { UserContext } from "../context/UserContext";
+
 
 const ProductSold = () => {
+    let logged_user = useContext(UserContext) //added!!
     let history = useHistory();
     const [productData, setProductData] = useState(null)
     const [searchString, setSearchString] = useState('')
@@ -214,7 +217,7 @@ const ProductSold = () => {
                         </ul>
                     </div>
                     <div>
-                        <h3>Preis</h3>
+                        <h3>Preis (€)</h3>
                         <input type="range" name="priceMin" min='0' max="200" onChange={(e) => setfilterPriceMin(e.target.value)}></input>
                         <p>Min: {filterPriceMin}</p>
                         <input type="range" name="priceMax" min='200' max="1000" onChange={(e) => setfilterPriceMax(e.target.value)}></input>
@@ -235,7 +238,8 @@ const ProductSold = () => {
                         }
 
                     }).map(productObj =>
-                        <article key={productObj._id} >
+                        <article key={productObj._id}
+                            className={logged_user.result._id && (`${productObj.p_ownerID}` === `${logged_user.result._id}`) ? 'myArticles' : ''}>
                             <img src={productObj.p_imageUrl} alt="img"></img>
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>

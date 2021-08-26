@@ -69,6 +69,14 @@ $fontText: "Roboto", sans-serif;
                 input {
                     background: $blue-light_color;
                 }
+                .fileUploaded{
+                    width: 100px;
+                    height: 100px;
+                    img{
+                        width: 100%;
+                        object-fit: cover;
+                    }
+                }
             }
         }
         .form-images { 
