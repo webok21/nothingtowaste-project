@@ -20,9 +20,9 @@ app.use(express.static(path.join(__dirname, "frontend", "build")))
 const PORT = process.env.PORT
 
 app.use('/user', user);
-app.get('/', (req, res) => {
-    res.send("start")
-})
+// app.get('/', (req, res) => {
+//     res.send("start")
+// })
 
 mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false })
     .then(result => {
@@ -32,9 +32,9 @@ mongoose.connect(process.env.DB_URI, { useNewUrlParser: true, useUnifiedTopology
     .catch(err => console.log(err))
 
 
-app.get('/', (req, res) => {
-    res.send("responding")
-})
+// app.get('/', (req, res) => {
+//     res.send("responding")
+// })
 
 
 // const storage = multer.diskStorage({
