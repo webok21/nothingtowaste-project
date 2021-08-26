@@ -11,6 +11,18 @@ $yellow-color: #ffba49;
 
 $fontText: "Roboto", sans-serif;
 
+$breakpoint-macbook: 1440px;
+$breakpoint-laptop-end: 1281px;
+$breakpoint-laptop: 1280px;
+$breakpoint-ipadpro-end: 1025px;
+$breakpoint-ipadpro: 1024px;
+$breakpoint-ipad-end: 769px;
+$breakpoint-ipad: 768px;
+$breakpoint-surface-end: 541px;
+$breakpoint-surface: 540px;
+$breakpoint-iphone-end: 375px;
+$breakpoint-iphone: 375px;
+
 #add-product {
     margin: 8vh 20% 12vh 14%;
     form {
@@ -116,4 +128,14 @@ $fontText: "Roboto", sans-serif;
                 }
         }
     }
+}
+
+
+//Mediaqueries
+// Ipad Pro
+@media (min-width: $breakpoint-ipad-end) and (max-width: $breakpoint-ipadpro) { 
+    #currency + label {
+        display: block;
+    }
+
 }

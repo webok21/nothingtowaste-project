@@ -16,20 +16,15 @@ $fontText: "Roboto", sans-serif;
   border: none;
   width: 70%;
   margin: 0 auto;
-  h1 {
-    width: 60%;
-    margin: 0 auto;
-    margin-bottom: 6%;
-  }
   form {
-    input[type="search"] {
-      background: $purple-light_color url(../../img/shop/search.png) 3% / 16px
-        no-repeat;
-      border: none;
-      border-radius: 5px;
-      width: 50%;
-      height: 6vh;
-    }
+    // input[type="search"] {
+    //   background: $purple-light_color url(../../img/shop/search.png) 3% / 16px
+    //     no-repeat;
+    //   border: none;
+    //   border-radius: 5px;
+    //   width: 50%;
+    //   height: 6vh;
+    // }
     ::placeholder {
       font-size: 0.8rem;
       color: $blue-dark_color;

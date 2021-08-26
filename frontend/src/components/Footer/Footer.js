@@ -32,7 +32,7 @@ const Footer = () => {
                     <a href="http://www.instagram.com"><img src={insta} alt="insta" /></a>
                 </div>
                 <div className="copyright">
-                    <p>COPYRIGHT © nothingtotrash 2021 -
+                    <p>COPYRIGHT nothingtotrash 2021 -
                         <a href="/">TERMS & CONDITIONS </a>
                         <a href="/">PRIVACY POLICY</a>
                     </p>

@@ -119,9 +119,12 @@ const ProductSold = () => {
     console.log(counts['Amazon']);
 
     return (
-        <main>
+        <main className="marketplace-main">
             <ProductSoldHeader />
             <input type="search" placeholder="Suche nach Produkt, Kategorie..." onChange={handleSearch} id="search" />
+            <Link to="/addproduct">
+                <button className="addproduct-btn">Produkt einstellen</button>
+            </Link>
             <section id="product-sold">
                 <aside>
                     <div>

@@ -103,7 +103,7 @@ const SignUp = () => {
             <Grid container justifyContent="flex-end">
               <Grid item>
                 <Button className="btn span" onClick={switchMode}>
-                  {isSignup ? 'Du hast schon einen Account? Log In' : 'Noch keinen Account? Registiere Dich'}
+                  {isSignup ? 'Du hast schon einen Account? Log In' : 'Noch keinen Account? Registriere Dich'}
                 </Button>
               </Grid>
             </Grid>

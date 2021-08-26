@@ -23,16 +23,25 @@ $breakpoint-surface: 540px;
 $breakpoint-iphone-end: 375px;
 $breakpoint-iphone: 375px;
 
-#marketplace-main {
+.marketplace-main {
+  .addproduct-btn {
+    color: $white-color;
+    background: $purple-color;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 30px;
+    margin: 50px auto;
+    display: block;
+  }
   #search {
     width: 35%;
-    margin: 0 auto;
+    margin: 30px auto;
     display: block;
     background: $purple-light_color url(../../img/shop/search.png) 3% / 16px
       no-repeat;
     border: none;
     border-radius: 5px;
-    height: 6vh;
+    height: 40px;
     padding-left: 5%;
   }
   ::placeholder {
@@ -56,8 +65,8 @@ $breakpoint-iphone: 375px;
     align-items: center;
 
     h1 {
-      width: 80%;
-      margin-bottom: 3%;
+      width: 90%;
+      margin: 5% 0;
     }
     p {
       width: 68%;
@@ -224,6 +233,12 @@ input[type="range"]::-webkit-slider-thumb {
     article {
       flex-direction: column;
     }
+    .filter-btn button:first-of-type {
+      margin: 30px 0;
+    }
+  }
+  .marketplace-main .marketplace-headers h1 {
+    margin-top: 20%;
   }
 }
 // Ipad
@@ -249,6 +264,9 @@ input[type="range"]::-webkit-slider-thumb {
       }
     }
   }
+  .marketplace-main .marketplace-headers h1 {
+    margin-top: 20%;
+  }
 }
 
 // Surface
@@ -268,6 +286,9 @@ input[type="range"]::-webkit-slider-thumb {
       flex-direction: column;
       width: 100%;
     }
+  }
+  .marketplace-main .marketplace-headers h1 {
+    margin-top: 20%;
   }
 }
 
