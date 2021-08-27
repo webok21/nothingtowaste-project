@@ -256,7 +256,9 @@ const Marketplace = () => {
                     }).map(productObj =>
                         <article key={productObj._id}
                             className={`${productObj.p_ownerID}` === `${logged_user.result._id}` ? 'myArticles' : ''}>
+
                             <img src={productObj.p_imageUrl} alt="img"></img>
+
                             {/* <img src={shoes} alt="img"></img> */}
                             <div>
                                 <p className="price">{productObj.p_price} EUR</p>

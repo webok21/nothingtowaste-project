@@ -47,7 +47,7 @@ const Wishlist = () => {
 
 
     for (const [key, value] of urlSearch) {
-        console.log(`${key}=>${value}`)
+        // console.log(`${key}=>${value}`)
     }
 
     const handleReset = () => {
@@ -64,10 +64,10 @@ const Wishlist = () => {
     let count = 0
     useEffect(() => {
         const abortControl = new AbortController();
-        console.log(productData)
+        // console.log(productData)
         axios.get(`/api/products`, { signal: abortControl.signal })
             .then((result) => {
-                console.log(result.data)
+                // console.log(result.data)
 
                 const wishData = result.data.filter((product) => {
                     if (product.p_lovers.includes(logged_user.result._id)) {
@@ -84,7 +84,7 @@ const Wishlist = () => {
                     console.log(err)
                 }
             })
-        console.log(productData)
+        // console.log(productData)
         return () => {
             abortControl.abort();
             console.log('cleanup: fetching aborted')
@@ -119,8 +119,8 @@ const Wishlist = () => {
     const foundMarks = filteredArr && filteredArr.map(product => product.p_mark.toLowerCase())
     const foundCateg = filteredArr && filteredArr.map(product => product.p_category)
 
-    console.log(foundMarks)
-    console.log(foundCateg)
+    // console.log(foundMarks)
+    // console.log(foundCateg)
 
     const counts = {};
 
@@ -130,8 +130,8 @@ const Wishlist = () => {
     for (const category of foundCateg) {
         counts[category] = counts[category] ? counts[category] + 1 : 1;
     }
-    console.log(counts[['Sonstiges']])
-    console.log(counts['Amazon']);
+    // console.log(counts[['Sonstiges']])
+    // console.log(counts['Amazon']);
 
 
     return (

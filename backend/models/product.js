@@ -64,7 +64,7 @@ const productSchema = new Schema({
         default: true
     },
     p_call: {
-        type: Number,
+        type: String,
         required: false
     },
     p_street: {

@@ -214,7 +214,7 @@ const AddProduct = () => {
                     </div>
                     <div className="phone-container">
                         <label>Telefonnummer*</label>
-                        <input type="number" name="phone" required onChange={handleInputs} min='0' />
+                        <input type="tel" placeholder="11-stellig" pattern="[0-9]{11}" name="phone" required onChange={handleInputs} min='0' />
                     </div>
                     <div className="submit-input">
                         {/* <button onClick={saveInputs}>Produkt einstellen</button> */}
