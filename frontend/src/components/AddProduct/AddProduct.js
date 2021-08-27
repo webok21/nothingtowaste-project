@@ -186,7 +186,8 @@ const AddProduct = () => {
                     </div>
                     <div>
                         <label htmlFor="category-select">Kategorie</label>
-                        <select name="category" id="category-select" onChange={handleInputs}  >
+                        <select name="category" id="category-select" onChange={handleInputs} >
+                            <option selected disabled>Auswählen</option>
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Moebel">Möbel</option>
                             <option value="Elektronik" >Elektronik</option>

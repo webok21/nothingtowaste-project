@@ -219,6 +219,7 @@ const EditProduct = () => {
                     <div>
                         <label>Kategorie</label>
                         <select name="p_category" id="" onChange={handleInputs} value={productDetails.p_category}>
+                            <option selected disabled>Auswählen</option>
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Moebel">Möbel</option>
                             <option value="Electronik" >Elektronik</option>
