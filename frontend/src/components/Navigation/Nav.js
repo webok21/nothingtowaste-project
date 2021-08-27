@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Link, useHistory, useLocation } from 'react-router-dom';
+import { NavLink, Link, useHistory, useLocation } from 'react-router-dom';
 import { Avatar, Button } from '@material-ui/core';
 import { useDispatch } from 'react-redux';
 import decode from 'jwt-decode';
@@ -44,25 +44,25 @@ const Nav = () => {
         <header>
             <nav>
                 <div id="logo">
-                    <Link to="/">
+                    <NavLink activeStyle={{ color: '#7854f7' }} to="/" exact>
                         <li>nothingtotrash</li>
                         <HomeIcon className="home icon" />
-                    </Link>
+                    </NavLink>
                 </div>
                 <ul className="ul lgout">
                     {user?.result ? (
                         <>
-                            <Link to="/marketplace">
+                            <NavLink activeStyle={{ color: '#7854f7' }} to="/marketplace">
                                 <li>Marktplatz</li>
                                 <ShoppingCartOutlinedIcon className="icon" />
-                            </Link>
+                            </NavLink>
                         </>
                     ) : (
-                        <Link to="/auth/login">
+                        <NavLink activeStyle={{ color: '#7854f7' }} to="/auth/login">
                             <li>Marktplatz</li>
-                        </Link>
+                        </NavLink>
                     )}
-                    <Link to="/aboutus"><li>Über uns</li></Link>
+                    <NavLink activeStyle={{ color: '#7854f7' }} to="/aboutus"><li>Über uns</li></NavLink>
                     {/* <Link to="/addproduct"><li>Füge ein Artikel hinzu</li></Link>
                     <Link to="/productsold"><li>Bereits verkauft</li></Link>
                     <Link to="/wishlist"><li>Meine Wunschliste</li></Link> */}
@@ -71,18 +71,18 @@ const Nav = () => {
                 {user?.result ? (
                     <>
                         <ul className="ul lgin">
-                            <Link to="/addproduct">
+                            <NavLink activeStyle={{ color: '#7854f7' }} to="/addproduct">
                                 <li>Füge ein Artikel hinzu</li>
                                 <AddOutlinedIcon className="icon" />
-                            </Link>
-                            <Link to="/productsold">
+                            </NavLink>
+                            <NavLink activeStyle={{ color: '#7854f7' }} to="/productsold">
                                 <li>Bereits verkauft</li>
                                 <LabelOffOutlinedIcon className="icon" />
-                            </Link>
-                            <Link to="/wishlist">
+                            </NavLink>
+                            <NavLink activeStyle={{ color: '#7854f7' }} to="/wishlist">
                                 <li>Meine Wunschliste</li>
                                 <FavoriteBorderOutlinedIcon className="icon" />
-                            </Link>
+                            </NavLink>
                         </ul>
                         <div className="toolbar">
                             <div className="profile">
