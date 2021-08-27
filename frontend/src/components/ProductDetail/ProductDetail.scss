@@ -36,7 +36,7 @@ $breakpoint-iphone: 375px;
     }
     .detailBox{
       display: flex;
-      gap: 4em;
+      gap: 10em;
       
       // justify-content: space-between;
       figure {
@@ -49,7 +49,7 @@ $breakpoint-iphone: 375px;
         img {
           // width: 100%;
           object-fit: contain;
-          width: 900px;
+          width: 80%;
           height: 630px;
         }
         // #img-product-full {

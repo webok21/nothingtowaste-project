@@ -244,7 +244,7 @@ const EditProduct = () => {
                         <label>Name*</label><input type="text" name="p_owner" required onChange={handleInputs} value={productDetails.p_owner} />
                     </div>
                     <div>
-                        <label>Telefonnummer*</label><input id="phone-input" type="tel" placeholder="11-stellig" pattern="[0-9]{11}" name="p_call" required onChange={handleInputs} min='0' value={productDetails.p_call} />
+                        <label>Telefonnummer*</label><input id="phone-input" type="tel" placeholder="12-stellig" pattern="[0-9]{12}" name="p_call" required onChange={handleInputs} min='0' value={productDetails.p_call} />
                     </div>
                     <div className="submit-input">
                         {/* <button onClick={saveInputs}>Produkt einstellen</button> */}

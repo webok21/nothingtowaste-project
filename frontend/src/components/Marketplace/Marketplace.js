@@ -53,7 +53,7 @@ const Marketplace = () => {
         setSearchString('')
         setfilterCategories('')
         setfilterPriceMin(0)
-        setfilterPriceMax(5000)
+        setfilterPriceMax(1000)
         setfilterMark('')
         setResultMessage('')
         setProductData(backupData)
@@ -104,7 +104,7 @@ const Marketplace = () => {
 
 
     const filteredArr = (productData ? productData.filter((product) => {
-        if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
+        if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase()) || product.p_city.toLowerCase().includes(searchString.toLowerCase())) {
             return product
         }
     }) : '')
@@ -123,8 +123,8 @@ const Marketplace = () => {
     for (const category of foundCateg) {
         counts[category] = counts[category] ? counts[category] + 1 : 1;
     }
-    console.log(counts[['Sonstiges']])
-    console.log(counts['Amazon']);
+    // console.log(counts[['Sonstiges']])
+    // console.log(counts['Amazon']);
 
 
     return (
@@ -249,7 +249,7 @@ const Marketplace = () => {
 
                     {productData && (productData.filter((product) => {
 
-                        if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase())) {
+                        if (product.p_titel.toLowerCase().includes(searchString.toLowerCase()) || product.p_category[0].toLowerCase().includes(searchString.toLowerCase()) || product.p_mark.toLowerCase().includes(searchString.toLowerCase()) || product.p_description.toLowerCase().includes(searchString.toLowerCase()) || product.p_owner.toLowerCase().includes(searchString.toLowerCase()) || product.p_city.toLowerCase().includes(searchString.toLowerCase())) {
                             return product
                         }
 
