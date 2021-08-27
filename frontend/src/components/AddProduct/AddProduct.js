@@ -186,7 +186,7 @@ const AddProduct = () => {
                     </div>
                     <div>
                         <label htmlFor="category-select">Kategorie</label>
-                        <select name="category" id="category-select" onChange={handleInputs} >
+                        <select name="category" id="category-select" onChange={handleInputs}  >
                             <option value="Klamotten" >Klamotten</option>
                             <option value="Moebel">Möbel</option>
                             <option value="Elektronik" >Elektronik</option>
@@ -213,7 +213,7 @@ const AddProduct = () => {
                     </div>
                     <div className="phone-container">
                         <label>Telefonnummer*</label>
-                        <input type="number" name="phone" required onChange={handleInputs} min='0' />
+                        <input type="tel" placeholder="11-stellig" pattern="[0-9]{11}" name="phone" required onChange={handleInputs} min='0' />
                     </div>
                     <div className="submit-input">
                         {/* <button onClick={saveInputs}>Produkt einstellen</button> */}
