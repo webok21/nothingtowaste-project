@@ -17,11 +17,11 @@ const ProductDetail = () => {
     let count = 0
     useEffect(() => {
         const abortControl = new AbortController();
-        console.log(productDetail)
+        // console.log(productDetail)
         axios.get(`/api/productDetails/${id}`, { signal: abortControl.signal })
             .then((result) => {
                 if (result.data) {
-                    console.log(result.data)
+                    // console.log(result.data)
                     setDetail(result.data)
                     setProductSold(productDetail.p_isSold)
                 }
@@ -43,7 +43,7 @@ const ProductDetail = () => {
 
         axios.put(`/api/makeSold/${id}`)
             .then((result) => {
-                console.log(result.data)
+                // console.log(result.data)
                 setDetail(result.data)
                 setProductSold(productDetail.p_isSold)
                 window.location.href = result.data.redirect
@@ -65,7 +65,7 @@ const ProductDetail = () => {
         if (productDetail2) {
             axios.put(`/api/addLover/${productDetail._id}`, productDetail2)
                 .then((result) => {
-                    console.log(result.data)
+                    // console.log(result.data)
                     window.location.href = result.data.redirect
                 })
                 .catch((err) => { console.log(err) })
@@ -78,21 +78,23 @@ const ProductDetail = () => {
 
                 {productDetail &&
                     <article key={productDetail._id} >
-                        <figure>
-                            <img className={productDetail.p_isSold ? 'soldProduct' : ''} src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
-                            {/* <img src={shoes} alt="img"></img> */}
+                        <p id="bigtitle">{productDetail.p_titel}</p>
+
+                        <div className='detailBox'>
+                            <figure>
+                                <img className={productDetail.p_isSold ? 'soldProduct' : ''} src={productDetail.p_imageUrl} alt="img" id="img-product-full"></img>
+                                {/* <img src={shoes} alt="img"></img> */}
+
+                                <figcaption>
+                                    <p><b>Produktbeschreibung:</b></p>
+                                    <p>{productDetail.p_description}</p>
+                                </figcaption>
+                            </figure>
                             <div>
-                                
-                                
+
+                                <p id="bigprice">{productDetail.p_price} €, {(ProductDetail.p_forFree || productDetail.p_price * 1 == 0) ? 'Zu Verschenken' : productDetail.p_priceFlex ? 'VB' : 'Festpreis'}</p>
 
 
-                                <p id="bigtitle">{productDetail.p_titel}</p>
-
-
-                                
-                                <p id="bigprice">{productDetail.p_price} Euro, {(ProductDetail.p_forFree || productDetail.p_price * 1 == 0) ? 'Zu Verschenken' : productDetail.p_priceFlex ? 'VB' : 'Festpreis'}</p>
-
-                                
                                 {productDetail.p_isSold ? '' : (productDetail.p_lovers &&
                                     productDetail.p_lovers.includes(`${logged_user.result._id}`)) ?
                                     <p className='inWishlist'><span className={productDetail.p_lovers &&
@@ -119,27 +121,27 @@ const ProductDetail = () => {
 
                                 <p><b>Anzeige-Typ:</b> {productDetail.p_toGiveAway ? 'Suche' : 'Angebot'}</p>
                                 <p><b>Marke:</b> {productDetail.p_mark}</p>
-                               
-                                <p><b>Anzahl:</b> {productDetail.p_amount}</p>
-                                <p><b>Ort:</b> {productDetail.p_PLZ}  {productDetail.p_city}</p>
-                                <p><b>Lieferung möglich:</b> {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
-                                <p><b>Abholung möglich:</b> {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
-                                
                                 <p><b>Kategorie:</b> {
                                     productDetail.p_category && (productDetail.p_category.map((el, i) =>
                                         <span key={i}>{el} </span>))
                                 }</p>
-                                <p><b>Produktbeschreibung:</b></p>
-                                <p>{productDetail.p_description}</p>
-                                <p>Bei Interesse kontaktieren Sie mich gern telefonisch!</p>
-                                <p>Verkäufername: {productDetail.p_owner}</p>
-                                <p>Telefon: {productDetail.p_call}</p>
+
+                                <p><b>Anzahl:</b> {productDetail.p_amount}</p>
+                                <p><b>Ort:</b> {productDetail.p_PLZ}  {productDetail.p_city}</p>
+                                <p><b>Lieferung möglich:</b> {productDetail.p_shiping ? 'Ja' : 'Nein'}</p>
+                                <p><b>Abholung möglich:</b> {productDetail.p_pickup ? 'Ja' : 'Nein'}</p>
+
+
+                                <p className='kontakt'>Kontaktaufnahme</p>
+                                <p><b>Verkäufername:</b> {productDetail.p_owner}</p>
+                                <p><b>Telefon:</b> {productDetail.p_call}</p>
 
 
                             </div>
-                        </figure>
+
+                        </div>
                         {productDetail.p_isSold ?
-                            <p>Dieses Produkt ist nicht mehr verfügbar.
+                            <p className='isSoldMessage'>Dieses Produkt ist nicht mehr verfügbar.
                                 Sie können aber gern nach dem Namen des/der Verkäufers/in suchen
                                 (in der Marktplatz Seite) um weitere Angebote von ihm/ihr zu finden</p> :
                             <div>
@@ -148,7 +150,7 @@ const ProductDetail = () => {
                                         <Link id="editbutton" to={`/editproduct/${productDetail._id}`}> Bearbeiten </Link>
                                         <button onClick={handleDelete}>Löschen</button>
                                         <button onClick={handleSoldStatus}>Verkauft</button>
-                                        <i>(ACHTUNG: Die Aktion kann zurzeit nicht rückgängig gemacht werden!)</i>
+
                                     </div> : <div></div>
                                 }
                             </div>

@@ -150,6 +150,7 @@ $breakpoint-iphone: 375px;
     display: flex;
     gap: 2em;
     border: solid 1px $frame-color;
+  
     img {
       width: 400px;
       height: 400px;
@@ -157,6 +158,7 @@ $breakpoint-iphone: 375px;
       object-position: top center;
       min-width: 40%;
     }
+    
     div {
       padding: 2em;
       display: flex;

@@ -22,8 +22,8 @@ import { UserContext } from "./components/context/UserContext";
 function App() {
 
   let user = JSON.parse(localStorage.getItem('profile'))
-  console.log(user)
-  console.log(user ? user.result._id : 'no logged user found')
+  // console.log(user)
+  // console.log(user ? user.result._id : 'no logged user found')
 
   return (
 

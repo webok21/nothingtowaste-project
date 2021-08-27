@@ -26,34 +26,70 @@ $breakpoint-iphone: 375px;
   padding: 5em;
   article {
     margin-bottom: 2em;
-    flex-direction: column;
-    display: flex;
-    gap: 2em;
-    figure {
+    justify-content: space-between;
+    // flex-direction: column;
+    // display: flex;
+    #bigtitle{
+      font-weight: 600;
+      font-size: 2em;
+      margin-bottom: 1em;
+    }
+    .detailBox{
       display: flex;
-      justify-content: space-between;
-      img {
+      gap: 4em;
+      
+      // justify-content: space-between;
+      figure {
         width: 60%;
-      }
-      #img-product-full {
-        width: 900px;
-        height: 630px;
-        object-fit: cover;
-      }
-      div {
-        font-size: 1.2rem;
-        width: 40%;
-        #bigtitle,
-        #bigprice {
-          font-size: 2.2rem;
+        // display: flex;
+        // justify-content: space-between;
+        figcaption{
+          padding:2em 5em 2em 0;
         }
-        #bigtitle {
-          font-weight: 700;
+        img {
+          // width: 100%;
+          object-fit: contain;
+          width: 900px;
+          height: 630px;
+        }
+        // #img-product-full {
+        //   width: 900px;
+        //   height: 630px;
+        //   object-fit: cover;
+        // }
+        // div {
+        //   font-size: 1.2rem;
+        //   width: 40%;
+        //   #bigtitle,
+        //   #bigprice {
+        //     font-size: 2.2rem;
+        //   }
+        //   #bigtitle {
+        //     font-weight: 700;
+        //   }
+        // }
+      }
+      div{
+        #bigprice{
+          font-weight: 600;
+          font-size: 2em;
+        }
+        .kontakt{
+          padding-top: 2em;
+          font-weight: 600;
+          font-size: 2em;
         }
       }
     }
+    // gap: 2em;
+    .isSoldMessage{
+      width: 50%;
+      color: $purple-color;
+      font-weight: bold;
+    }
+    
     div {
-      padding: 2em;
+      // padding: 2em;
       a {
         padding: 1em;
         border-radius: 0.5em;
@@ -75,6 +111,7 @@ $breakpoint-iphone: 375px;
         border-radius: 0.5em;
         display: inline-block;
         color: $white-color;
+        margin-right: 1em;
       }
       .like {
         padding: 1em;
@@ -83,6 +120,7 @@ $breakpoint-iphone: 375px;
         display: inline-block;
         color: $white-color;
         text-align: center;
+        
         .heart::after {
           background-image: url("../../img/shop/like-plus.svg");
           background-size: 34px 21px;
@@ -125,7 +163,7 @@ $breakpoint-iphone: 375px;
 #edit {
   width: 100%;
   display: flex;
-  justify-content: space-between;
+  // justify-content: space-around;
   align-items: center;
   #editbutton {
     width: 152px;
@@ -138,6 +176,7 @@ $breakpoint-iphone: 375px;
     justify-content: center;
     align-items: center;
     margin-bottom: 0;
+    margin-right: 1em;
   }
 }
 

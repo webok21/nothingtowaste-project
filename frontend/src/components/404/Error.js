@@ -14,7 +14,7 @@ const Error = () => {
                 Damit wir dich auf möglichst viele Seiten weiterleiten können,<br></br>
                 bitten wir dich, nichts wegzuwerfen, sondern bei uns zu verkaufen bzw. zu verschenken. <br></br>Für dich und für unsere Umwelt.
             </p>
-            <img src={trash} alt="" />
+            <img src={trash} alt="img" />
 
         </main>
     );
